@@ -10,7 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="findMemberById" 
  	parameterType="string" resultType="memberVO">
  		<include refid="selectMember"/> where id=#{value}
- 	</select>  	
+ 	</select>
+ 	
+ 	<sql id="selectMemberTest">
+ 		select t101.ename as name, t101.id, t101.pwd as password, t101.phone, t101.email, t102.pay_sys as pay_system, t102.mbs as membership, t102.mpoint, t102.data_size
+		from cust_bas t101
+		left join cust_dt t102
+		on t101.cust_id = t102.cust_id
+ 	</sql>  	
 </mapper>
  
  
