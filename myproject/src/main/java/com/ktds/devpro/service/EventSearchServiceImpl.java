@@ -1,5 +1,26 @@
 package com.ktds.devpro.service;
 
-public class EventSearchServiceImpl {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ktds.devpro.model.dao.EventDao;
+import com.ktds.devpro.model.vo.EventVO;
+
+@Service
+public class EventSearchServiceImpl implements EventSearchService{
+
+	@Autowired
+	private EventDao eventDao;
+	
+	List<EventVO> EventList;
+	
+	@Override
+	public List<EventVO> selectEventAll() {
+		// TODO Auto-generated method stub
+		return eventDao.selectEventListAll();
+	}
+
+	
 }
