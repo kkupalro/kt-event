@@ -13,7 +13,6 @@ public class Member {
 	private double dataSize;
 	public Member() {	
 	}
-	
 	public Member(String name, String id, String password, String phone, String email, String paySystem,
 			String membership, int mPoint, double dataSize) {
 		this.name = name;
@@ -26,7 +25,6 @@ public class Member {
 		this.mPoint = mPoint;
 		this.dataSize = dataSize;
 	}
-
 	public String getName() {
 		return name;
 	}
