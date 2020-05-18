@@ -1,6 +1,6 @@
 package com.ktds.devpro.model.vo;
 
-public class EventListVo {
+public class EventListVO {
 
 	int EvtId;
 	String EvtNm;
