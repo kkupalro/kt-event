@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,5 +45,12 @@ public class EventSearchController {
 		 
 		return EvtList;
 	}
-
+	
+	
+	@RequestMapping("/evt/searchCtgList/{ctgId}")
+	public List<EventCtgVO> EventSearchByCtg(@PathVariable int ctgId) {
+		List<EventCtgVO> EvtList = eventMapper.findEventByCtg(ctgId);
+		 
+		return EvtList;
+	}
 }
