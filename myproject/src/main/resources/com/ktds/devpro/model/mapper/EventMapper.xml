@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ktds.devpro.model.mapper.EventMapper">
 
 	<sql id="selectEventAll">
-		select EVT_ID,EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_CTG_ID,EVT_TRG,EVT_PHONE,EVT_TRG_DATE
+		select EVT_IDX,EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_CTG_ID,EVT_TRG,EVT_PHONE,EVT_TRG_DATE
 		 from EVT_EVT
 	</sql>
 	
