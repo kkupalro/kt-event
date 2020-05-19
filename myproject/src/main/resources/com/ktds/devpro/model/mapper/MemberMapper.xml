@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="findMemberById" 
  	parameterType="string" resultType="memberVO">
  		<include refid="selectMember"/> where id=#{value}
+
  	</select>
  	
  	
@@ -20,7 +21,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join cust_dt t102
 		on t101.cust_id = t102.cust_id
  	</select>
- 	  	
 </mapper>
  
  
