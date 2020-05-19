@@ -13,16 +13,10 @@ public class Member {
 	private double dataSize;
 
 	public Member() {
-		super();
 	}
-<<<<<<< HEAD
 	public Member(String name, String id, String password, String phone, String email, String product,
 			String membership, int custPoint, double dataSize) {
-=======
 
-	public Member(String name, String id, String password, String phone, String email, String paySystem,
-			String membership, int mPoint, double dataSize) {
->>>>>>> branch '200519' of https://devpro.ktds.co.kr:9999/giljun.park/kt-event.git
 		this.name = name;
 		this.id = id;
 		this.password = password;
@@ -73,23 +67,11 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-<<<<<<< HEAD
 	public String getProduct() {
 		return product;
-=======
 
-	public String getPaySystem() {
-		return paySystem;
->>>>>>> branch '200519' of https://devpro.ktds.co.kr:9999/giljun.park/kt-event.git
-	}
-<<<<<<< HEAD
 	public void setProduct(String product) {
 		this.product = product;
-=======
-
-	public void setPaySystem(String paySystem) {
-		this.paySystem = paySystem;
->>>>>>> branch '200519' of https://devpro.ktds.co.kr:9999/giljun.park/kt-event.git
 	}
 
 	public String getMembership() {
@@ -99,23 +81,11 @@ public class Member {
 	public void setMembership(String membership) {
 		this.membership = membership;
 	}
-<<<<<<< HEAD
 	public int getCustPoint() {
 		return custPoint;
-=======
-
-	public int getmPoint() {
-		return mPoint;
->>>>>>> branch '200519' of https://devpro.ktds.co.kr:9999/giljun.park/kt-event.git
 	}
-<<<<<<< HEAD
 	public void setCustPoint(int custPoint) {
 		this.custPoint = custPoint;
-=======
-
-	public void setmPoint(int mPoint) {
-		this.mPoint = mPoint;
->>>>>>> branch '200519' of https://devpro.ktds.co.kr:9999/giljun.park/kt-event.git
 	}
 
 	public double getDataSize() {
