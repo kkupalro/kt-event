@@ -15,6 +15,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<include refid="selectEventAll"/>
  	</select>
  		
+ 	<sql id="selectEventCtgAll">
+		select EVT_CTG_IDX, EVT_CTG_NM
+		 from EVT_CTG
+	</sql>
+	
+ 	<select id="findEventCtgAll" 
+ 	 parameterType="string" resultType="EventCtgVO">
+ 		<include refid="selectEventCtgAll"/>
+ 	</select>
  	
 </mapper>
  

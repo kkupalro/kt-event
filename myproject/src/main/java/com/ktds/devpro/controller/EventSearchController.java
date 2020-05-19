@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktds.devpro.model.mapper.EventMapper;
+import com.ktds.devpro.model.vo.EventCtgVO;
 import com.ktds.devpro.model.vo.EventVO;
 
 @RestController
@@ -37,5 +38,11 @@ public class EventSearchController {
 		return EvtList;
 	}
 	
+	@RequestMapping("/evt/searchCtg")
+	public List<EventCtgVO> EventSearchCtgAll() {
+		List<EventCtgVO> EvtList = eventMapper.findEventCtgAll();
+		 
+		return EvtList;
+	}
 
 }
