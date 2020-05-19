@@ -17,12 +17,15 @@ public class MemberTestController {
 	@Resource
 	private MemberMapper memberMapper;
 
-	@RequestMapping("select-member-test")
+	@RequestMapping("member")
 	public String findMemberById(String memberId, Model model) {
 		List<Member> vo = memberMapper.selectMemberTest();
 		model.addAttribute("member", vo);
 		return "test";
+	}	// git push origin 200519
+	
+	@RequestMapping("login")
+	public String loginPage() {
+		return null;
 	}
-
-	// git push origin 200519
 }

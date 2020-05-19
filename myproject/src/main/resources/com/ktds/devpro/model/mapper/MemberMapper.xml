@@ -14,11 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	
  	<select id="selectMemberTest"  resultType="member">
- 		select t101.ename as name, t101.id, t101.pwd as password, t101.phone, t101.email,
- 		t102.pay_sys as pay_system, t102.mbs as membership, t102.mpoint, t102.data_size
+ 		select t101.cust_nm as name, t101.cust_id as id, t101.cust_pwd as password, t101.cust_phone as phone, t101.cust_email as email,
+ 		t102.cust_prod as product, t102.cust_mbs as membership, t102.CUST_POINT , t102.cust_data_size as dataSize
 		from cust_bas t101
 		left join cust_dt t102
-		on t101.cust_id = t102.cust_id
+		on t101.cust_idx = t102.cust_idx
  	</select>
  	  	
 </mapper>
