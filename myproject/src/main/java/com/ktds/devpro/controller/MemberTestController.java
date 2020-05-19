@@ -22,7 +22,7 @@ public class MemberTestController {
 		List<Member> vo = memberMapper.selectMemberTest();
 		model.addAttribute("member", vo);
 		return "test";
-	}	// git push origin 200519
+	}
 	
 	@RequestMapping("login")
 	public String loginPage() {
