@@ -11,7 +11,7 @@
 
 
 	<%@ include file="./main_header.jsp"%>
-		
+		0000000000000
 	<%@ include file="./event_footer.jsp" %>
 	
 </body>
