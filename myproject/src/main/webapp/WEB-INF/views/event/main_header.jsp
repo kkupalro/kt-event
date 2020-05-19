@@ -31,46 +31,55 @@
 				<div class="navigation">
 					<ul class="inner">
 
-						<li class="nav0"><a data-menucd="AA0000"
+						<li class="nav0">
+							<a data-menucd="AA0000"
 							href="javascript:kt_common.ktMenuLinkStat('https://my.kt.com/main.jsp','^KT-개인_공통^GNB^마이페이지','_self','AA0000');"
-							class=""><span>진행중인 이벤트 </span></a>
-							<div class="sub-navigation" style="display: none;"></div></li>
+							class="">
+							<span>진행중인 이벤트</span>
+							</a>
+							<div class="sub-navigation" style="display: none;"></div>
+						</li>
 
 
-						<li class="nav2"><a data-menucd="B00000"
-							href="javascript:kt_common.ktMenuLinkStat('https://product.kt.com','^KT-개인_공통^GNB^상품서비스','_self','B00000');"
-							class=""><span>LTE 데이터 룰렛</span></a>
+						<li class="nav2">
+							<a data-menucd="B00000"
+								href="javascript:kt_common.ktMenuLinkStat('https://product.kt.com','^KT-개인_공통^GNB^상품서비스','_self','B00000');"
+								class="">
+								<span>LTE 데이터 룰렛</span>
+							</a>
 							<div class="sub-navigation" style="display: none;">
-
 								<ul class="depth2">
 								</ul>
 								<ul class="depth2">
 								</ul>
-							</div></li>
-						<li class="nav4 membership"><a data-menucd="C00000"
-							href="javascript:kt_common.ktMenuLinkStat('https://membership.kt.com/main/MainInfo.do','^KT-개인_공통^GNB^멤버십/혜택','_self','C00000');"
-							class=""><span>종료된 이벤트 </span></a>
+							</div>
+						</li>
+						
+						<li class="nav4 membership">
+							<a data-menucd="C00000"
+								href="javascript:kt_common.ktMenuLinkStat('https://membership.kt.com/main/MainInfo.do','^KT-개인_공통^GNB^멤버십/혜택','_self','C00000');"
+								class="">
+								<span>당첨자 확인</span>
+							</a>
 							<div class="sub-navigation" style="display: none;">
 								<div class="cate">
 									<h3></h3>
 								</div>
-							</div></li>
+							</div>
+						</li>
 
-
-						<li class="nav4"><a data-menucd="D00000"
-							href="javascript:kt_common.ktMenuLinkStat('http://event.kt.com/html/event/ongoing_event_list.html','^KT-개인_공통^GNB^이벤트','_self','D00000');"
-							class="current"><span> </span></a>
-							<div class="sub-navigation" style="display: none;"></div></li>
-
-
-						<li class="nav6"><a data-menucd="F00000" title="새창 열림"
-							href="javascript:kt_common.ktMenuLinkStat('https://shop.kt.com','^KT-개인_공통^GNB^Shop','_blank','F00000');"
-							class=""><span>당첨자 </span></a>
-							<div class="sub-navigation" style="display: none;"></div></li>
+						<li class="nav6">
+							<a data-menucd="D00000"
+								href="javascript:kt_common.ktMenuLinkStat('http://event.kt.com/html/event/ongoing_event_list.html','^KT-개인_공통^GNB^이벤트','_self','D00000');"
+								class="">
+								<span>지난 이벤트</span>
+							</a>
+							<div class="sub-navigation" style="display: none;"></div>
+						</li>
 					</ul>
 				</div>
+				
 				<div class="utils bg-none">
-
 					<div id="total-search" class="total-search">
 						<div class="inner">
 							<div class="search">
