@@ -11,7 +11,7 @@ import com.ktds.devpro.model.mapper.MemberMapper;
 public class HomeController {
 	@Resource
 	private MemberMapper memberMapper;
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String home(Model model) {
 		return "index";
 	}
