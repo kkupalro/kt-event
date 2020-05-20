@@ -30,6 +30,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 parameterType="int" resultType="EventVO">
  		SELECT * FROM EVT_EVT WHERE EVT_CTG_ID =#{ctgId};
  	</select>
+ 	
+ 	<delete id="deleteEvent" 
+ 	 parameterType="String">
+ 		DELETE FROM EVT_EVT WHERE EVT_CTG_ID =#{evt_nm};
+ 	</delete>
 </mapper>
  
  

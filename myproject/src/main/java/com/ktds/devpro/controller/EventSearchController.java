@@ -8,7 +8,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktds.devpro.model.mapper.EventMapper;
@@ -30,6 +33,10 @@ public class EventSearchController {
 		EvtList.add(test2);
 		return EvtList;
 	}
+	@RequestMapping(path = "/evt/search/{evt_nm}", method = RequestMethod.DELETE)
+	public void EventDelete(@PathVariable String evt_nm) {
+		eventMapper.deleteEvent(evt_nm);
+	}
 	
 	@RequestMapping("/evt/searchAll")
 	public List<EventVO> EventSearchAll() {
@@ -50,4 +57,7 @@ public class EventSearchController {
 		 
 		return EvtList;
 	}
+	
+	
+	
 }
