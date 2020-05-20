@@ -22,7 +22,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, th, td, table, pre, code,
 
 html, body {
 	height: 39%;
-	min-height: 1080px;
+	min-height: 100px;
 }
 
 body, input, button, select, textarea {

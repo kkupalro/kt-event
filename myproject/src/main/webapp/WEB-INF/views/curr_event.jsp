@@ -10,10 +10,8 @@
 </head>
 <body>
 
-
 	<%@ include file="./main_header.jsp"%>
 
-	
 	<%@ include file="./event_footer.jsp" %>
 	
 </body>

@@ -157,9 +157,9 @@
 				<div id="chnlink" class="chnlink">
 					<ul>
 						<li class="current"><a title="선택됨"
-							href="javascript:kt_common.ktMenuLinkStat('http://www.kt.com','^KT-개인_공통^GNB^개인채널','_self','');">로그인</a></li>
+							href="javascript:kt_common.ktMenuLinkStat('login','^KT-로그인','_self','');">로그인</a></li>
 						<li><a
-							href="javascript:kt_common.ktMenuLinkStat('http://biz.kt.com','^KT-개인_공통^GNB^기업/중소사업자채널','_self','');">회원가입</a></li>
+							href="javascript:kt_common.ktMenuLinkStat('register','^KT-회원가입','_self','');">회원가입</a></li>
 
 					</ul>
 				</div>

@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
 	<%@ include file="./frst_header.jsp"%>
 
 	<div class="inner">
@@ -36,18 +35,17 @@
 						src="https://zone.membership.kt.com/event/2020AutoOasis/img/visual.jpg">
 				</div>
 			</div>
-
-
 		</div>
+		
 		<div style="text-align: center;">
 			<div class="btn-list">
 				<a href="event" class="btn large is-navygray">목록</a> 
-<!-- 				<input	type="button" value="목록">    -->
 			</div>
 		</div>
+		
 	</div>
 
-
 	<%@ include file="./event_footer.jsp"%>
+	
 </body>
 </html>
