@@ -1,6 +1,11 @@
 package com.ktds.devpro.model.vo;
 
-public class Member {
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class Member implements UserDetails  {
 	
 	private String name;
 	private String id;
@@ -85,6 +90,36 @@ public class Member {
 		return "Member [name=" + name + ", id=" + id + ", password=" + password + ", phone=" + phone + ", email="
 				+ email + ", paySystem=" + paySystem + ", membership=" + membership + ", mPoint=" + mPoint
 				+ ", dataSize=" + dataSize + "]";
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.name;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	
