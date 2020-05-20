@@ -7,8 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
-<body>
-
 	<!-- cfmClFooter -->
 	<div id="cfmClFooter">
 	
@@ -91,5 +89,5 @@
 	<script type="text/javascript" src="./js/sub.js"></script>
 	<!-- /script -->
 	
-</body>
+
 </html>

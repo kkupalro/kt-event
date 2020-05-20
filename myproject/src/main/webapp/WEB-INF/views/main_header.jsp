@@ -6,9 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
-
-<body>
-
 	<div id="cfmClWrapper">
 		<!-- crmClSkip -->
 		<div id="cfmClSkip">
@@ -170,5 +167,4 @@
 			</div>
 		</div>
 	</div>
-</body>
 </html>

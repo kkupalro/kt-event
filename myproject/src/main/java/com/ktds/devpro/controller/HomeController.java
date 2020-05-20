@@ -37,6 +37,16 @@ public class HomeController {
 		return "frth_event";
 	}
 	
+	@RequestMapping("/login")
+	public String login(Model model) {
+		return "event_login";
+	}
+	@RequestMapping("/register")
+	public String register(Model model) {
+		return "event_register";
+	}
+	
+	
 }
 
 
