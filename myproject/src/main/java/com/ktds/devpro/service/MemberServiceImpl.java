@@ -43,8 +43,8 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	            throw new UsernameNotFoundException("User Not Found");
 	     }
 
-		member.setPassword("{noop}1596");		//test password -> 실제로 사용할 땐 지워줘야함
-		System.out.println(member + "//\n");
+		///member.setPassword("{noop}1596");		//test password -> 실제로 사용할 땐 지워줘야함
+		//System.out.println(member + "//\n");
 		return member;
 	}
 }

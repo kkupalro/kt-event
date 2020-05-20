@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,23 +37,32 @@ public class MemberTestController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginProcess(HttpServletRequest request) {
+	public String loginProcess(HttpServletRequest request, HttpSession session) {
 		String id = request.getParameter("custId");
 		String pass = request.getParameter("custPwd");
+		UserDetails member = null;
+		try {
+			member = memberService.loadUserByUsername(id);
+		}catch(UsernameNotFoundException e) {
+			return "login/login_fail";
+		}
 		
-		return "login/loginPage";
+		if(!pass.equals(member.getPassword())) return "login/loginPage";
+		session.setAttribute("id", id);
+		
+		return "login/login_success";
 	}
 
 	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
 	public String loginSuccess(HttpSession session, HttpServletRequest request) {
 
         //CustomAuthenticationProvider에서 set한 값을 로드
-        User user = (User)SecurityContextHolder.getContext().getAuthentication().getDetails();
+        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getDetails();
 		/*
 		 * //세션 설정 session.setAttribute("id", user.getId()); session.setAttribute("pw",
 		 * user.getPw());
 		 */
-		return "loginSuccess";
+		return "login/login_success";
 
 	}
 	
