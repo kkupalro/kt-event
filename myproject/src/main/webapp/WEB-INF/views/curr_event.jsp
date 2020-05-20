@@ -11,8 +11,11 @@
 
 
 	<%@ include file="./main_header.jsp"%>
-		0000000000000
+	
+			  <a href = "event_detail">ddddd</a>   
+	
 	<%@ include file="./event_footer.jsp" %>
+	
 	
 </body>
 </html>

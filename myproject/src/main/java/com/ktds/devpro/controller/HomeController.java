@@ -16,6 +16,11 @@ public class HomeController {
 	public String home(Model model) {
 		return "curr_event";
 	}
+	
+	@RequestMapping("/event_detail")
+	public String detail(Model model) {
+		return "event_detail";
+	}
 }
 
 
