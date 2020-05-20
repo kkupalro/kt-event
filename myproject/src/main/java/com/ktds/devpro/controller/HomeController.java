@@ -11,12 +11,46 @@ import com.ktds.devpro.model.mapper.MemberMapper;
 public class HomeController {
 	@Resource
 	private MemberMapper memberMapper;
-
-	@RequestMapping("/index")
-
+	
+	@RequestMapping("/")
 	public String home(Model model) {
-		return "index";
+		return "curr_event";
 	}
+	
+	@RequestMapping("/event_detail")
+	public String detail(Model model) {
+		return "event_detail";
+	}
+	@RequestMapping("/event")
+	public String event(Model model) {
+		return "frst_event";
+	}
+	
+	@RequestMapping("/lte")
+	public String scnd(Model model) {
+		return "scnd_event";
+	}
+	
+	@RequestMapping("/check")
+	public String thrd(Model model) {
+		return "thrd_event";
+	}
+	
+	@RequestMapping("/last")
+	public String frth(Model model) {
+		return "frth_event";
+	}
+	
+	@RequestMapping("/login")
+	public String login(Model model) {
+		return "event_login";
+	}
+	@RequestMapping("/register")
+	public String register(Model model) {
+		return "event_register";
+	}
+	
+	
 }
 
 
