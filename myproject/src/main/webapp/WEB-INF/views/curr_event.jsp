@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +12,12 @@
 </head>
 <body>
 	<%@ include file="./main_header.jsp"%>
-
 	<div class="wrapper">
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header card-header-icon"
 					data-background-color="rose">
-					<i class="material-icons">전체 ?건</i>
+					<i class="material-icons">전체 ${fn:length(evt)}건</i>
 				</div>
 
 				<div class="card-content">
@@ -42,12 +42,12 @@
 
 							<tbody>
 								<c:forEach var="evt" items="${evt}">
-									<c:if test="${evt.evtSt == '1'}" var="result">
 										<tr>
 											<td>
 												<div class="img-container">
+													<a href="event_detail?id=<c:out value="${evt.evtCtgId}"/>">
 													<img src="<c:out value="${evt.evtFileUrl}"/>"
-														alt="<c:out value="${evt.evtNm}"/>">
+														alt="<c:out value="${evt.evtNm}"/>"></a>
 												</div>
 											</td>
 											<td class="td-name"><c:out value="${evt.evtNm}" /><br />
@@ -58,17 +58,18 @@
 											<td class="td-name">
 												<div class="btn-group">
 													<button class="btn btn-round btn-info btn-xs">
-														<i class="material-icons">D-? [EndDate - Date.now()]</i>
+														<fmt:parseDate var="endDate" value="${evt.endDate}" pattern="yyyy-MM-dd"/>
+														<c:set var="now" value="<%=new java.util.Date() %>"/>
+														<fmt:parseNumber var="now_N" value="${now.time/(1000*60*60*24)}" integerOnly="true"/>
+														<fmt:parseNumber var="end_N" value="${endDate.time/(1000*60*60*24)}" integerOnly="true"/>
+														<i class="material-icons">D - ${end_N - now_N + 1}</i>
 													</button>
 												</div>
 											</td>
 										</tr>
-									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>
-
-
 					</div>
 				</div>
 			</div>

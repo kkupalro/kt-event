@@ -11,4 +11,5 @@ import com.ktds.devpro.model.vo.EventVO;
 @Service
 public interface EventSearchService {
 	public List<EventVO> selectEventAll();
+	public List<EventVO> selectEventCur();
 }
