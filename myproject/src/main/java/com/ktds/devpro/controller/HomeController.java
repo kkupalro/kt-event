@@ -1,31 +1,21 @@
 package com.ktds.devpro.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.mapper.MemberMapper;
-import com.ktds.devpro.model.vo.EventVO;
-import com.ktds.devpro.service.EventSearchService;
-
 @Controller
 public class HomeController {
 	@Resource
-	private EventMapper eventMapper;
+	private MemberMapper memberMapper;
 	
 	@RequestMapping("/")
 	public String home(Model model) {
-		List<EventVO> vo = eventMapper.findEventAll();
-		model.addAttribute("evt", vo);
 		return "curr_event";
 	}
-	
 	
 	@RequestMapping("/event_detail")
 	public String detail(Model model) {
