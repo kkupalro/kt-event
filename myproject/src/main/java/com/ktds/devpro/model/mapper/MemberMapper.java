@@ -12,4 +12,6 @@ public interface MemberMapper {
 	public MemberVO findMemberById(String id);
 	public List<Member> selectMemberTest();
 	public Member findMemberByCustId(String custId);
+	
+	public Member securityLogin(String id);
 }

@@ -1,6 +1,12 @@
 package com.ktds.devpro.model.vo;
 
-public class Member {
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@SuppressWarnings("serial")
+public class Member implements UserDetails  {
 
 	private String name;
 	private String id;
@@ -102,5 +108,39 @@ public class Member {
 				+ email + ", product=" + product + ", membership=" + membership + ", custPoint=" + custPoint
 				+ ", dataSize=" + dataSize + "]";
 	}
+	
+	
+	/* 200520 11:40 security code updated */
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		//계정이 갖고있는 권한 목록을 리턴한다.
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		//계정의 이름을 리턴한다.
+		return id;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		//계정이 만료되지 않았는 지 리턴한다. (true: 만료안됨)
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		//계정이 잠겨있지 않았는 지 리턴한다. (true: 잠기지 않음)
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		//비밀번호가 만료되지 않았는 지 리턴한다. (true: 만료안됨)
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		//계정이 활성화(사용가능)인 지 리턴한다. (true: 활성화)
+		return true;
+	}
+
 
 }
