@@ -12,4 +12,6 @@ public interface EventMapper {
 	public List<EventVO> findEventAll();
 	
 	public List<EventCtgVO> findEventCtgAll();
+	
+	public List<EventCtgVO> findEventByCtg(int ctgId);
 }

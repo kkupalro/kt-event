@@ -25,6 +25,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<include refid="selectEventCtgAll"/>
  	</select>
  	
+ 	<select id="findEventByCtg" 
+ 	 parameterType="int" resultType="EventVO">
+ 		SELECT * FROM EVT_EVT WHERE EVT_CTG_ID =#{ctgId};
+ 	</select>
 </mapper>
  
  
