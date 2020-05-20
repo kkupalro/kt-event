@@ -38,8 +38,13 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Member member = memberMapper.securityLogin(username);
+		System.out.println(member);
+		 if(null == member) {
+	            throw new UsernameNotFoundException("User Not Found");
+	     }
+
 		member.setPassword("{noop}1596");		//test password -> 실제로 사용할 땐 지워줘야함
-		
+		System.out.println(member + "//\n");
 		return member;
 	}
 }

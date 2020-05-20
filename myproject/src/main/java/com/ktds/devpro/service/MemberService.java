@@ -3,6 +3,8 @@ package com.ktds.devpro.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ktds.devpro.model.dao.EventDao;
@@ -17,4 +19,6 @@ public interface MemberService {
 	
 	// login
 	public Member findMemberByCustId(String custId);
+	
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }

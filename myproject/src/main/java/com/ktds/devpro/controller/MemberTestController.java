@@ -2,7 +2,13 @@ package com.ktds.devpro.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +22,7 @@ public class MemberTestController {
 
 	@Autowired
 	private MemberService memberService;
-
+	
 	@RequestMapping("member")
 	public String findMemberById(String memberId, Model model) {
 		List<Member> vo = memberService.selectMemberTest();
@@ -24,25 +30,52 @@ public class MemberTestController {
 		return "test";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPage(String custId, String custPwd, Model model) {
-		String viewName = null;
-		Member vo = memberService.findMemberByCustId(custId);
-		
-		System.out.println(vo);
-		
-		if(vo == null) {
-			// 결과값을 찾지 못했다는 것이므로, 계정이 없다.
-			viewName = "login/login_fail";
-		}else {
-			// 입력한 비밀번호와 계정의 비밀번호가 일치하는지를 확인하여,
-			// 결과 페이지를 보여준다.
-			if(vo.getPassword().equals(custPwd))
-			{
-				viewName = "login/login_success";
-			}
-		}
-		
-		return viewName;
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "login/loginPage";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginProcess(HttpServletRequest request) {
+		String id = request.getParameter("custId");
+		String pass = request.getParameter("custPwd");
+		
+		return "login/loginPage";
+	}
+
+	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
+	public String loginSuccess(HttpSession session, HttpServletRequest request) {
+
+        //CustomAuthenticationProvider에서 set한 값을 로드
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getDetails();
+		/*
+		 * //세션 설정 session.setAttribute("id", user.getId()); session.setAttribute("pw",
+		 * user.getPw());
+		 */
+		return "loginSuccess";
+
+	}
+	
+
+	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
+	public String loginFail() {
+		return "loginFail";
+	}
+
+	
+/*
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+
+	public String home(HttpServletRequest request) {
+
+	    HttpSession session = request.getSession();
+
+	    String id =(String)session.getAttribute("id");
+	    String pw =(String)session.getAttribute("pw");
+	    //로그인 후 위 방식으로 Session 값 사용 가능
+		return "home";
+	}
+*/
+	
+
 }
