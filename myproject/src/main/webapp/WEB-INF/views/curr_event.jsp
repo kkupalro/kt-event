@@ -13,7 +13,8 @@
 
 	<%@ include file="./main_header.jsp"%>
 
- 	<%@ include file="./event_footer.jsp"%>
-
+	
+	<%@ include file="./event_footer.jsp" %>
+	
 </body>
 </html>

@@ -17,6 +17,10 @@ public class HomeController {
 		return "curr_event";
 	}
 	
+	@RequestMapping("/event_detail")
+	public String detail(Model model) {
+		return "event_detail";
+	}
 	@RequestMapping("/event")
 	public String event(Model model) {
 		return "frst_event";
