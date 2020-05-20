@@ -10,7 +10,7 @@
 <body>
 
 
-	<%@ include file="./main_header.jsp"%>
+	<%@ include file="./frst_header.jsp"%>
 
 	<div class="inner">
 		<div class="contents">
@@ -41,7 +41,7 @@
 		</div>
 		<div style="text-align: center;">
 			<div class="btn-list">
-				<a href="/" class="btn large is-navygray">목록</a> 
+				<a href="event" class="btn large is-navygray">목록</a> 
 <!-- 				<input	type="button" value="목록">    -->
 			</div>
 		</div>

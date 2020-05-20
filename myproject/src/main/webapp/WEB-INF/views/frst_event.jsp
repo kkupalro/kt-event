@@ -9,12 +9,13 @@
 </head>
 <body>
 
-
-	<%@ include file="./main_header.jsp"%>
-	
-	
+	<%@ include file="./frst_header.jsp"%>
+		
+		
+		 <a href = "event_detail">진행중인 이벤트</a>   
+		
+		
 	<%@ include file="./event_footer.jsp" %>
-	
 	
 </body>
 </html>

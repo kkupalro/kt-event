@@ -44,7 +44,7 @@
 						<li class="nav2">
 							<a data-menucd="B00000"
 								href="javascript:kt_common.ktMenuLinkStat('lte','^KT-LTE^데이터^룰렛','_self','B00000');"
-								class="">
+								class="current">
 								<span>LTE 데이터 룰렛</span>
 							</a>
 							<div class="sub-navigation" style="display: none;">

@@ -5,16 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <%@ include file="./html_head.html" %>
-<title>진행중인 이벤트 | KT</title>
+<title>지난 이벤트 | KT</title>
 </head>
 <body>
 
-
-	<%@ include file="./main_header.jsp"%>
-	
-	
+	<%@ include file="./frth_header.jsp"%>
+		
+		
+		지난 이벤트
+		
+		
 	<%@ include file="./event_footer.jsp" %>
-	
 	
 </body>
 </html>

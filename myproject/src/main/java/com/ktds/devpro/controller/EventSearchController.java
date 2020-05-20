@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EventSearchController {
-	@RequestMapping("/evt/search")
 	
+	@RequestMapping("/e")
 	public String EventSarchController() {
 //		List<Map<String, String>> EvtList;
-		return "Aa";
+		return "aa";
 	}
 }

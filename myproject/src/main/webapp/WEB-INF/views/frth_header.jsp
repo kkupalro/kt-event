@@ -71,7 +71,7 @@
 						<li class="nav6">
 							<a data-menucd="D00000"
 								href="javascript:kt_common.ktMenuLinkStat('last','^KT-지난^이벤트','_self','D00000');"
-								class="">
+								class="current">
 								<span>지난 이벤트</span>
 							</a>
 							<div class="sub-navigation" style="display: none;"></div>

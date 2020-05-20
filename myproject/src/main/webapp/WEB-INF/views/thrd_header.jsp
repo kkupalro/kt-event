@@ -58,7 +58,7 @@
 						<li class="nav4 membership">
 							<a data-menucd="C00000"
 								href="javascript:kt_common.ktMenuLinkStat('check','^KT-당첨자^확인','_self','C00000');"
-								class="">
+								class="current">
 								<span>당첨자 확인</span>
 							</a>
 							<div class="sub-navigation" style="display: none;">
