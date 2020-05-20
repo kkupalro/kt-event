@@ -34,7 +34,7 @@
 						<li class="nav0">
 							<a data-menucd="AA0000"
 							href="javascript:kt_common.ktMenuLinkStat('event','^KT-진행중인^이벤트','_self','AA0000');"
-							class="">
+							class="current">
 							<span>진행중인 이벤트</span>
 							</a>
 							<div class="sub-navigation" style="display: none;"></div>

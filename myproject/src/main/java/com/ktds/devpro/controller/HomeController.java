@@ -16,6 +16,27 @@ public class HomeController {
 	public String home(Model model) {
 		return "curr_event";
 	}
+	
+	@RequestMapping("/event")
+	public String event(Model model) {
+		return "frst_event";
+	}
+	
+	@RequestMapping("/lte")
+	public String scnd(Model model) {
+		return "scnd_event";
+	}
+	
+	@RequestMapping("/check")
+	public String thrd(Model model) {
+		return "thrd_event";
+	}
+	
+	@RequestMapping("/last")
+	public String frth(Model model) {
+		return "frth_event";
+	}
+	
 }
 
 
