@@ -8,43 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ktds.devpro.model.mapper.MemberMapper;
 import com.ktds.devpro.model.vo.MemberVO;
-/*
- *  .do 스타일을 변경해보자 
- */
+
+
 @Controller
 public class MemberController {
 	@Resource
 	private MemberMapper memberMapper;
+
 	@RequestMapping("find-member-by-id")
-	public String findMemberById(String memberId,Model model) {
-		String viewName=null;
-		MemberVO vo=memberMapper.findMemberById(memberId);
-		if(vo==null)
-			viewName="member/find_fail";
+	public String findMemberById(String memberId, Model model) {
+		String viewName = null;
+		MemberVO vo = memberMapper.findMemberById(memberId);
+		if (vo == null)
+			viewName = "member/find_fail";
 		else {
-			viewName="member/find_success";
+			viewName = "member/find_success";
 			model.addAttribute("memberVO", vo);
 		}
 		return viewName;
-	}	
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

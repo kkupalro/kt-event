@@ -7,25 +7,24 @@ public class Member {
 	private String password;
 	private String phone;
 	private String email;
-	private String paySystem;
+	private String product;
 	private String membership;
-	private int mPoint;
+	private int custPoint;
 	private double dataSize;
 
 	public Member() {
-		super();
 	}
+	public Member(String name, String id, String password, String phone, String email, String product,
+			String membership, int custPoint, double dataSize) {
 
-	public Member(String name, String id, String password, String phone, String email, String paySystem,
-			String membership, int mPoint, double dataSize) {
 		this.name = name;
 		this.id = id;
 		this.password = password;
 		this.phone = phone;
 		this.email = email;
-		this.paySystem = paySystem;
+		this.product = product;
 		this.membership = membership;
-		this.mPoint = mPoint;
+		this.custPoint = custPoint;
 		this.dataSize = dataSize;
 	}
 
@@ -68,13 +67,11 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPaySystem() {
-		return paySystem;
+	public String getProduct() {
+		return product;
 	}
-
-	public void setPaySystem(String paySystem) {
-		this.paySystem = paySystem;
+	public void setProduct(String product) {
+		this.product = product;
 	}
 
 	public String getMembership() {
@@ -84,13 +81,11 @@ public class Member {
 	public void setMembership(String membership) {
 		this.membership = membership;
 	}
-
-	public int getmPoint() {
-		return mPoint;
+	public int getCustPoint() {
+		return custPoint;
 	}
-
-	public void setmPoint(int mPoint) {
-		this.mPoint = mPoint;
+	public void setCustPoint(int custPoint) {
+		this.custPoint = custPoint;
 	}
 
 	public double getDataSize() {
@@ -104,7 +99,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [name=" + name + ", id=" + id + ", password=" + password + ", phone=" + phone + ", email="
-				+ email + ", paySystem=" + paySystem + ", membership=" + membership + ", mPoint=" + mPoint
+				+ email + ", product=" + product + ", membership=" + membership + ", custPoint=" + custPoint
 				+ ", dataSize=" + dataSize + "]";
 	}
 
