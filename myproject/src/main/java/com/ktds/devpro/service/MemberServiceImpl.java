@@ -25,4 +25,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectMemberTest() {
 		return memberMapper.selectMemberTest();
 	}
+
+	@Override
+	public Member findMemberByCustId(String custId) {
+		return memberMapper.findMemberByCustId(custId);
+	}
 }

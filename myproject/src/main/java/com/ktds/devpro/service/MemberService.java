@@ -14,4 +14,7 @@ import com.ktds.devpro.model.vo.MemberVO;
 public interface MemberService {
 	public MemberVO findMemberById(String id);
 	public List<Member> selectMemberTest();
+	
+	// login
+	public Member findMemberByCustId(String custId);
 }
