@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 parameterType="string" resultType="EventCtgVO">
  		<include refid="selectEventCtgAll"/>
  	</select>
+
  	
 </mapper>
  

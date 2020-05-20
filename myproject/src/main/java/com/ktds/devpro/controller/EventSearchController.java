@@ -32,16 +32,13 @@ public class EventSearchController {
 	
 	@RequestMapping("/evt/searchAll")
 	public List<EventVO> EventSearchAll() {
-		//List<EventVO> EvtList = new ArrayList<>();
-		List<EventVO> EvtList = eventMapper.findEventAll();
-		 
+		List<EventVO> EvtList = eventMapper.findEventAll(); 
 		return EvtList;
 	}
 	
 	@RequestMapping("/evt/searchCtg")
 	public List<EventCtgVO> EventSearchCtgAll() {
 		List<EventCtgVO> EvtList = eventMapper.findEventCtgAll();
-		 
 		return EvtList;
 	}
 
