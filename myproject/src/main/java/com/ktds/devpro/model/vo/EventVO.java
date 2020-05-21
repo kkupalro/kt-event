@@ -1,21 +1,12 @@
 package com.ktds.devpro.model.vo;
 
 public class EventVO {
-	int EvtId;
-	String EvtNm;
-	String StDate;
-	String EndDate;
-	String EvtSt;
-	String EvtFileUrl;
-	String EvtCtgId;
-	String EvtTrg;
-	String EvtPhone;
-	String EvtTrgDate;
+
 	
-	public EventVO(int evtId, String evtNm, String stDate, String endDate, String evtSt, String evtFileUrl,
-			String evtCtgId, String evtTrg, String evtPhone, String evtTrgDate) {
+	public EventVO(int evtIdx, String evtNm, String stDate, String endDate, int evtSt, String evtFileUrl,
+			int evtCtgId, String evtTrg, String evtPhone, String evtTrgDate) {
 		super();
-		EvtId = evtId;
+		EvtIdx = evtIdx;
 		EvtNm = evtNm;
 		StDate = stDate;
 		EndDate = endDate;
@@ -30,12 +21,35 @@ public class EventVO {
 	public EventVO() {
 		
 	}
-	public int getEvtId() {
-		return EvtId;
+	
+	int EvtIdx;
+	String EvtNm;
+	String StDate;
+	String EndDate;
+	int EvtSt;
+	String EvtFileUrl;
+	int EvtCtgId;
+	String EvtTrg;
+	String EvtPhone;
+	String EvtTrgDate;
+	
+//	int EvtId;
+//	String EvtNm;
+//	String StDate;
+//	String EndDate;
+//	String EvtSt;
+//	String EvtFileUrl;
+//	String EvtCtgId;
+//	String EvtTrg;
+//	String EvtPhone;
+//	String EvtTrgDate;
+	
+	
+	public int getEvtIdx() {
+		return EvtIdx;
 	}
-
-	public void setEvtId(int evtId) {
-		EvtId = evtId;
+	public void setEvtIdx(int evtIdx) {
+		EvtIdx = evtIdx;
 	}
 
 	public String getEvtNm() {
@@ -61,13 +75,11 @@ public class EventVO {
 	public void setEndDate(String endDate) {
 		EndDate = endDate;
 	}
-
-	public String getEvtSt() {
+	public int getEvtSt() {
 		return EvtSt;
 	}
-
-	public void setEvtSt(String evtSt) {
-		EvtSt = evtSt;
+	public void setEvtSt(int EvtSt) {
+		EvtSt = EvtSt;
 	}
 
 	public String getEvtFileUrl() {
@@ -77,12 +89,10 @@ public class EventVO {
 	public void setEvtFileUrl(String evtFileUrl) {
 		EvtFileUrl = evtFileUrl;
 	}
-
-	public String getEvtCtgId() {
+	public int getEvtCtgId() {
 		return EvtCtgId;
 	}
-
-	public void setEvtCtgId(String evtCtgId) {
+	public void setEvtCtgId(int evtCtgId) {
 		EvtCtgId = evtCtgId;
 	}
 
@@ -112,7 +122,7 @@ public class EventVO {
 
 	@Override
 	public String toString() {
-		return "EventListVo [EvtId=" + EvtId + ", EvtNm=" + EvtNm + ", StDate=" + StDate + ", EndDate=" + EndDate
+		return "EventListVo [EvtIdx=" + EvtIdx + ", EvtNm=" + EvtNm + ", StDate=" + StDate + ", EndDate=" + EndDate
 				+ ", EvtSt=" + EvtSt + ", EvtFileUrl=" + EvtFileUrl + ", EvtCtgId=" + EvtCtgId + ", EvtTrg=" + EvtTrg
 				+ ", EvtPhone=" + EvtPhone + ", EvtTrgDate=" + EvtTrgDate + "]";
 	}
