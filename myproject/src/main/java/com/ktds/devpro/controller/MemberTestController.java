@@ -24,7 +24,6 @@ public class MemberTestController {
 	@Autowired
 	private MemberService memberService;
 
-
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "event_login";
@@ -92,12 +91,24 @@ public class MemberTestController {
 	 * "home"; }
 	 */
 
-	/*
-	 * @RequestMapping(value = "/register", method = RequestMethod.GET) public
-	 * String resisterProcess(HttpServletRequest request) {
-	 * System.out.println(request.getParameter("custId"));
-	 * 
-	 * return "event_register"; }
-	 */
+	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
+	public String resisterProcess(HttpServletRequest request) {
+		System.out.println(request.getParameter("custId"));
+		Member member = new Member();
+		
+		member.setId(request.getParameter("custId"));
+		member.setPassword(request.getParameter("custPwd"));
+		member.setEmail(request.getParameter("custEmail"));
+		member.setPhone(request.getParameter("custPhone"));
+		member.setName(request.getParameter("custName"));
+		if(memberService.registerUser(member) == 1)return "redirect:/";
+		return "/event_register";
+	}
+	
+	@RequestMapping(value = "/registerTest", method = RequestMethod.GET)
+	public String resister(HttpServletRequest request){
+		
+		return "event_register";
+	}
 
 }

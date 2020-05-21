@@ -58,4 +58,19 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		
 		return member;
 	}
+	public int registerUser(Member member) {
+		int insertBasic = 0;
+		int insertDetail = 0;
+		insertBasic = memberMapper.registerBasic(member);
+		System.out.println(member.getCustIdx());
+		insertDetail = memberMapper.registerDetail(member);
+		if(insertBasic == 1 && insertBasic==insertDetail){
+			return 1;
+		}else if(insertBasic == 1&& insertDetail == 0) {
+			//insertBasic 은 성공, Detail 실패
+			memberMapper.deleteUserBasic(member);
+		}
+		return 0;
+	}
+	
 }
