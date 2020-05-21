@@ -13,6 +13,8 @@ public interface EventMapper {
 	
 	public List<EventVO> findEventCur();
 	
+	public List<EventVO> findEventByIdx(int evtIdx);
+	
 	public List<EventCtgVO> findEventCtgAll();
 	
 	public List<EventCtgVO> findEventByCtg(int ctgId);
