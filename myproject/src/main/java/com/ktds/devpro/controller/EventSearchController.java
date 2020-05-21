@@ -33,7 +33,7 @@ public class EventSearchController {
 		EvtList.add(test2);
 		return EvtList;
 	}
-	@RequestMapping(path = "/evt/search/{evt_nm}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/evt/search/{evt_nm}", method = {RequestMethod.DELETE,RequestMethod.GET})
 	public void EventDelete(@PathVariable String evt_nm) {
 		eventMapper.deleteEvent(evt_nm);
 	}
@@ -57,7 +57,13 @@ public class EventSearchController {
 		 
 		return EvtList;
 	}
-	
-	
+
+	@RequestMapping("/evt/updateEvtSt/{EvtIdx}/{EvtSt}")
+	public void Update(@PathVariable int EvtIdx,@PathVariable int EvtSt) {
+		EventVO eventvo = new EventVO();
+		eventvo.setEvtIdx(EvtIdx);
+		eventvo.setEvtSt(EvtSt);
+		eventMapper.updateEvent(eventvo);
+	}
 	
 }
