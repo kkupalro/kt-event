@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ktds.devpro.model.mapper.MemberMapper;
@@ -15,10 +17,17 @@ import com.ktds.devpro.model.vo.MemberVO;
 
 @Service
 public class MemberServiceImpl implements MemberService, UserDetailsService {
-
+	
+	PasswordEncoder passwordEncoder;
+	
 	@Resource
 	private MemberMapper memberMapper;
-
+	
+	@Autowired
+	public MemberServiceImpl(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+	
 	@Override
 	public MemberVO findMemberById(String id) {
 		return memberMapper.findMemberById(id);
