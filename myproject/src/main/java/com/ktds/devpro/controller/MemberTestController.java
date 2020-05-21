@@ -24,12 +24,6 @@ public class MemberTestController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping("member")
-	public String findMemberById(String memberId, Model model) {
-		List<Member> vo = memberService.selectMemberTest();
-		model.addAttribute("member", vo);
-		return "test";
-	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -96,11 +90,12 @@ public class MemberTestController {
 	 * "home"; }
 	 */
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String resisterProcess(HttpServletRequest request) {
-		System.out.println(request.getParameter("custId"));
-
-		return "loginFail";
-	}
+	/*
+	 * @RequestMapping(value = "/register", method = RequestMethod.GET) public
+	 * String resisterProcess(HttpServletRequest request) {
+	 * System.out.println(request.getParameter("custId"));
+	 * 
+	 * return "event_register"; }
+	 */
 
 }
