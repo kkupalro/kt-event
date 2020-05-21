@@ -43,7 +43,7 @@
 							</button>
 						</div>
 
-						<form name="form" class="form" method="post" action=""
+						<form name="form" class="form" method="post" action="/"
 							onSubmit="return checkAll()">
 							<div class="card-content">
 								<div class="input-group">
@@ -164,49 +164,26 @@
 	<script src="js/templ/material-dashboard.js?v=1.3.0"></script>
 	<script src="js/templ/demo.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<!-- <script>
-		$('.form-control').focusout(function() {
-			var pwd1 = $("#password_1").val();
-			var pwd2 = $("#password_2").val();
-			
-			if (pwd1 != '' && pwd2 == '') {
-				null;
-			} else if (pwd1 != "" || pwd2 != "") {
-				
-				if (pwd1 == pwd2) {
-					$("#alert-success").css('display', 'inline-block');
-					$("#alert-danger").css('display', 'none');
-					$("#register").attr('href', "/");
-				} else {
-					/* alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요."); */
-					$("#alert-success").css('display', 'none');
-					$("#alert-danger").css('display', 'inline-block');
-					$("#register").attr('href', "javascript:alert('패스워드가 일치하지 않습니다.')");
-				}
-			}
-		});
-	</script> -->
 	<script>
-		$('.form-control').focusout(
-				function checkAll() {
-					if (!checkName(form.name.value)) {
-						
-						return false;
-					}
-					if (!checkMail(form.mail.value)) {
-						return false;
-					}
-					if (!checkUserId(form.userId.value)) {
-						return false;
-					}
-					if (!checkPassword(form.userId.value, form.password1.value,
-							form.password2.value)) {
-						return false;
-					}
-					
-					
-					return true;
-				});
+		function checkAll() {
+			//alert(form.name.value+"test");
+			if (!checkName(form.name.value)) {
+
+				return false;
+			}
+			if (!checkMail(form.mail.value)) {
+				return false;
+			}
+			if (!checkUserId(form.userId.value)) {
+				return false;
+			}
+			if (!checkPassword(form.userId.value, form.password1.value,
+					form.password2.value)) {
+				return false;
+			}
+
+			return true;
+		}
 
 		// 공백확인 함수
 		function checkExistData(value, dataName) {
@@ -288,15 +265,12 @@
 
 			var nameRegExp = /^[가-힣]{2,4}$/;
 			if (!nameRegExp.test(name)) {
-				alert(form.name.value+"이름이 올바르지 않습니다.");
+				alert(form.name.value + "이름이 올바르지 않습니다.");
 				return false;
 			}
 			return true; //확인이 완료되었을 때
 		}
-
 	</script>
-
-
 	<%@ include file="./event_footer.jsp"%>
 
 </body>
