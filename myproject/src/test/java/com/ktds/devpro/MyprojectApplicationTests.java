@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.mapper.MemberMapper;
 import com.ktds.devpro.model.vo.MemberVO;
 
@@ -12,10 +13,12 @@ import com.ktds.devpro.model.vo.MemberVO;
 class MyprojectApplicationTests {
 	
 	@Resource
-	MemberMapper memberMapper;
+	EventMapper eventMapper;
+	
+	
 	@Test
 	void contextLoads() {
-		MemberVO mvo=memberMapper.findMemberById("java");
-		System.out.println(mvo);
+		System.out.println(eventMapper.searchEventDtOne(2).toString());
+		//System.out.println(mvo);
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.vo.EventCtgVO;
+import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 
 @RestController
@@ -66,4 +67,10 @@ public class EventSearchController {
 		eventMapper.updateEvent(eventvo);
 	}
 	
+	@RequestMapping("/evt/searchEventDt/{EvtIdx}")
+	public List<EventDtVO> findEventDtOne(@PathVariable int EvtIdx)
+	{
+		List<EventDtVO> EventDtList = eventMapper.searchEventDtOne(EvtIdx);
+		return EventDtList;
+	}
 }
