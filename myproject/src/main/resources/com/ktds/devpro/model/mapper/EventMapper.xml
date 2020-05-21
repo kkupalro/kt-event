@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		UPDATE EVT_EVT SET EVT_ST =#{EvtSt} WHERE EVT_IDX = #{EvtIdx} 
  	</update>
  	
- 	<select id="searchEventDtOne"
+ 	<select id="searchEventDtList"
  	 parameterType="int" resultType="EventDtVO">
  		SELECT * FROM EVT_DT WHERE EVT_IDX = #{EvtIdx};
  	</select>

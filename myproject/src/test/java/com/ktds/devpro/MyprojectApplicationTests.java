@@ -18,7 +18,7 @@ class MyprojectApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		System.out.println(eventMapper.searchEventDtOne(2).toString());
+		System.out.println(eventMapper.searchEventDtList(2).toString());
 		//System.out.println(mvo);
 	}
 }

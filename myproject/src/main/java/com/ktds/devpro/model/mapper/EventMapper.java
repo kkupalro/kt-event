@@ -23,5 +23,5 @@ public interface EventMapper {
 	
 	public void updateEvent(EventVO eventvo);
 	
-	public List<EventDtVO> searchEventDtOne(int EvtIdx);
+	public List<EventDtVO> searchEventDtList(int EvtIdx);
 }

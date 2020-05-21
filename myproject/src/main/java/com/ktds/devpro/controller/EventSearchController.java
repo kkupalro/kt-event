@@ -67,10 +67,10 @@ public class EventSearchController {
 		eventMapper.updateEvent(eventvo);
 	}
 	
-	@RequestMapping("/evt/searchEventDt/{EvtIdx}")
-	public List<EventDtVO> findEventDtOne(@PathVariable int EvtIdx)
+	@RequestMapping("/evt/searchEventDtList/{EvtIdx}")
+	public List<EventDtVO> findEventDtList(@PathVariable int EvtIdx)
 	{
-		List<EventDtVO> EventDtList = eventMapper.searchEventDtOne(EvtIdx);
+		List<EventDtVO> EventDtList = eventMapper.searchEventDtList(EvtIdx);
 		return EventDtList;
 	}
 }
