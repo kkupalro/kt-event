@@ -24,5 +24,9 @@ public class EventDao {
 	public List<EventVO> selectEventListAll() {
 		return sqlSession.selectList(null);
 	}
+	
+	public List<EventVO> selectEventListCur() {
+		return sqlSession.selectList(eventVO.getEvtSt(), "1");
+	}
 
 }

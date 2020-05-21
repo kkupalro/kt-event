@@ -39,9 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     	http
         .authorizeRequests()
                 .anyRequest().authenticated()
-                .and()
-        .formLogin().disable()
-        .headers().frameOptions().disable();
+        //        .and()
+       // .formLogin().disable().and()
+       // .headers().frameOptions().disable();
 
 
 		

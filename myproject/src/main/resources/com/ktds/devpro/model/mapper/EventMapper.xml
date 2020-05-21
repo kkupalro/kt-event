@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Sql Mapper -->
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ktds.devpro.model.mapper.EventMapper">
 
 	<sql id="selectEventAll">
-		select EVT_IDX,EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_CTG_ID,EVT_TRG,EVT_PHONE,EVT_TRG_DATE
+		select EVT_IDX,EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
 		 from EVT_EVT
 	</sql>
 	
- 	<select id="findEventAll" 
+	<select id="findEventAll" 
  	 parameterType="string" resultType="EventVO">
  		<include refid="selectEventAll"/>
+ 	</select>
+	
+	<sql id="selectEventCur">
+		select EVT_IDX,EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
+		 from EVT_EVT where EVT_ST = 1
+	</sql>
+	
+ 	<select id="findEventCur" 
+ 	 parameterType="string" resultType="EventVO">
+ 		<include refid="selectEventCur"/>
  	</select>
  		
  	<sql id="selectEventCtgAll">
