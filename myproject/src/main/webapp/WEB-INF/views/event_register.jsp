@@ -286,7 +286,7 @@
 			if (!checkExistData(name, "이름을"))
 				return false;
 
-			var nameRegExp = /^[가-힣]{2,5}$/;
+			var nameRegExp = /^[가-힣]{2,4}$/;
 			if (!nameRegExp.test(name)) {
 				alert(form.name.value+"이름이 올바르지 않습니다.");
 				return false;
