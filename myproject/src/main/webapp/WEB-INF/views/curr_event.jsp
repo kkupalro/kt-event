@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -7,16 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="js/curr_event.js"></script>
+
 <%@ include file="./html_head.html"%>
+
 <title>진행중인 이벤트 | KT</title>
 </head>
 <body>
+
 	<%@ include file="./main_header.jsp"%>
+	
 	<div class="wrapper">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header card-header-icon"
-					data-background-color="rose">
+				<div class="card-header card-header-icon" data-background-color="rose">
 					<i class="material-icons">전체 ${fn:length(evt)}건</i>
 				</div>
 
@@ -25,34 +28,33 @@
 					<div class="table-responsive">
 
 						<table class="table table-shopping">
+							<caption><h2>진행중인 이벤트</h2>
+							</caption>
 							<thead>
 								<tr>
 									<th class="text-center">파일(EVT_FILE_URL)</th>
 									<th>이벤트명(EVT_EVT), 이벤트 대상(EVT_TRG)</th>
-									<th class="text-description">분류(EVT_CTG_ID)</th>
+									<th class="text-description">이벤트 인덱스(EVT_IDX)</th>
 									<th class="text-description">시작날짜(ST_DATE) ~
 										종료날자(END_DATE)</th>
-									<th class="text-description">당첨자 발표일(EVT_TRG_DATE)</th>
-									<th></th>
+									<th class="text-description">분류(EVT_CTG_ID)</th>
 								</tr>
 							</thead>
 
 							<!-- JSTL 들어갈 부분 -->
-
-
 							<tbody>
 								<c:forEach var="evt" items="${evt}">
 										<tr>
 											<td>
 												<div class="img-container">
-													<a href="event_detail?id=<c:out value="${evt.evtCtgId}"/>">
+													<a href="event_detail?id=<c:out value="${evt.evtIdx}"/>">
 													<img src="<c:out value="${evt.evtFileUrl}"/>"
 														alt="<c:out value="${evt.evtNm}"/>"></a>
 												</div>
 											</td>
 											<td class="td-name"><c:out value="${evt.evtNm}" /><br />
 											<small><c:out value="${evt.evtTrg}" /></small></td>
-											<td><c:out value="${evt.evtCtgId}" /></td>
+											<td><c:out value="${evt.evtIdx}" /></td>
 											<td><c:out value="${evt.stDate}" /> ~ <c:out
 													value="${evt.endDate}" /></td>
 											<td class="td-name">
@@ -75,7 +77,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<%@ include file="./event_footer.jsp"%>
 
