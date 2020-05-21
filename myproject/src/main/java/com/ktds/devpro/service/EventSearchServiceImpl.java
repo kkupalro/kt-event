@@ -18,9 +18,11 @@ public class EventSearchServiceImpl implements EventSearchService{
 	
 	@Override
 	public List<EventVO> selectEventAll() {
-		// TODO Auto-generated method stub
 		return eventDao.selectEventListAll();
 	}
-
 	
+	@Override
+	public List<EventVO> selectEventCur() {
+		return eventDao.selectEventListCur();
+	}
 }
