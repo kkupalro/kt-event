@@ -21,4 +21,5 @@ public interface MemberService {
 	public Member findMemberByCustId(String custId);
 	
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+	public UserDetails loginByEmail(String email) throws UsernameNotFoundException;
 }

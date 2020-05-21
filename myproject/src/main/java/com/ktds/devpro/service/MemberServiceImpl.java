@@ -47,4 +47,15 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		//System.out.println(member + "//\n");
 		return member;
 	}
+	
+	@Override
+	public UserDetails loginByEmail(String email) throws UsernameNotFoundException{
+		Member member = memberMapper.securityLoginByEmail(email);
+		System.out.println(member);
+		if(null == member) {
+            throw new UsernameNotFoundException("User Not Found");
+		}
+		
+		return member;
+	}
 }

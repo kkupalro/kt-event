@@ -33,24 +33,33 @@ public class MemberTestController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
-		return "login/loginPage";
+		return "event_login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginProcess(HttpServletRequest request, HttpSession session) {
-		String id = request.getParameter("custId");
-		String pass = request.getParameter("custPwd");
+		String id = request.getParameter("id");
+		String pass = request.getParameter("pwd");
+		
+		System.out.println("id " + id + "pwd " + pass);
 		UserDetails member = null;
 		try {
-			member = memberService.loadUserByUsername(id);
+			if(id.contains("@")) {		//email 형식
+				member = memberService.loginByEmail(id);
+			}
+			else {
+				member = memberService.loadUserByUsername(id);
+			}
+			
+			System.out.println("cont: " + member);
 		}catch(UsernameNotFoundException e) {
 			return "login/login_fail";
 		}
 		
 		if(!pass.equals(member.getPassword())) return "login/loginPage";
-		session.setAttribute("id", id);
+		session.setAttribute("custId", id);
 		
-		return "login/login_success";
+		return "curr_event";
 	}
 
 	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
@@ -62,7 +71,7 @@ public class MemberTestController {
 		 * //세션 설정 session.setAttribute("id", user.getId()); session.setAttribute("pw",
 		 * user.getPw());
 		 */
-		return "login/login_success";
+		return "curr_event";
 
 	}
 	
@@ -86,6 +95,13 @@ public class MemberTestController {
 		return "home";
 	}
 */
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String resisterProcess(HttpServletRequest request) {
+		System.out.println(request.getParameter("custId"));
+		
+		return "loginFail";
+	}
 	
 
 }

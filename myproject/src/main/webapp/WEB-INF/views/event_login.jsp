@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +49,7 @@
 
 	<div class="row">
 		<div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-			<form method="#" action="#">
+			<form method="post" action="login">
 				<div class="card card-login">
 					<div class="card-header text-center" data-background-color="ktcolor">
 						<h4 class="card-title">로그인</h4>
@@ -73,7 +74,7 @@
 
 							<div class="form-group label-floating is-empty">
 								<label class="control-label">이메일 주소</label>
-								<input type="email" class="form-control">
+								<input type="email" class="form-control" name="id">
 								<span class="material-input"></span>
 							</div>
 						</div>
@@ -84,13 +85,13 @@
 							</span>
 							<div class="form-group label-floating is-empty">
 								<label class="control-label">비밀번호</label>
-								<input type="password" class="form-control">
+								<input type="password" class="form-control" name="pwd">
 								<span class="material-input"></span>
 							</div>
 						</div>
 					</div>
 					<div class="footer text-center">
-						<button type="submit" class="btn btn-primary btn-round">로그인</button>
+						<button type="submit" class="btn btn-primary btn-round" >로그인</button>
 					</div>
 				</div>
 			</form>

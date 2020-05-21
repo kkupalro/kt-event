@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,14 +65,14 @@
 						</button>
 					</div>
 
-					<form class="form" method="" action="">
+					<form class="form" method="post" action="register">
 						<div class="card-content">
 							<div class="input-group">
 								<span class="input-group-addon">
 									<i class="material-icons">face</i>
 								</span>
 								<div class="form-group is-empty">
-									<input type="text" class="form-control" placeholder="이름을 입력해주세요">
+									<input type="text" class="form-control" placeholder="이름을 입력해주세요" name="custName">
 									<span class="material-input"></span>
 								</div>
 							</div>
@@ -81,7 +82,7 @@
 									<i class="material-icons">email</i>
 								</span>
 								<div class="form-group is-empty">
-									<input type="text" class="form-control" placeholder="이메일을 입력해주세요">
+									<input type="text" class="form-control" placeholder="이메일을 입력해주세요" name="custEmail">
 									<span class="material-input"></span>
 								</div>
 							</div>
@@ -91,7 +92,7 @@
 									<i class="material-icons">account_box</i>
 								</span>
 								<div class="form-group is-empty">
-									<input type="text" class="form-control" placeholder="ID를 입력해주세요">
+									<input type="text" class="form-control" placeholder="ID를 입력해주세요" name="custId">
 									<span class="material-input"></span>
 								</div>
 							</div>
@@ -101,7 +102,7 @@
 									<i class="material-icons">lock_outline</i>
 								</span>
 								<div class="form-group is-empty">
-									<input type="password" placeholder="비밀번호를 입력해주세요" class="form-control">
+									<input type="password" placeholder="비밀번호를 입력해주세요" class="form-control" name="custPwd">
 									<span class="material-input"></span>
 								</div>
 							</div>
@@ -121,7 +122,7 @@
 									<i class="material-icons">phone</i>
 								</span>
 								<div class="form-group is-empty">
-									<input type="tel" placeholder="휴대폰 번호를 입력해주세요" class="form-control">
+									<input type="tel" placeholder="휴대폰 번호를 입력해주세요" class="form-control" name="custPH">
 									<span class="material-input"></span>
 								</div>
 							</div>
@@ -135,7 +136,7 @@
 						</div>
 						
 						<div class="footer text-center">
-							<a href="#pablo" class="btn btn-primary btn-round">회원가입</a>
+							<button type="submit" class="btn btn-primary btn-round">회원가입</button>
 						</div>
 					</form>
 				</div>

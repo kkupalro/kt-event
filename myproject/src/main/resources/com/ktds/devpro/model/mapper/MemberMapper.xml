@@ -37,6 +37,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where t101.cust_id = #{id}
 		]]>
 	</select>
+ 	<select id="securityLoginByEmail" resultType="member">
+		<![CDATA[
+			select t101.cust_nm as name, t101.cust_id as id, t101.cust_pwd as password, t101.cust_phone as phone, t101.cust_email as email,
+ 		t102.cust_prod as product, t102.cust_mbs as membership, t102.CUST_POINT , t102.cust_data_size as dataSize
+		from cust_bas t101
+		left join cust_dt t102
+		on t101.cust_idx = t102.cust_idx
+		where t101.cust_email = #{email}
+		]]>
+	</select>
  	
 </mapper>
  

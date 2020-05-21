@@ -14,4 +14,5 @@ public interface MemberMapper {
 	public Member findMemberByCustId(String custId);
 	
 	public Member securityLogin(String id);
+	public Member securityLoginByEmail(String email);
 }
