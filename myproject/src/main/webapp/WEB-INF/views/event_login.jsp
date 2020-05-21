@@ -9,15 +9,10 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/material-dashboard.css?v=1.3.0" rel="stylesheet">
 <link href="css/demo.css" rel="stylesheet">
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 <%@ include file="./html_head.html"%>
 
 <title>로그인 | KT</title>
@@ -71,10 +66,9 @@
 			</form>
 		</div>
 	</div>
-	<script type="text/javascript" charset="UTF-8"
-		src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/common.js"></script>
-	<script type="text/javascript" charset="UTF-8"
-		src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/util.js"></script>
+	
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/util.js"></script>
 	<script src="js/templ/jquery.min.js" type="text/javascript"></script>
 	<script src="js/templ/bootstrap.min.js" type="text/javascript"></script>
 	<script src="js/templ/material.min.js" type="text/javascript"></script>
@@ -91,8 +85,7 @@
 	<script src="js/templ/bootstrap-datetimepicker.js"></script>
 	<script src="js/templ/jquery-jvectormap.js"></script>
 	<script src="js/templ/nouislider.min.js"></script>
-	<script type="text/javascript"
-		src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 	<script src="js/templ/jquery.select-bootstrap.js"></script>
 	<script src="js/templ/jquery.datatables.js"></script>
 	<script src="js/templ/sweetalert2.js"></script>
@@ -112,6 +105,7 @@
 			}, 700)
 		});
 	</script>
+	
 	<%@ include file="./event_footer.jsp"%>
 
 </body>

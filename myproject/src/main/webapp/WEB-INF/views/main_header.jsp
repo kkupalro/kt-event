@@ -153,17 +153,21 @@
 					</div>
 				</div>
 				<div class="click-banner2 top" style="display: none;"></div>
-				<!-- 1212 GNB 추가 -->
+				
 				<div id="chnlink" class="chnlink">
 					<ul>
-						<li class="current"><a title="선택됨"
-							href="javascript:kt_common.ktMenuLinkStat('login','^KT-로그인','_self','');">로그인</a></li>
-						<li><a
-							href="javascript:kt_common.ktMenuLinkStat('register','^KT-회원가입','_self','');">회원가입</a></li>
-
+						<li>
+							<a href="javascript:kt_common.ktMenuLinkStat('/','^KT-메인페이지','_self','');">메인</a>
+						</li>
+						<li>
+							<a href="javascript:kt_common.ktMenuLinkStat('login','^KT-로그인','_self','');">로그인</a>
+						</li>
+						<li>
+							<a href="javascript:kt_common.ktMenuLinkStat('register','^KT-회원가입','_self','');">회원가입</a>
+						</li>
 					</ul>
 				</div>
-				<!-- 1212 GNB 추가 -->
+				
 			</div>
 		</div>
 	</div>
