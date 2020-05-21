@@ -59,7 +59,7 @@
 
 		<div style="text-align: center;">
 			<div class="btn-list">
-				<a href="event" class="btn large is-navygray">목록</a>
+				<a href="/" class="btn large is-navygray">목록</a>
 			</div>
 		</div>
 
