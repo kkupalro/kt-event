@@ -55,7 +55,6 @@
 						</div>
 					</c:forEach>
 
-					<!-- evt_dt 테이블 url 가져오기 -->
 					<c:forEach var="evt_dt" items="${evt_dt}">
 						<c:set var="type" value="${evt_dt.dataType}" />
 						<c:choose>
@@ -64,8 +63,9 @@
 							</c:when>
 							<c:when test="${type eq 'VIDEO'}">
 								<!-- video -->
-								<c:out value="${evt_dt.resData}" />
+								<c:out value="${evt_dt.resData}" escapeXml="false" />
 							</c:when>
+							
 							<c:when test="${type eq 'TXT'}">
 								<!-- 종료이벤트 = txt -->
 								<c:out value="${evt_dt.resData}" />
