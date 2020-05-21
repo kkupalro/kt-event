@@ -2,11 +2,20 @@ package com.ktds.devpro.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ktds.devpro.model.vo.Member;
 import com.ktds.devpro.service.MemberService;
@@ -17,32 +26,99 @@ public class MemberTestController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping("member")
-	public String findMemberById(String memberId, Model model) {
-		List<Member> vo = memberService.selectMemberTest();
-		model.addAttribute("member", vo);
-		return "test";
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "event_login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPage(String custId, String custPwd, Model model) {
-		String viewName = null;
-		Member vo = memberService.findMemberByCustId(custId);
-		
-		System.out.println(vo);
-		
-		if(vo == null) {
-			// 결과값을 찾지 못했다는 것이므로, 계정이 없다.
-			viewName = "login/login_fail";
-		}else {
-			// 입력한 비밀번호와 계정의 비밀번호가 일치하는지를 확인하여,
-			// 결과 페이지를 보여준다.
-			if(vo.getPassword().equals(custPwd))
-			{
-				viewName = "login/login_success";
+	public String loginProcess(HttpServletRequest request, HttpSession session) {
+		String id = request.getParameter("id");
+		String pass = request.getParameter("pwd");
+
+		System.out.println("id " + id + "pwd " + pass);
+		UserDetails member = null;
+		try {
+			if (id.contains("@")) { // email 형식
+				member = memberService.loginByEmail(id);
+			} else {
+				member = memberService.loadUserByUsername(id);
 			}
+
+			System.out.println("cont: " + member);
+		} catch (UsernameNotFoundException e) {
+			System.out.println("ID IS NOT FOUND");
+			request.setAttribute("ERROR", "사용자 정보가 없습니다.");
+			return "event_login";
 		}
-		
-		return viewName;
+
+		if (!pass.equals(member.getPassword())) {
+			System.out.println("NOT MATCH");
+			request.setAttribute("ERROR", "비밀번호가 틀립니다.");
+			return "event_login";
+		}
+		session.setAttribute("custId", id);
+
+		return "redirect:/";
 	}
+
+	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
+	public String loginSuccess(HttpSession session, HttpServletRequest request) {
+
+		// CustomAuthenticationProvider에서 set한 값을 로드
+		// User user =
+		// (User)SecurityContextHolder.getContext().getAuthentication().getDetails();
+		/*
+		 * //세션 설정 session.setAttribute("id", user.getId()); session.setAttribute("pw",
+		 * user.getPw());
+		 */
+		return "curr_event";
+
+	}
+
+	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
+	public String loginFail() {
+		return "loginFail";
+	}
+
+	/*
+	 * @RequestMapping(value = "/", method = RequestMethod.GET)
+	 * 
+	 * public String home(HttpServletRequest request) {
+	 * 
+	 * HttpSession session = request.getSession();
+	 * 
+	 * String id =(String)session.getAttribute("id"); String pw
+	 * =(String)session.getAttribute("pw"); //로그인 후 위 방식으로 Session 값 사용 가능 return
+	 * "home"; }
+	 */
+
+	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
+	public String resisterProcess(HttpServletRequest request) {
+		System.out.println(request.getParameter("custId"));
+		Member member = new Member();
+		
+		member.setId(request.getParameter("custId"));
+		member.setPassword(request.getParameter("custPwd"));
+		member.setEmail(request.getParameter("custEmail"));
+		member.setPhone(request.getParameter("custPhone"));
+		member.setName(request.getParameter("custName"));
+		if(memberService.registerUser(member) == 1)return "redirect:/";
+		return "/event_register";
+	}
+	
+	@RequestMapping(value = "/registerTest", method = RequestMethod.GET)
+	public String resister(HttpServletRequest request){
+		
+		return "event_register";
+	}
+	
+	
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("userId") String user_id) {
+		System.out.println(memberService.userIdCheck(user_id));
+		return memberService.userIdCheck(user_id);
+	}
+
 }

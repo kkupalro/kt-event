@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>  
 <html lang="ko" class=" cssanimations csstransitions cssanimations csstransitions">
 
@@ -159,12 +160,14 @@
 						<li>
 							<a href="javascript:kt_common.ktMenuLinkStat('/','^KT-메인페이지','_self','');">메인</a>
 						</li>
+						<c:if test="${empty custId }">
 						<li>
 							<a href="javascript:kt_common.ktMenuLinkStat('login','^KT-로그인','_self','');">로그인</a>
 						</li>
 						<li>
 							<a href="javascript:kt_common.ktMenuLinkStat('register','^KT-회원가입','_self','');">회원가입</a>
 						</li>
+							</c:if>
 					</ul>
 				</div>
 				

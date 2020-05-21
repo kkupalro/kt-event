@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +24,9 @@
 
 	<div class="row">
 		<div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-			<form method="#" action="#">
+			<form method="post" action="login">
 				<div class="card card-login card-hidden">
-					<div class="card-header text-center"
-						data-background-color="ktcolor">
+					<div class="card-header text-center" data-background-color="ktcolor">
 						<h4 class="card-title">로그인</h4>
 						<div class="social-line">
 							<a href="#btn" class="btn btn-just-icon btn-simple"> <i
@@ -43,9 +43,10 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <i class="material-icons">email</i>
 							</span>
-
+							<!-- BE|YE 여기 글자 크기 좀 키워주세요!!! -->
+							<div><c:if test="${not empty ERROR}">${ERROR }</c:if></div>
 							<div class="form-group is-empty">
-								<input type="text" class="form-control" placeholder="아이디 입력" req>
+								<input type="text" class="form-control"  placeholder="아이디 입력" req name="id">
 								<span class="material-input"></span>
 							</div>
 						</div>
@@ -54,13 +55,13 @@
 							<span class="input-group-addon"> <i class="material-icons">lock_outline</i>
 							</span>
 							<div class="form-group is-empty">
-								<input type="password" class="form-control"
-									placeholder="비밀번호 입력"> <span class="material-input"></span>
+								<input type="password" class="form-control" name="pwd" placeholder="비밀번호 입력">
+								<span class="material-input"></span>
 							</div>
 						</div>
 					</div>
 					<div class="footer text-center">
-						<button type="submit" class="btn btn-primary btn-round">로그인</button>
+						<button type="submit" class="btn btn-primary btn-round" >로그인</button>
 					</div>
 				</div>
 			</form>
