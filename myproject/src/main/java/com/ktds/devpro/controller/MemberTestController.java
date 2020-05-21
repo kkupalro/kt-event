@@ -46,12 +46,14 @@ public class MemberTestController {
 
 			System.out.println("cont: " + member);
 		} catch (UsernameNotFoundException e) {
-			return "login/login_fail";
+			System.out.println("ID IS NOT FOUND");
+			request.setAttribute("ERROR", "사용자 정보가 없습니다.");
+			return "event_login";
 		}
 
 		if (!pass.equals(member.getPassword())) {
 			System.out.println("NOT MATCH");
-			request.setAttribute("notMatch", true);
+			request.setAttribute("ERROR", "비밀번호가 틀립니다.");
 			return "event_login";
 		}
 		session.setAttribute("custId", id);

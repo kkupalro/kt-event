@@ -48,7 +48,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <i class="material-icons">email</i>
 							</span>
-
+							<!-- BE|YE 여기 글자 크기 좀 키워주세요!!! -->
+							<div><c:if test="${not empty ERROR}">${ERROR }</c:if></div>
 							<div class="form-group is-empty">
 								<input type="text" class="form-control"  placeholder="아이디 입력" name="id">
 								<span class="material-input"></span>
