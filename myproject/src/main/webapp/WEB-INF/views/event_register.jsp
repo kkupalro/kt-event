@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,17 +44,19 @@
 							</button>
 						</div>
 
-						<form name="form" class="form" method="post" action="/"
-							onSubmit="return checkAll()">
+						<form class="form" name="form" action="registerProcess"
+							method="post" action="#" onSubmit="return checkAll()">
 							<div class="card-content">
 								<div class="input-group">
 									<span class="input-group-addon"> <i
 										class="material-icons">face</i>
 									</span>
 									<div class="form-group is-empty">
+
 										<input type="text" class="form-control"
-											placeholder="이름을 입력해주세요" name="name"> <span
+											placeholder="이름을 입력해주세요" name="custName"> <span
 											class="material-input"></span>
+
 									</div>
 								</div>
 
@@ -62,9 +65,11 @@
 										class="material-icons">email</i>
 									</span>
 									<div class="form-group is-empty">
+
 										<input type="text" class="form-control"
-											placeholder="이메일을 입력해주세요" name="mail"> <span
+											placeholder="이메일을 입력해주세요" name="custEmail"> <span
 											class="material-input"></span>
+
 									</div>
 								</div>
 
@@ -72,10 +77,11 @@
 									<span class="input-group-addon"> <i
 										class="material-icons">account_box</i>
 									</span>
-									<div class="form-group is-empty" style = "width:390px;">
+
+									<div class="form-group is-empty" style="width: 390px;">
 										<input type="text" class="form-control"
-											placeholder="ID를 입력해주세요" name="userId"> <span
-											class="material-input" ></span>
+											placeholder="ID를 입력해주세요" name="custId"> <span
+											class="material-input"></span>
 									</div>
 								</div>
 
@@ -84,9 +90,13 @@
 										class="material-icons">lock_outline</i>
 									</span>
 									<div class="form-group is-empty">
-										<input type="password" name="password1"
-											placeholder="비밀번호를 입력해주세요" class="form-control"> <span>8~15자리의
-											영문, 숫자, 특수문자의 입력이 가능합니다.</span>
+
+										<input type="password" id="password_1"
+											placeholder="비밀번호를 입력해주세요" class="form-control"
+											name="custPwd"> <span>8~15자리의 영문, 숫자, 특수문자의
+											입력이 가능합니다.</span>
+
+
 									</div>
 								</div>
 
@@ -95,13 +105,13 @@
 										class="material-icons">lock_outline</i>
 									</span>
 									<div class="form-group is-empty">
-										<input type="password" name="password2" placeholder="비밀번호확인"
-											class="form-control">
+										<input type="password" id="password_2" placeholder="비밀번호확인"
+											class="form-control" name="password2">
 										<!--  <span class="material-input"></span>-->
 										<span id="alert-success" style="display: none;">비밀번호가
 											일치합니다.</span> <span id="alert-danger"
-											style="display: none; color: #d92742; font-weight: bold;">비밀번호가
-											일치하지 않습니다.</span>
+											style="display: none; color: #d92742; font-weight: bold;">
+											비밀번호가 일치하지 않습니다. </span>
 									</div>
 								</div>
 
@@ -111,14 +121,14 @@
 									</span>
 									<div class="form-group is-empty">
 										<input type="tel" placeholder="휴대폰 번호를 입력해주세요"
-											class="form-control" name="phone"> <span
+											class="form-control" name="custPhone"> <span
 											class="material-input"></span>
 									</div>
 								</div>
 
 								<div class="checkbox">
-									<label> <input type="checkbox" id ="checkbox" 
-									unchecked> <a href="#something">개인약관 </a>에 동의합니다.
+									<label> <input type="checkbox" id="checkbox" unchecked>
+										<a href="#something">개인약관 </a>에 동의합니다.
 									</label>
 								</div>
 							</div>
@@ -166,7 +176,70 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="js/templ/register.js"></script>
 
+
 	<%@ include file="./event_footer.jsp"%>
 
+	<!-- YE| 0521 14:45 ID 유효성검사 -->
+	<script>
+		// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+		$("#custId")
+				.blur(
+						function() {
+							// id = "id_reg" / name = "userId"
+							var user_id = $('#custId').val();
+							$
+									.ajax({
+										url : '${pageContext.request.contextPath}/user/idCheck?userId='
+												+ user_id,
+										type : 'get',
+										success : function(data) {
+											console.log("1 = 중복o / 0 = 중복x : "
+													+ data);
+
+											if (data == 1) {
+												// 1 : 아이디가 중복되는 문구
+												alert("!!!");
+												$("#id_check").text(
+														"사용중인 아이디입니다 :p");
+												$("#id_check").css("color",
+														"red");
+												$("#reg_submit").attr(
+														"disabled", true);
+											} else {
+
+												if (idJ.test(user_id)) {
+													// 0 : 아이디 길이 / 문자열 검사
+													$("#id_check").text("");
+													$("#reg_submit").attr(
+															"disabled", false);
+
+												} else if (user_id == "") {
+
+													$('#id_check').text(
+															'아이디를 입력해주세요 :)');
+													$('#id_check').css('color',
+															'red');
+													$("#reg_submit").attr(
+															"disabled", true);
+
+												} else {
+
+													$('#id_check')
+															.text(
+																	"아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
+													$('#id_check').css('color',
+															'red');
+													$("#reg_submit").attr(
+															"disabled", true);
+												}
+
+											}
+										},
+										error : function() {
+											console.log("실패");
+										}
+									});
+						});
+	</script>
 </body>
 </html>

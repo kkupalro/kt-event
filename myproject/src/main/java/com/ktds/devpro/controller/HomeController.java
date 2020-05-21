@@ -3,13 +3,18 @@ package com.ktds.devpro.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ktds.devpro.model.mapper.MemberMapper;
 import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.vo.EventVO;
+
+
 
 
 @Controller
@@ -29,9 +34,11 @@ public class HomeController {
 	
 
 	@RequestMapping("/event_detail")
-	public String detail(Model model) {
-		
-		
+	public String detail(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id"); // id=?값 받아옴
+		// 비즈니스 로직 구현 evt_dt 테이블  id == evt_idx 칼럼값
+		List<EventVO> vo = eventMapper.findEventByIdx(Integer.parseInt(id));
+		model.addAttribute("evt", vo);
 		return "event_detail";
 	}
 	
