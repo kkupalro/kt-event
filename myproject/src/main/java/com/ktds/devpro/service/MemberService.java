@@ -25,5 +25,6 @@ public interface MemberService {
 	
 	//register
 	public int registerUser(Member member);
+	public int userIdCheck(String user_id);
 	
 }

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ktds.devpro.model.vo.Member;
 import com.ktds.devpro.service.MemberService;
@@ -57,7 +59,7 @@ public class MemberTestController {
 		}
 		session.setAttribute("custId", id);
 
-		return "curr_event";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
@@ -109,6 +111,14 @@ public class MemberTestController {
 	public String resister(HttpServletRequest request){
 		
 		return "event_register";
+	}
+	
+	
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("userId") String user_id) {
+		System.out.println(memberService.userIdCheck(user_id));
+		return memberService.userIdCheck(user_id);
 	}
 
 }

@@ -73,4 +73,8 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		return 0;
 	}
 	
+	public int userIdCheck(String user_id) {
+		return memberMapper.userIdCheck(user_id);
+	}
+	
 }

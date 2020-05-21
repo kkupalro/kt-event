@@ -19,4 +19,5 @@ public interface MemberMapper {
 	public int registerDetail(Member member);
 	
 	public int deleteUserBasic(Member member);
+	public int userIdCheck(String user_id);
 }
