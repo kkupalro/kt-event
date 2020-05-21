@@ -12,6 +12,8 @@ import com.ktds.devpro.model.vo.EventVO;
 public interface EventMapper {
 	public List<EventVO> findEventAll();
 	
+	public List<EventVO> findEventCur();
+	
 	public List<EventCtgVO> findEventCtgAll();
 	
 	public List<EventCtgVO> findEventByCtg(int ctgId);

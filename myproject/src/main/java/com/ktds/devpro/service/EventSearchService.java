@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import com.ktds.devpro.model.dao.EventDao;
 import com.ktds.devpro.model.vo.EventVO;
 
-//@Service
+@Service
 public interface EventSearchService {
 	public List<EventVO> selectEventAll();
+	public List<EventVO> selectEventCur();
 }

@@ -8,7 +8,7 @@ public class EventVO {
 		super();
 		EvtIdx = evtIdx;
 		EvtNm = evtNm;
-		this.StDate = stDate;
+		StDate = stDate;
 		EndDate = endDate;
 		EvtSt = evtSt;
 		EvtFileUrl = evtFileUrl;
@@ -17,6 +17,7 @@ public class EventVO {
 		EvtPhone = evtPhone;
 		EvtTrgDate = evtTrgDate;
 	}
+	
 	public EventVO() {
 		
 	}
@@ -50,21 +51,27 @@ public class EventVO {
 	public void setEvtIdx(int evtIdx) {
 		EvtIdx = evtIdx;
 	}
+
 	public String getEvtNm() {
 		return EvtNm;
 	}
+
 	public void setEvtNm(String evtNm) {
 		EvtNm = evtNm;
 	}
+
 	public String getStDate() {
 		return StDate;
 	}
+
 	public void setStDate(String stDate) {
-		this.StDate = stDate;
+		StDate = stDate;
 	}
+
 	public String getEndDate() {
 		return EndDate;
 	}
+
 	public void setEndDate(String endDate) {
 		EndDate = endDate;
 	}
@@ -74,11 +81,11 @@ public class EventVO {
 	public void setEvtSt(int EvtSt) {
 		EvtSt = EvtSt;
 	}
+
 	public String getEvtFileUrl() {
 		return EvtFileUrl;
 	}
-	
-	
+
 	public void setEvtFileUrl(String evtFileUrl) {
 		EvtFileUrl = evtFileUrl;
 	}
@@ -88,24 +95,31 @@ public class EventVO {
 	public void setEvtCtgId(int evtCtgId) {
 		EvtCtgId = evtCtgId;
 	}
+
 	public String getEvtTrg() {
 		return EvtTrg;
 	}
+
 	public void setEvtTrg(String evtTrg) {
 		EvtTrg = evtTrg;
 	}
+
 	public String getEvtPhone() {
 		return EvtPhone;
 	}
+
 	public void setEvtPhone(String evtPhone) {
 		EvtPhone = evtPhone;
 	}
+
 	public String getEvtTrgDate() {
 		return EvtTrgDate;
 	}
+
 	public void setEvtTrgDate(String evtTrgDate) {
 		EvtTrgDate = evtTrgDate;
 	}
+
 	@Override
 	public String toString() {
 		return "EventListVo [EvtIdx=" + EvtIdx + ", EvtNm=" + EvtNm + ", StDate=" + StDate + ", EndDate=" + EndDate
