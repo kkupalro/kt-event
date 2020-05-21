@@ -15,4 +15,8 @@ public interface MemberMapper {
 	
 	public Member securityLogin(String id);
 	public Member securityLoginByEmail(String email);
+	public int registerBasic(Member member);
+	public int registerDetail(Member member);
+	
+	public int deleteUserBasic(Member member);
 }

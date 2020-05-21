@@ -17,7 +17,8 @@ public class Member implements UserDetails  {
 	private String membership;
 	private int custPoint;
 	private double dataSize;
-
+	
+	private int custIdx;
 	public Member() {
 	}
 	public Member(String name, String id, String password, String phone, String email, String product,
@@ -32,6 +33,20 @@ public class Member implements UserDetails  {
 		this.membership = membership;
 		this.custPoint = custPoint;
 		this.dataSize = dataSize;
+	}
+	
+	public Member(String name, String id, String password, String phone, String email, String product,
+			String membership, int custPoint, double dataSize, int custIdx) {
+		this.name = name;
+		this.id = id;
+		this.password = password;
+		this.phone = phone;
+		this.email = email;
+		this.product = product;
+		this.membership = membership;
+		this.custPoint = custPoint;
+		this.dataSize = dataSize;
+		this.custIdx = custIdx;
 	}
 
 	public String getName() {
@@ -100,6 +115,13 @@ public class Member implements UserDetails  {
 
 	public void setDataSize(double dataSize) {
 		this.dataSize = dataSize;
+	}
+	
+	public int getCustIdx() {
+		return custIdx;
+	}
+	public void setCustIdx(int custIdx) {
+		this.custIdx = custIdx;
 	}
 
 	@Override
