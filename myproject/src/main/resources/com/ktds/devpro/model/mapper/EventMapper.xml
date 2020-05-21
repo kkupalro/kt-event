@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ktds.devpro.model.mapper.EventMapper">
 
 	<sql id="selectEventAll">
-		select EVT_IDX,EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
+		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
 		 from EVT_EVT
 	</sql>
 	
@@ -14,14 +14,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<include refid="selectEventAll"/>
  	</select>
 	
+	<select id="findEventCur" resultType="EventVO">
+ 		<include refid="selectEventCur"/>
+ 	</select>
+	
 	<sql id="selectEventCur">
-		select EVT_IDX,EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
+		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
 		 from EVT_EVT where EVT_ST = 1
 	</sql>
 	
- 	<select id="findEventCur" 
- 	 parameterType="string" resultType="EventVO">
- 		<include refid="selectEventCur"/>
+	<select id="findEventByIdx" 
+ 	 parameterType="int" resultType="EventVO">
+ 		SELECT * FROM EVT_EVT WHERE EVT_IDX =#{evtIdx};
  	</select>
  		
  	<sql id="selectEventCtgAll">

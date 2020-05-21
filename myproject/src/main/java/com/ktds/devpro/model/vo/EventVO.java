@@ -1,21 +1,21 @@
 package com.ktds.devpro.model.vo;
 
 public class EventVO {
-	int EvtId;
-	String EvtNm;
-	String StDate;
-	String EndDate;
-	String EvtSt;
-	String EvtFileUrl;
-	String EvtCtgId;
-	String EvtTrg;
-	String EvtPhone;
-	String EvtTrgDate;
-	
-	public EventVO(int evtId, String evtNm, String stDate, String endDate, String evtSt, String evtFileUrl,
+	private int EvtIdx;
+	private String EvtNm;
+	private String StDate;
+	private String EndDate;
+	private String EvtSt;
+	private String EvtFileUrl;
+	private String EvtCtgId;
+	private String EvtTrg;
+	private String EvtPhone;
+	private String EvtTrgDate;
+
+	public EventVO(int evtIdx, String evtNm, String stDate, String endDate, String evtSt, String evtFileUrl,
 			String evtCtgId, String evtTrg, String evtPhone, String evtTrgDate) {
 		super();
-		EvtId = evtId;
+		EvtIdx = evtIdx;
 		EvtNm = evtNm;
 		StDate = stDate;
 		EndDate = endDate;
@@ -26,16 +26,17 @@ public class EventVO {
 		EvtPhone = evtPhone;
 		EvtTrgDate = evtTrgDate;
 	}
-	
+
 	public EventVO() {
 		
 	}
-	public int getEvtId() {
-		return EvtId;
+
+	public int getEvtIdx() {
+		return EvtIdx;
 	}
 
-	public void setEvtId(int evtId) {
-		EvtId = evtId;
+	public void setEvtIdx(int evtIdx) {
+		EvtIdx = evtIdx;
 	}
 
 	public String getEvtNm() {
@@ -112,9 +113,8 @@ public class EventVO {
 
 	@Override
 	public String toString() {
-		return "EventListVo [EvtId=" + EvtId + ", EvtNm=" + EvtNm + ", StDate=" + StDate + ", EndDate=" + EndDate
+		return "EventVO [EvtIdx=" + EvtIdx + ", EvtNm=" + EvtNm + ", StDate=" + StDate + ", EndDate=" + EndDate
 				+ ", EvtSt=" + EvtSt + ", EvtFileUrl=" + EvtFileUrl + ", EvtCtgId=" + EvtCtgId + ", EvtTrg=" + EvtTrg
 				+ ", EvtPhone=" + EvtPhone + ", EvtTrgDate=" + EvtTrgDate + "]";
 	}
-	
 }
