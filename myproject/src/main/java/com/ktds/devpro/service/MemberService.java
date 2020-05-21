@@ -23,6 +23,10 @@ public interface MemberService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 	public UserDetails loginByEmail(String email) throws UsernameNotFoundException;
 	
+	//login -> 0521
+	public boolean loginById(String custId, String inputPwd);
+	
+	
 	//register
 	public int registerUser(Member member);
 	public int userIdCheck(String user_id);

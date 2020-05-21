@@ -48,6 +48,7 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Member member = memberMapper.securityLogin(username);
 		System.out.println(member);
+		
 		 if(null == member) {
 	            throw new UsernameNotFoundException("User Not Found");
 	     }
@@ -70,6 +71,8 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	public int registerUser(Member member) {
 		int insertBasic = 0;
 		int insertDetail = 0;
+		
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		insertBasic = memberMapper.registerBasic(member);
 		System.out.println(member.getCustIdx());
 		insertDetail = memberMapper.registerDetail(member);
@@ -84,6 +87,16 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	
 	public int userIdCheck(String user_id) {
 		return memberMapper.userIdCheck(user_id);
+	}
+	
+	
+	//login new!
+	public boolean loginById(String custId, String inputPwd) {
+		System.out.println(custId + " " +  inputPwd);
+		Member member = memberMapper.securityLoginTEST(custId);
+		System.out.println(member);
+		System.out.println(passwordEncoder.matches(inputPwd, member.getPassword()));
+		return true;
 	}
 	
 }

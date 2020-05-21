@@ -103,7 +103,11 @@ public class MemberTestController {
 		member.setEmail(request.getParameter("custEmail"));
 		member.setPhone(request.getParameter("custPhone"));
 		member.setName(request.getParameter("custName"));
-		if(memberService.registerUser(member) == 1)return "redirect:/";
+		
+		System.out.println("CONT" + member.getPassword());
+		if(memberService.registerUser(member) == 1) {
+			//바로 이벤트 페이지 연결
+			return "redirect:/";}
 		return "/event_register";
 	}
 	
@@ -119,6 +123,12 @@ public class MemberTestController {
 	public int idCheck(@RequestParam("userId") String user_id) {
 		System.out.println(memberService.userIdCheck(user_id));
 		return memberService.userIdCheck(user_id);
+	}
+	
+	@RequestMapping(value = "/TESTlogin", method = RequestMethod.GET)
+	public String TESTLOGIN(HttpServletRequest request, String id, String pw){
+		memberService.loginById(id, pw);
+		return "redirect:/";
 	}
 
 }

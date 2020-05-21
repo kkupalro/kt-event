@@ -149,13 +149,10 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		function checkAll() {
-			//alert(form.name.value+"test");
 			if (!checkName(form.custName.value)) {
-
 				return false;
 			}
 			if (!checkMail(form.custEmail.value)) {
-
 				return false;
 			}
 		});
@@ -286,7 +283,7 @@
 	
 	<%@ include file="./event_footer.jsp"%>
 	<!-- YE| 0521 14:45 ID 유효성검사 -->
-<script>
+	<script>
 // 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#custId").blur(function() {
 		// id = "id_reg" / name = "userId"
