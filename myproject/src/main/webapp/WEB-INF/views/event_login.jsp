@@ -50,7 +50,7 @@
 							</span>
 
 							<div class="form-group is-empty">
-								<input type="text" class="form-control" placeholder="아이디 입력">
+								<input type="text" class="form-control" placeholder="아이디 입력" req>
 								<span class="material-input"></span>
 							</div>
 						</div>
