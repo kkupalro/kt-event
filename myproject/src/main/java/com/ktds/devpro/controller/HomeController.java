@@ -7,13 +7,16 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.ktds.devpro.model.mapper.MemberMapper;
 import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.vo.EventVO;
 
 
 @Controller
 public class HomeController {
+	@Resource
+	private MemberMapper memberMapper;
+	
 	@Resource
 	private EventMapper eventMapper;
 	
@@ -24,8 +27,7 @@ public class HomeController {
 		return "curr_event";
 	}
 	
-	
-	// 이벤트 상세정보
+
 	@RequestMapping("/event_detail")
 	public String detail(Model model) {
 		
