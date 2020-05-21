@@ -37,11 +37,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 parameterType="string" resultType="EventCtgVO">
  		<include refid="selectEventCtgAll"/>
  	</select>
+
  	
  	<select id="findEventByCtg" 
  	 parameterType="int" resultType="EventVO">
  		SELECT * FROM EVT_EVT WHERE EVT_CTG_ID =#{ctgId};
  	</select>
+ 	
+ 	<delete id="deleteEvent" 
+ 	 parameterType="String">
+ 		DELETE FROM EVT_EVT WHERE EVT_NM=#{evt_nm};
+ 	</delete>
+ 	
+ 	<update id="updateEvent" parameterType="EventVO">
+ 		UPDATE EVT_EVT SET EVT_ST =#{EvtSt} WHERE EVT_IDX = #{EvtIdx} 
+ 	</update>
+ 	
+ 	<select id="searchEventDtList"
+ 	 parameterType="int" resultType="EventDtVO">
+ 		SELECT * FROM EVT_DT WHERE EVT_IDX = #{EvtIdx};
+ 	</select>
+ 	
 </mapper>
  
  
