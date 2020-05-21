@@ -29,20 +29,15 @@
 
 						<table class="table table-shopping">
 							<caption><h2>진행중인 이벤트</h2>
-								<form action="" id="setRows">
-									form
-								</form>
 							</caption>
 							<thead>
 								<tr>
 									<th class="text-center">파일(EVT_FILE_URL)</th>
 									<th>이벤트명(EVT_EVT), 이벤트 대상(EVT_TRG)</th>
+									<th class="text-description">이벤트 인덱스(EVT_IDX)</th>
+									<th class="text-description">시작날짜(ST_DATE) ~
+										종료날자(END_DATE)</th>
 									<th class="text-description">분류(EVT_CTG_ID)</th>
-									<th class="text-description">
-										시작날짜(ST_DATE) ~ 종료날짜(END_DATE)
-									</th>
-									<th class="text-description">당첨자 발표일(EVT_TRG_DATE)</th>
-									<th></th>
 								</tr>
 							</thead>
 
@@ -52,14 +47,14 @@
 										<tr>
 											<td>
 												<div class="img-container">
-													<a href="event_detail?id=<c:out value="${evt.evtId}"/>">
+													<a href="event_detail?id=<c:out value="${evt.evtIdx}"/>">
 													<img src="<c:out value="${evt.evtFileUrl}"/>"
 														alt="<c:out value="${evt.evtNm}"/>"></a>
 												</div>
 											</td>
 											<td class="td-name"><c:out value="${evt.evtNm}" /><br />
 											<small><c:out value="${evt.evtTrg}" /></small></td>
-											<td><c:out value="${evt.evtId}" /></td>
+											<td><c:out value="${evt.evtIdx}" /></td>
 											<td><c:out value="${evt.stDate}" /> ~ <c:out
 													value="${evt.endDate}" /></td>
 											<td class="td-name">

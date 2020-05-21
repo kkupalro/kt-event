@@ -157,10 +157,10 @@
 				
 				<div id="chnlink" class="chnlink">
 					<ul>
-					<c:if test="${empty custId }">
 						<li>
 							<a href="javascript:kt_common.ktMenuLinkStat('/','^KT-메인페이지','_self','');">메인</a>
 						</li>
+						<c:if test="${empty custId }">
 						<li>
 							<a href="javascript:kt_common.ktMenuLinkStat('login','^KT-로그인','_self','');">로그인</a>
 						</li>
