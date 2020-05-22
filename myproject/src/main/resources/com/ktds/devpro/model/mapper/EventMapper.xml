@@ -19,8 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
 	
 	<sql id="selectEventCur">
-		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
-		 from EVT_EVT where EVT_ST = 1
+		 select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from evt_evt 
+		 join evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 where EVT_ST = 1
 	</sql>
 	
 	<select id="findEventByIdx" 
