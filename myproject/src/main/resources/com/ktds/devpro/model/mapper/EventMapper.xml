@@ -40,10 +40,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT * FROM EVT_EVT WHERE EVT_CTG_ID =#{ctgId};
  	</select>
  	
+ 	<select id="findEventIdxByEvtnm" parameterType="String" resultType="int">
+       SELECT EVT_IDX FROM EVT_EVT WHERE EVT_NM=#{evt_nm};
+    </select>
+ 	
  	<delete id="deleteEvent" 
- 	 parameterType="String">
- 		DELETE FROM EVT_EVT WHERE EVT_NM=#{evt_nm};
- 	</delete>
+     parameterType="int">
+       DELETE FROM EVT_EVT WHERE EVT_Idx=#{evt_idx};
+    </delete>
+
  	
  	<update id="updateEvent" parameterType="EventVO">
  		UPDATE EVT_EVT SET EVT_ST =#{EvtSt} WHERE EVT_IDX = #{EvtIdx} 

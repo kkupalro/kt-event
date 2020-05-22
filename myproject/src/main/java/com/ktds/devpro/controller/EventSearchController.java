@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +19,13 @@ import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.vo.EventCtgVO;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
+import com.ktds.devpro.service.EventSearchService;
 
 @RestController
 public class EventSearchController {
+	
+	@Autowired
+	private EventSearchService eventService;
 	
 	@Resource
 	private EventMapper eventMapper;
@@ -36,41 +41,38 @@ public class EventSearchController {
 	}
 	@RequestMapping(path = "/evt/search/{evt_nm}", method = {RequestMethod.DELETE,RequestMethod.GET})
 	public void EventDelete(@PathVariable String evt_nm) {
-		eventMapper.deleteEvent(evt_nm);
+		//eventMapper.deleteEvent(evt_nm);
+		eventService.deleteEventOne(evt_nm);
 	}
 	
 	@RequestMapping("/evt/searchAll")
 	public List<EventVO> EventSearchAll() {
-		List<EventVO> EvtList = eventMapper.findEventAll(); 
+		List<EventVO> EvtList = eventService.searchEventAll(); 
 		return EvtList;
 	}
 	
 	@RequestMapping("/evt/searchCtg")
 	public List<EventCtgVO> EventSearchCtgAll() {
-		List<EventCtgVO> EvtList = eventMapper.findEventCtgAll();
+		List<EventCtgVO> EvtList = eventService.searchEventCtgAll();
 		return EvtList;
 	}
 	
 	
 	@RequestMapping("/evt/searchCtgList/{ctgId}")
 	public List<EventCtgVO> EventSearchByCtg(@PathVariable int ctgId) {
-		List<EventCtgVO> EvtList = eventMapper.findEventByCtg(ctgId);
-		 
+		List<EventCtgVO> EvtList = eventService.searchEventByCtg(ctgId);
 		return EvtList;
 	}
 
 	@RequestMapping("/evt/updateEvtSt/{EvtIdx}/{EvtSt}")
 	public void Update(@PathVariable int EvtIdx,@PathVariable int EvtSt) {
-		EventVO eventvo = new EventVO();
-		eventvo.setEvtIdx(EvtIdx);
-		eventvo.setEvtSt(EvtSt);
-		eventMapper.updateEvent(eventvo);
+		eventService.updateEventStateOne(EvtIdx, EvtSt);
 	}
 	
 	@RequestMapping("/evt/searchEventDtList/{EvtIdx}")
 	public List<EventDtVO> findEventDtList(@PathVariable int EvtIdx)
 	{
-		List<EventDtVO> EventDtList = eventMapper.searchEventDtList(EvtIdx);
+		List<EventDtVO> EventDtList = eventService.searchEventDtList(EvtIdx);
 		return EventDtList;
 	}
 }

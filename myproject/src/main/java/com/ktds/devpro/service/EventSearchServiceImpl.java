@@ -2,27 +2,63 @@ package com.ktds.devpro.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktds.devpro.model.dao.EventDao;
+import com.ktds.devpro.model.mapper.EventMapper;
+import com.ktds.devpro.model.vo.EventCtgVO;
+import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 
 @Service
 public class EventSearchServiceImpl implements EventSearchService{
+	@Resource
+	private EventMapper eventMapper;
+	
+	@Override
+	public void deleteEventOne(String EvtNm) {
+		int idx = this.findEventIdxByNm(EvtNm);
+		eventMapper.deleteEvent(idx);
+	}
 
-	@Autowired
-	private EventDao eventDao;
-	
-	List<EventVO> EventList;
-	
 	@Override
-	public List<EventVO> selectEventAll() {
-		return eventDao.selectEventListAll();
+	public List<EventVO> searchEventAll() {
+		List<EventVO> EvtList = eventMapper.findEventAll(); 
+		return EvtList;
+	}
+
+	@Override
+	public List<EventCtgVO> searchEventCtgAll() {
+		List<EventCtgVO> EvtList = eventMapper.findEventCtgAll();
+		return EvtList;
+	}
+
+	@Override
+	public List<EventCtgVO> searchEventByCtg(int ctgId) {
+		List<EventCtgVO> EvtList = eventMapper.findEventByCtg(ctgId);
+		return EvtList;
+	}
+
+	@Override
+	public void updateEventStateOne(int EvtIdx, int EvtSt) {
+		EventVO eventvo = new EventVO();
+		eventvo.setEvtIdx(EvtIdx);
+		eventvo.setEvtSt(EvtSt);
+		eventMapper.updateEvent(eventvo);
+	}
+
+	@Override
+	public List<EventDtVO> searchEventDtList(int EvtIdx) {
+		List<EventDtVO> EventDtList = eventMapper.searchEventDtList(EvtIdx);
+		return EventDtList;
+	}
+
+	@Override
+	public int findEventIdxByNm(String EvtNm) {
+		return eventMapper.findEventIdxByEvtnm(EvtNm);
 	}
 	
-	@Override
-	public List<EventVO> selectEventCur() {
-		return eventDao.selectEventListCur();
-	}
 }
