@@ -20,4 +20,6 @@ public interface MemberMapper {
 	
 	public int deleteUserBasic(Member member);
 	public int userIdCheck(String user_id);
+	
+	public Member securityLoginTEST(String id);
 }

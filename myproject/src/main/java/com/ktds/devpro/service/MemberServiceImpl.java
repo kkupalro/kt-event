@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ktds.devpro.model.mapper.MemberMapper;
@@ -14,11 +16,18 @@ import com.ktds.devpro.model.vo.Member;
 import com.ktds.devpro.model.vo.MemberVO;
 
 @Service
-public class MemberServiceImpl implements MemberService, UserDetailsService {
-
+public class MemberServiceImpl implements MemberService {
+	
+	PasswordEncoder passwordEncoder;
+	
 	@Resource
 	private MemberMapper memberMapper;
-
+	
+	@Autowired
+	public MemberServiceImpl(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+	
 	@Override
 	public MemberVO findMemberById(String id) {
 		return memberMapper.findMemberById(id);
@@ -34,33 +43,12 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		return memberMapper.findMemberByCustId(custId);
 	}
 
-	//YE: 0520 13:20 Secure Login 추가
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Member member = memberMapper.securityLogin(username);
-		System.out.println(member);
-		 if(null == member) {
-	            throw new UsernameNotFoundException("User Not Found");
-	     }
 
-		///member.setPassword("{noop}1596");		//test password -> 실제로 사용할 땐 지워줘야함
-		//System.out.println(member + "//\n");
-		return member;
-	}
-	
-	@Override
-	public UserDetails loginByEmail(String email) throws UsernameNotFoundException{
-		Member member = memberMapper.securityLoginByEmail(email);
-		System.out.println(member);
-		if(null == member) {
-            throw new UsernameNotFoundException("User Not Found");
-		}
-		
-		return member;
-	}
 	public int registerUser(Member member) {
 		int insertBasic = 0;
 		int insertDetail = 0;
+		
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		insertBasic = memberMapper.registerBasic(member);
 		System.out.println(member.getCustIdx());
 		insertDetail = memberMapper.registerDetail(member);
@@ -77,4 +65,17 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		return memberMapper.userIdCheck(user_id);
 	}
 	
+	
+	//login 0522
+	public Member loginById(String custId) {
+		return memberMapper.securityLoginTEST(custId);
+	}
+	
+	public Member loginByEmail(String custId) {
+		return memberMapper.securityLoginByEmail(custId);
+	}
+	
+	public boolean loginMatchPwd(String inputPwd, String getPwd) {
+		return passwordEncoder.matches(inputPwd, getPwd);
+	}
 }

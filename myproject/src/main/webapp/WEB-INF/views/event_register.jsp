@@ -40,18 +40,16 @@
 						</div>
 
 						<form class="form" name="form" action="registerProcess"
-							method="post" action="#" onSubmit="return checkAll()">
+							method="post" onSubmit="return checkAll()">
 							<div class="card-content">
 								<div class="input-group">
 									<span class="input-group-addon"> <i
 										class="material-icons">face</i>
 									</span>
 									<div class="form-group is-empty">
-
 										<input type="text" class="form-control"
 											placeholder="이름을 입력해주세요" name="custName"> <span
 											class="material-input"></span>
-
 									</div>
 								</div>
 
@@ -60,11 +58,9 @@
 										class="material-icons">email</i>
 									</span>
 									<div class="form-group is-empty">
-
 										<input type="text" class="form-control"
 											placeholder="이메일을 입력해주세요" name="custEmail"> <span
 											class="material-input"></span>
-
 									</div>
 								</div>
 
@@ -93,6 +89,7 @@
 
 
 									</div>
+
 								</div>
 
 								<div class="input-group">
@@ -166,7 +163,6 @@
 	<script src="js/templ/demo.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="js/templ/register.js"></script>
-
 	<%@ include file="./event_footer.jsp"%>
 
 	<script>

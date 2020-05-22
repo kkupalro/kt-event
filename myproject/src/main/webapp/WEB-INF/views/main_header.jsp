@@ -144,18 +144,17 @@
 					</div>
 
 				</div>
-			</div>
-			<div class="click-banner2 top" style="display: none;"></div>
-
-			<div id="chnlink" class="chnlink">
-				<ul>
-					<li><a
-						href="javascript:kt_common.ktMenuLinkStat('/','^KT-메인페이지','_self','');">메인</a>
-					</li>
-
-					<c:if test="${!empty custId }">
-						<li><a
-							href="javascript:kt_common.ktMenuLinkStat('/','^KT-로그아웃','_self','');">로그아웃</a>
+				<div class="click-banner2 top" style="display: none;"></div>
+				
+				<div id="chnlink" class="chnlink">
+					<ul>
+						<li>
+							<a href="javascript:kt_common.ktMenuLinkStat('/event','^KT-메인페이지','_self','');">메인</a>
+						</li>
+						
+						<c:if test="${!empty custId }">
+						<li>
+							<a href="javascript:kt_common.ktMenuLinkStat('logout','^KT-로그아웃','_self','');">로그아웃</a>
 						</li>
 					</c:if>
 
@@ -167,8 +166,10 @@
 						<li><a
 							href="javascript:kt_common.ktMenuLinkStat('register','^KT-회원가입','_self','');">회원가입</a>
 						</li>
-					</c:if>
-				</ul>
+						</c:if>
+					</ul>
+				</div>
+				
 			</div>
 
 		</div>

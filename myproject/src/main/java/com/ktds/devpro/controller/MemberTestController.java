@@ -26,41 +26,75 @@ public class MemberTestController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "event_login";
+	
+
+
+
+	
+
+	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
+	public String loginFail() {
+		return "loginFail";
 	}
 
+
+	
+	
+	
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("userId") String user_id) {
+		System.out.println(memberService.userIdCheck(user_id));
+		return memberService.userIdCheck(user_id);
+	}
+	
+	@RequestMapping(value = "/TESTlogin", method = RequestMethod.GET)
+	public String TESTLOGIN(HttpServletRequest request, String id, String pw){
+		return "redirect:/";
+	}
+
+	
+	
+	
+	
+	//YE| 0522 로그인 관련 페이지 정리
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(HttpSession session) {
+		if(session.getAttribute("custId") != null)	return "redirect:/";
+		return "event_login";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginProcess(HttpServletRequest request, HttpSession session) {
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pwd");
-
+		Member member = null;
 		System.out.println("id " + id + "pwd " + pass);
-		UserDetails member = null;
-		try {
-			if (id.contains("@")) { // email 형식
-				member = memberService.loginByEmail(id);
-			} else {
-				member = memberService.loadUserByUsername(id);
-			}
+		if (id.contains("@")) { // email 형식
+			member = memberService.loginByEmail(id);
+		} else {
+			member = memberService.loginById(id);
+		}
 
-			System.out.println("cont: " + member);
-		} catch (UsernameNotFoundException e) {
+		
+		if(member == null){
 			System.out.println("ID IS NOT FOUND");
 			request.setAttribute("ERROR", "사용자 정보가 없습니다.");
 			return "event_login";
+		}else {
+			if(memberService.loginMatchPwd(pass, member.getPassword())) {
+				session.setAttribute("custId", id);
+			}else {
+				System.out.println("NOT MATCH");
+				request.setAttribute("ERROR", "비밀번호가 틀립니다.");
+				return "event_login";
+			}
 		}
 
-		if (!pass.equals(member.getPassword())) {
-			System.out.println("NOT MATCH");
-			request.setAttribute("ERROR", "비밀번호가 틀립니다.");
-			return "event_login";
-		}
-		session.setAttribute("custId", id);
 
 		return "redirect:/";
 	}
+	
 
 	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
 	public String loginSuccess(HttpSession session, HttpServletRequest request) {
@@ -75,24 +109,17 @@ public class MemberTestController {
 		return "curr_event";
 
 	}
-
-	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
-	public String loginFail() {
-		return "loginFail";
+	
+	
+	
+	
+	//YE| 0522 회원가입 관련 페이지 정리
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register(HttpSession session) {
+		if(session.getAttribute("custId") != null)	return "redirect:/";
+		return "event_register";
 	}
-
-	/*
-	 * @RequestMapping(value = "/", method = RequestMethod.GET)
-	 * 
-	 * public String home(HttpServletRequest request) {
-	 * 
-	 * HttpSession session = request.getSession();
-	 * 
-	 * String id =(String)session.getAttribute("id"); String pw
-	 * =(String)session.getAttribute("pw"); //로그인 후 위 방식으로 Session 값 사용 가능 return
-	 * "home"; }
-	 */
-
+	
 	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
 	public String resisterProcess(HttpServletRequest request) {
 		System.out.println(request.getParameter("custId"));
@@ -103,22 +130,21 @@ public class MemberTestController {
 		member.setEmail(request.getParameter("custEmail"));
 		member.setPhone(request.getParameter("custPhone"));
 		member.setName(request.getParameter("custName"));
-		if(memberService.registerUser(member) == 1)return "redirect:/";
+		
+		if(memberService.registerUser(member) == 1) {
+			//환영 멘트
+			request.setAttribute("custName", member.getName());
+			return "/event_register_Success";
+		}
 		return "/event_register";
 	}
 	
-	@RequestMapping(value = "/registerTest", method = RequestMethod.GET)
-	public String resister(HttpServletRequest request){
-		
-		return "event_register";
-	}
 	
 	
-	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
-	@ResponseBody
-	public int idCheck(@RequestParam("userId") String user_id) {
-		System.out.println(memberService.userIdCheck(user_id));
-		return memberService.userIdCheck(user_id);
-	}
-
+	
+	
+	
+	
+	
+	
 }
