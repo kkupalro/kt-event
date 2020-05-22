@@ -45,10 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT * FROM EVT_EVT WHERE EVT_CTG_ID =#{ctgId};
  	</select>
  	
+ 	<select id="findEventIdxByEvtnm" parameterType="String" resultType="int">
+       SELECT EVT_IDX FROM EVT_EVT WHERE EVT_NM=#{evt_nm};
+    </select>
+ 	
  	<delete id="deleteEvent" 
- 	 parameterType="String">
- 		DELETE FROM EVT_EVT WHERE EVT_NM=#{evt_nm};
- 	</delete>
+     parameterType="int">
+       DELETE FROM EVT_EVT WHERE EVT_Idx=#{evt_idx};
+    </delete>
+
  	
  	<update id="updateEvent" parameterType="EventVO">
  		UPDATE EVT_EVT SET EVT_ST =#{EvtSt} WHERE EVT_IDX = #{EvtIdx} 
@@ -58,6 +63,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 parameterType="int" resultType="EventDtVO">
  		SELECT * FROM EVT_DT WHERE EVT_IDX = #{EvtIdx};
  	</select>
+ 	
+ 	<select id="searchEventListPage"
+ 	 parameterType="int" resultType="EventVO">
+ 	 	SELECT * FROM EVT_EVT LIMIT 10 offset #{pageIdx};
+ 	 	<!-- select * from foodlistinfo order by code limit #{pagecnt} offset #{page} -->
+ 	 </select>
  	
 </mapper>
  
