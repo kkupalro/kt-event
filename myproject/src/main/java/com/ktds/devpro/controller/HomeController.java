@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ktds.devpro.model.mapper.MemberMapper;
 import com.ktds.devpro.model.mapper.EventMapper;
+import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 
 
@@ -35,9 +36,10 @@ public class HomeController {
 
 	@RequestMapping("/event_detail")
 	public String detail(HttpServletRequest request, Model model) {
-		String id = request.getParameter("id"); // id=?값 받아옴
-		// 비즈니스 로직 구현 evt_dt 테이블  id == evt_idx 칼럼값
-		List<EventVO> vo = eventMapper.findEventByIdx(Integer.parseInt(id));
+		int id = Integer.parseInt(request.getParameter("id"));
+		List<EventVO> vo = eventMapper.findEventByIdx(id);
+		List<EventDtVO> dt_vo = eventMapper.searchEventDtList(id);
+		model.addAttribute("evt_dt", dt_vo);
 		model.addAttribute("evt", vo);
 		return "event_detail";
 	}

@@ -39,81 +39,90 @@
 							</button>
 						</div>
 
-						<form name="form" class="form" method="post" action="registerProcess" onSubmit="return checkAll()">
+						<form class="form" name="form" action="registerProcess"
+							method="post" onSubmit="return checkAll()">
 							<div class="card-content">
 								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="material-icons">face</i>
+									<span class="input-group-addon"> <i
+										class="material-icons">face</i>
 									</span>
 									<div class="form-group is-empty">
-										<input type="text" class="form-control" placeholder="이름을 입력해주세요" name="custName">
+										<input type="text" class="form-control"
+											placeholder="이름을 입력해주세요" name="custName"> <span
+											class="material-input"></span>
+									</div>
+								</div>
+
+								<div class="input-group">
+									<span class="input-group-addon"> <i
+										class="material-icons">email</i>
+									</span>
+									<div class="form-group is-empty">
+										<input type="text" class="form-control"
+											placeholder="이메일을 입력해주세요" name="custEmail"> <span
+											class="material-input"></span>
+									</div>
+								</div>
+
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">account_box</i>
+									</span>
+									<div class="form-group is-empty">
+										<input type="text" class="form-control" placeholder="ID를 입력해주세요" name="custId" id="custId" style="width: 82%">
 										<span class="material-input"></span>
+										<input type="button" class="btn btn-rose" style="position: relative" id="id_check"
+											value="중복확인" onclick="button1_click();">
 									</div>
 								</div>
 
 								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="material-icons">email</i>
+									<span class="input-group-addon"> <i
+										class="material-icons">lock_outline</i>
 									</span>
 									<div class="form-group is-empty">
-										<input type="text" class="form-control" placeholder="이메일을 입력해주세요" name="custEmail">
-										<span class="material-input"></span>
+											placeholder="비밀번호를 입력해주세요" class="form-control"
+											name="custPwd"> <span>8~15자리의 영문, 숫자, 특수문자의
+											입력이 가능합니다.</span>
 									</div>
 								</div>
 
 								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="material-icons">account_box</i>
+									<span class="input-group-addon"> <i
+										class="material-icons">lock_outline</i>
 									</span>
 									<div class="form-group is-empty">
-										<input type="text" class="form-control" placeholder="ID를 입력해주세요" name="custId">
-										<span class="material-input"></span>
+										<input type="password" id="password_2" placeholder="비밀번호확인"
+											class="form-control" name="password2">
+										<!--  <span class="material-input"></span>-->
+										<span id="alert-success" style="display: none;">비밀번호가
+											일치합니다.</span> <span id="alert-danger"
+											style="display: none; color: #d92742; font-weight: bold;">
+											비밀번호가 일치하지 않습니다. </span>
 									</div>
 								</div>
 
 								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="material-icons">lock_outline</i>
+									<span class="input-group-addon"> <i
+										class="material-icons">phone</i>
 									</span>
 									<div class="form-group is-empty">
-										<input type="password" id="password_1" placeholder="비밀번호를 입력해주세요" class="form-control" name="custPwd">
-										<span>8~15자리의 영문, 숫자, 특수문자의 입력이 가능합니다.</span>
-									</div>
-								</div>
-
-								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="material-icons">lock_outline</i>
-									</span>
-									<div class="form-group is-empty">
-										<input type="password" name="password2" placeholder="비밀번호확인"
-											class="form-control">
-										<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span> 
-										<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold;">
-										비밀번호가 일치하지 않습니다.</span>
-									</div>
-								</div>
-
-								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="material-icons">phone</i>
-									</span>
-									<div class="form-group is-empty">
-										<input type="tel" placeholder="휴대폰 번호를 입력해주세요" class="form-control" name="custPhone">
-										<span class="material-input"></span>
+										<input type="tel" placeholder="휴대폰 번호를 입력해주세요"
+											class="form-control" name="custPhone"> <span
+											class="material-input"></span>
 									</div>
 								</div>
 
 								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="optionsCheckboxes" checked>
-											<a href="#something">개인약관 </a>에 동의합니다.
+									<label> <input type="checkbox" id="checkbox" unchecked>
+										<a href="#something">개인약관 </a>에 동의합니다.
 									</label>
 								</div>
 							</div>
 
 							<div class="footer text-center">
-								<input type = "submit" id="register" class="btn btn-primary btn-round" value="회원가입">
+								<input type="submit" id="register"
+									class="btn btn-primary btn-round" value="회원가입">
 							</div>
 						</form>
 					</div>
@@ -121,6 +130,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/common.js"></script>
 	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/util.js"></script>
 	<script src="js/templ/jquery.min.js" type="text/javascript"></script>
@@ -147,185 +157,34 @@
 	<script src="js/templ/material-dashboard.js?v=1.3.0"></script>
 	<script src="js/templ/demo.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script>
-		function checkAll() {
-			if (!checkName(form.custName.value)) {
-				return false;
-			}
-			if (!checkMail(form.custEmail.value)) {
-				return false;
-			}
-		});
-	</script> 
-	
-	<script type="text/javascript">
-		function checkPw(form) {
-			var pwd1 = form.password_1.value;
-			var pwd2 = form.password_2.value;
-			if(pwd1 != pwd2){
-				alert("패스 X");
-				console.log(pwd1);
-				console.log(pwd2);
-				return false;
-			}else{
-				return true;		
-			if (!checkMail(form.mail.value)) {
-				return false;
-			}
-			if (!checkUserId(form.custId.value)) {
-				return false;
-			}
-			if (!checkPassword(form.custId.value, form.password1.value,
-					form.password2.value)) {
-				return false;
-			}
-
-			return true;
-		}
-
-		// 공백확인 함수
-		function checkExistData(value, dataName) {
-			if (value == "") {
-				alert(dataName + " 입력해주세요!");
-				return false;
-			}
-			return true;
-		}
-
-		function checkUserId(id) {
-			//Id가 입력되었는지 확인하기
-			if (!checkExistData(id, "아이디를"))
-				return false;
-
-			var idRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
-			if (!idRegExp.test(id)) {
-				alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
-				form.custId.value = "";
-				form.custId.focus();
-				return false;
-			}
-			return true; //확인이 완료되었을 때
-		}
-
-		function checkPassword(id, password1, password2) {
-			//비밀번호가 입력되었는지 확인하기
-			if (!checkExistData(password1, "비밀번호를"))
-				return false;
-			//비밀번호 확인이 입력되었는지 확인하기
-			if (!checkExistData(password2, "비밀번호 확인을"))
-				return false;
-
-			var password1RegExp = /^[a-zA-z0-9]{4,12}$/; //비밀번호 유효성 검사
-			if (!password1RegExp.test(password1)) {
-				alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
-				form.password1.value = "";
-				form.password1.focus();
-				return false;
-			}
-			//비밀번호와 비밀번호 확인이 맞지 않다면..
-			if (password1 != password2) {
-				alert("두 비밀번호가 맞지 않습니다.");
-				form.password1.value = "";
-				form.password2.value = "";
-				form.password2.focus();
-				return false;
-			}
-
-			//아이디와 비밀번호가 같을 때..
-			if (id == password1) {
-				alert("아이디와 비밀번호는 같을 수 없습니다!");
-				form.password1.value = "";
-				form.password2.value = "";
-				form.password2.focus();
-				return false;
-			}
-			return true; //확인이 완료되었을 때
-		}
-
-		function checkMail(mail) {
-			//mail이 입력되었는지 확인하기
-			if (!checkExistData(mail, "이메일을"))
-				return false;
-
-			var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-			if (!emailRegExp.test(mail)) {
-				alert("이메일 형식이 올바르지 않습니다!");
-				form.custEmail.value = "";
-				form.custEmail.focus();
-				return false;
-			}
-			return true; //확인이 완료되었을 때
-		}
-
-		function checkName(name) {
-			if (!checkExistData(name, "이름을"))
-				return false;
-
-			var nameRegExp = /^[가-힣]{2,4}$/;
-			if (!nameRegExp.test(name)) {
-				alert(form.custName.value + "이름이 올바르지 않습니다.");
-				return false;
-			}
-			return true; //확인이 완료되었을 때
-		}
-	</script>
-	
-	<script type="text/javascript">
-		$().ready(function() {
-			demo.checkFullPageBackgroundImage();
-
-			setTimeout(function() {
-				// after 1000 ms we add the class animated to the login/register card
-				$('.card').removeClass('card-hidden');
-			}, 700)
-		});
-	</script>
-	
+	<script src="js/templ/register.js"></script>
 	<%@ include file="./event_footer.jsp"%>
-	<!-- YE| 0521 14:45 ID 유효성검사 -->
+
 	<script>
-// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
-	$("#custId").blur(function() {
-		// id = "id_reg" / name = "userId"
-		var user_id = $('#custId').val();
-		$.ajax({
-			url : '${pageContext.request.contextPath}/user/idCheck?userId='+ user_id,
-			type : 'get',
-			success : function(data) {
-				console.log("1 = 중복o / 0 = 중복x : "+ data);							
-				
-				if (data == 1) {
-						// 1 : 아이디가 중복되는 문구
-						alert("!!!");
-						$("#id_check").text("사용중인 아이디입니다 :p");
-						$("#id_check").css("color", "red");
-						$("#reg_submit").attr("disabled", true);
-					} else {
-						
-						if(idJ.test(user_id)){
-							// 0 : 아이디 길이 / 문자열 검사
-							$("#id_check").text("");
-							$("#reg_submit").attr("disabled", false);
-				
-						} else if(user_id == ""){
-							
-							$('#id_check').text('아이디를 입력해주세요 :)');
-							$('#id_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);				
-							
-						} else {
-							
-							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
-							$('#id_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);
-						}
-						
-					}
-				}, error : function() {
-						console.log("실패");
-				}
-			});
-		});
-</script>
+		$("#custId")
+				.blur(
+						function() {
+							// id = "id_reg" / name = "userId"
+							var user_id = $('#custId').val();
+							$
+									.ajax({
+										url : '${pageContext.request.contextPath}/user/idCheck?userId='
+												+ user_id,
+										type : 'get',
+										success : function(data) {
+											if (data == 0) {
+												alert("사용해도 되는 아이디");
+
+											} else {
+												alert("아이디 바꿔주세요~")
+											}
+										},
+										error : function() {
+											console.log("실패");
+										}
+									});
+						});
+	</script>
+
 </body>
 </html>

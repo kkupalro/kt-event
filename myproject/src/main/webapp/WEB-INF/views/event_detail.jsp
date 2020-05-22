@@ -34,32 +34,52 @@
 								<c:out value="${evt.evtTrg}" />
 							</div>
 							<div>
-								<strong>당첨자발표</strong> : <c:out value="${evt.evtTrgDate}" />
-								
+								<strong>당첨자발표</strong> :
+								<c:out value="${evt.evtTrgDate}" />
+
 							</div>
 							<div class="last">
 								<strong>이벤트문의</strong> :
 								<c:out value="${evt.evtPhone}" />
 							</div>
-							<p class="d-day"><fmt:parseDate var="endDate" value="${evt.endDate}"
+							<p class="d-day">
+								<fmt:parseDate var="endDate" value="${evt.endDate}"
 									pattern="yyyy-MM-dd" />
 								<c:set var="now" value="<%=new java.util.Date()%>" />
 								<fmt:parseNumber var="now_N" value="${now.time/(1000*60*60*24)}"
 									integerOnly="true" />
 								<fmt:parseNumber var="end_N"
 									value="${endDate.time/(1000*60*60*24)}" integerOnly="true" />
-								D - ${end_N - now_N + 1}</p>
+								D - ${end_N - now_N + 1}
+							</p>
 						</div>
 					</c:forEach>
-					<img
-						src="https://zone.membership.kt.com/event/2020AutoOasis/img/visual.jpg">
+
+					<c:forEach var="evt_dt" items="${evt_dt}">
+						<c:set var="type" value="${evt_dt.dataType}" />
+						<c:choose>
+							<c:when test="${type eq 'IMG'}">
+								<img src="<c:out value="${evt_dt.resData}"/>">
+							</c:when>
+							<c:when test="${type eq 'VIDEO'}">
+								<!-- video -->
+								<c:out value="${evt_dt.resData}" escapeXml="false" />
+							</c:when>
+							
+							<c:when test="${type eq 'TXT'}">
+								<!-- 종료이벤트 = txt -->
+								<c:out value="${evt_dt.resData}" />
+							</c:when>
+						</c:choose>
+					</c:forEach>
+
 				</div>
 			</div>
 		</div>
 
 		<div style="text-align: center;">
 			<div class="btn-list">
-				<a href="event" class="btn large is-navygray">목록</a>
+				<a href="/" class="btn large is-navygray">목록</a>
 			</div>
 		</div>
 
