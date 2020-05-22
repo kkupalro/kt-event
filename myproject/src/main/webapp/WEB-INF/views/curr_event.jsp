@@ -19,7 +19,7 @@
 
 	<div class="event-list-area">
 		<div class="column">
-			<div class="inner">
+			<div class="inner"><br>
 				<div class="search-option clearfix">
 					<div class="flow select-search-result">
 						전체 <span> ${fn:length(evt)}</span>건
@@ -29,9 +29,8 @@
 							<a href="javascript:;" class="active"><span>최신순</span></a><a
 								href="javascript:;" class=""><span>마감일순</span></a>
 						</div>
-						<select id="search-select" class="flow search-select"
-							title="진행중인 이벤트 분류 선택"><option value="ALL"
-								selected="selected">전체</option>
+						<select id="search-select" class="flow search-select" title="진행중인 이벤트 분류 선택">
+							<option value="ALL" selected="selected">전체</option>
 							<option value="01">상품/서비스</option>
 							<option value="02">멤버십</option>
 							<option value="03">올레TV</option>

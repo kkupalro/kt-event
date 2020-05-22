@@ -1633,7 +1633,7 @@ svg {
 .bootstrap-datetimepicker-widget a[data-action]:hover {
   background-color: transparent; }
 .bootstrap-datetimepicker-widget a[data-action]:hover span {
-  background-color: #eeeeee;
+  background-color: #ffffff;
   color: #9c27b0; }
 .bootstrap-datetimepicker-widget a[data-action]:active {
   box-shadow: none; }
@@ -5136,7 +5136,7 @@ h2.title {
   font-size: 11px; }
 
 body {
-  background-color: #EEEEEE;
+  background-color: #f9f9ff;
   color: #3C4858; }
 body.inverse {
   background: #333333; }
