@@ -6,9 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktds.devpro.model.dao.EventDao;
+import com.ktds.devpro.model.vo.EventCtgVO;
+import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 
-//@Service
+@Service
 public interface EventSearchService {
-	public List<EventVO> selectEventAll();
+	public void 			deleteEventOne(String evt_nm);
+	public List<EventVO> 	searchEventAll();
+	public List<EventCtgVO> searchEventCtgAll();
+	public List<EventCtgVO> searchEventByCtg(int ctgId);
+	public void 			updateEventStateOne(int EvtIdx, int EvtSt);
+	public List<EventDtVO> 	searchEventDtList(int EvtIdx);
+	public int 				findEventIdxByNm(String EVtNm);
+	public List<EventVO>	searchEventListPage(int PageIdx);
 }
