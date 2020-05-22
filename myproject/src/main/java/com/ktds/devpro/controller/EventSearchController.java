@@ -76,7 +76,7 @@ public class EventSearchController {
 		return EventDtList;
 	}
 	
-	@RequestMapping("/evt/searchEventListPage/{PageIdx}")	// Event Paging 처리, ex, 첫번쨰 페이지 -> /1로 주면 됨
+	@RequestMapping("/evt/searchEventListPage/{PageIdx}")	// Event Paging 처리, ex, 첫번쨰 페이지 -> /0로 주면 됨
 	public List<EventVO> EventListPage(@PathVariable int PageIdx)
 	{
 		List<EventVO> EvtList = eventService.searchEventListPage(PageIdx);
