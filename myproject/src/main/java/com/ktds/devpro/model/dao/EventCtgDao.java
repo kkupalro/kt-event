@@ -12,19 +12,5 @@ import com.ktds.devpro.model.vo.EventVO;
 @Repository
 public class EventCtgDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-	private static String namespace = "com.ktds.devpro.model.dao";
-	
-	private EventCtgVO eventCtgVO;
-	
-	public EventCtgDao () {
-		eventCtgVO = new EventCtgVO();
-	}
-	
-	public List<EventCtgVO> selectEventCtgListAll() {
-		return sqlSession.selectList(null);
-	}
 	
 }

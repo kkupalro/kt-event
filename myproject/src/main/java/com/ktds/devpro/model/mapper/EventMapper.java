@@ -21,9 +21,14 @@ public interface EventMapper {
 	
 	public List<EventCtgVO> findEventByCtg(int ctgId);
 	
-	public void deleteEvent(String evt_nm);
+	public int findEventIdxByEvtnm(String evt_nm);
+	
+	public void deleteEvent(int evt_idx);
 	
 	public void updateEvent(EventVO eventvo);
 	
 	public List<EventDtVO> searchEventDtList(int EvtIdx);
+	
+	public List<EventVO>  searchEventListPage(int PageIdx);
+	
 }
