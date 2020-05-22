@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</delete>
  	
  	<select id ="userIdCheck" parameterType="java.lang.String" resultType="int">
- 		select count(cust_id) from cust_bas_test where cust_id = #{user_id}
+ 		select count(cust_id) from cust_bas where cust_id = #{user_id}
  	</select>
 </mapper>
  

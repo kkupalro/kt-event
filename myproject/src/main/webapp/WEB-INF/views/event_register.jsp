@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -10,13 +9,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/material-dashboard.css?v=1.3.0" rel="stylesheet">
 <link href="css/demo.css" rel="stylesheet">
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <%@ include file="./html_head.html"%>
 
 <title>회원가입 | KT</title>
@@ -74,14 +69,14 @@
 								</div>
 
 								<div class="input-group">
-									<span class="input-group-addon"> <i
-										class="material-icons">account_box</i>
+									<span class="input-group-addon">
+										<i class="material-icons">account_box</i>
 									</span>
-
-									<div class="form-group is-empty" style="width: 390px;">
-										<input type="text" class="form-control"
-											placeholder="ID를 입력해주세요" name="custId"> <span
-											class="material-input"></span>
+									<div class="form-group is-empty">
+										<input type="text" class="form-control" placeholder="ID를 입력해주세요" name="custId" id="custId" style="width: 82%">
+										<span class="material-input"></span>
+										<input type="button" class="btn btn-rose" style="position: relative" id="id_check"
+											value="중복확인" onclick="button1_click();">
 									</div>
 								</div>
 
@@ -143,17 +138,14 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" charset="UTF-8"
-		src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/common.js"></script>
-	<script type="text/javascript" charset="UTF-8"
-		src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/util.js"></script>
+	
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/util.js"></script>
 	<script src="js/templ/jquery.min.js" type="text/javascript"></script>
 	<script src="js/templ/bootstrap.min.js" type="text/javascript"></script>
 	<script src="js/templ/material.min.js" type="text/javascript"></script>
-	<script src="js/templ/perfect-scrollbar.jquery.min.js"
-		type="text/javascript"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	<script src="js/templ/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<script src="js/templ/arrive.min.js" type="text/javascript"></script>
 	<script src="js/templ/jquery.validate.min.js"></script>
 	<script src="js/templ/moment.min.js"></script>
@@ -163,8 +155,7 @@
 	<script src="js/templ/bootstrap-datetimepicker.js"></script>
 	<script src="js/templ/jquery-jvectormap.js"></script>
 	<script src="js/templ/nouislider.min.js"></script>
-	<script type="text/javascript"
-		src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 	<script src="js/templ/jquery.select-bootstrap.js"></script>
 	<script src="js/templ/jquery.datatables.js"></script>
 	<script src="js/templ/sweetalert2.js"></script>
@@ -176,12 +167,9 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="js/templ/register.js"></script>
 
-
 	<%@ include file="./event_footer.jsp"%>
 
-	<!-- YE| 0521 14:45 ID 유효성검사 -->
 	<script>
-		// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 		$("#custId")
 				.blur(
 						function() {
@@ -193,46 +181,11 @@
 												+ user_id,
 										type : 'get',
 										success : function(data) {
-											console.log("1 = 중복o / 0 = 중복x : "
-													+ data);
+											if (data == 0) {
+												alert("사용해도 되는 아이디");
 
-											if (data == 1) {
-												// 1 : 아이디가 중복되는 문구
-												alert("!!!");
-												$("#id_check").text(
-														"사용중인 아이디입니다 :p");
-												$("#id_check").css("color",
-														"red");
-												$("#reg_submit").attr(
-														"disabled", true);
 											} else {
-
-												if (idJ.test(user_id)) {
-													// 0 : 아이디 길이 / 문자열 검사
-													$("#id_check").text("");
-													$("#reg_submit").attr(
-															"disabled", false);
-
-												} else if (user_id == "") {
-
-													$('#id_check').text(
-															'아이디를 입력해주세요 :)');
-													$('#id_check').css('color',
-															'red');
-													$("#reg_submit").attr(
-															"disabled", true);
-
-												} else {
-
-													$('#id_check')
-															.text(
-																	"아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
-													$('#id_check').css('color',
-															'red');
-													$("#reg_submit").attr(
-															"disabled", true);
-												}
-
+												alert("아이디 바꿔주세요~")
 											}
 										},
 										error : function() {
@@ -241,5 +194,6 @@
 									});
 						});
 	</script>
+
 </body>
 </html>
