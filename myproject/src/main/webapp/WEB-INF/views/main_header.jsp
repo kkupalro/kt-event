@@ -158,12 +158,12 @@
 				<div id="chnlink" class="chnlink">
 					<ul>
 						<li>
-							<a href="javascript:kt_common.ktMenuLinkStat('/','^KT-메인페이지','_self','');">메인</a>
+							<a href="javascript:kt_common.ktMenuLinkStat('/event','^KT-메인페이지','_self','');">메인</a>
 						</li>
 						
 						<c:if test="${!empty custId }">
 						<li>
-							<a href="javascript:kt_common.ktMenuLinkStat('/','^KT-로그아웃','_self','');">로그아웃</a>
+							<a href="javascript:kt_common.ktMenuLinkStat('logout','^KT-로그아웃','_self','');">로그아웃</a>
 						</li>
 						</c:if>
 						

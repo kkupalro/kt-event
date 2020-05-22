@@ -81,10 +81,15 @@
 										class="material-icons">lock_outline</i>
 									</span>
 									<div class="form-group is-empty">
+
+										<input type="password" id="password_1"
 											placeholder="비밀번호를 입력해주세요" class="form-control"
 											name="custPwd"> <span>8~15자리의 영문, 숫자, 특수문자의
 											입력이 가능합니다.</span>
+
+
 									</div>
+
 								</div>
 
 								<div class="input-group">

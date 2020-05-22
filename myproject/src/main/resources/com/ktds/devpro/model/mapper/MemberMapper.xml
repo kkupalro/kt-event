@@ -49,16 +49,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
  	
  	<insert id="registerBasic" parameterType="member">
- 		insert into cust_bas_test (cust_nm, cust_id, cust_pwd, cust_phone, cust_email)values(#{name}, #{id}, #{password}, #{phone}, #{email})
+ 		insert into cust_bas  (cust_nm, cust_id, cust_pwd, cust_phone, cust_email)values(#{name}, #{id}, #{password}, #{phone}, #{email})
  		<selectKey keyProperty="custIdx" resultType="int" order="AFTER">
- 			select max(cust_idx) from cust_bas_test
+ 			select max(cust_idx) from cust_bas 
  		</selectKey>
  	</insert>
  	<insert id="registerDetail" parameterType="member">
- 		insert into cust_dt_test (cust_idx, cust_prod)values (#{custIdx}, "데이터ON 톡")
+ 		insert into cust_dt  (cust_idx, cust_prod)values (#{custIdx}, "데이터ON 톡")
  	</insert>
  	<delete id= "deleteUserBasic" parameterType="member">
- 		delete from cust_bas_test where cust_idx = #{custIdx}
+ 		delete from cust_bas  where cust_idx = #{custIdx}
  	</delete>
  	
  	<select id ="userIdCheck" parameterType="java.lang.String" resultType="int">
@@ -69,8 +69,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			select t101.cust_nm as name, t101.cust_id as id, t101.cust_pwd as password, t101.cust_phone as phone, t101.cust_email as email,
  		t102.cust_prod as product, t102.cust_mbs as membership, t102.CUST_POINT , t102.cust_data_size as dataSize
-		from cust_bas_test t101
-		left join cust_dt_test t102
+		from cust_bas  t101
+		left join cust_dt  t102
 		on t101.cust_idx = t102.cust_idx
 		where t101.cust_id = #{id}
 		]]>

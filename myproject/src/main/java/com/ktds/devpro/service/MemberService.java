@@ -19,16 +19,17 @@ public interface MemberService {
 	
 	// login
 	public Member findMemberByCustId(String custId);
-	
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
-	public UserDetails loginByEmail(String email) throws UsernameNotFoundException;
-	
-	//login -> 0521
-	public boolean loginById(String custId, String inputPwd);
+
 	
 	
 	//register
 	public int registerUser(Member member);
 	public int userIdCheck(String user_id);
 	
+	
+	
+	//login -> 0522
+		public Member loginById(String custId) ;
+		public Member loginByEmail(String custId) ;
+		public boolean loginMatchPwd(String inputPwd, String getPwd);
 }
