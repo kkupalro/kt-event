@@ -22,7 +22,7 @@
 
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<div class="card card-signup">
+			<div class="card card-signup" style ="margin-top: 50px;"><br>
 				<h2 class="card-title text-center">회원가입</h2>
 
 				<div class="row">
@@ -69,9 +69,9 @@
 										<i class="material-icons">account_box</i>
 									</span>
 									<div class="form-group is-empty">
-										<input type="text" class="form-control" placeholder="ID를 입력해주세요" name="custId" id="custId" style="width: 82%">
+										<input type="text" class="form-control" placeholder="ID를 입력해주세요" name="custId" id="custId" style="width: 80%">
 										<span class="material-input"></span>
-										<input type="button" class="btn btn-rose" style="position: relative" id="id_check"
+										<input type="button" class="btn btn-rose" style="position: relative; align : right;" id="id_check "
 											value="중복확인" onclick="button1_click();">
 									</div>
 								</div>

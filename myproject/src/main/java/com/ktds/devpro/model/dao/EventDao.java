@@ -28,6 +28,4 @@ public class EventDao {
 	public List<EventVO> selectEventListCur() {
 		return sqlSession.selectList(""+eventVO.getEvtSt(), "1");
 	}
-	
-
 }

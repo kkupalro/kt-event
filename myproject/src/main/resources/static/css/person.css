@@ -4657,7 +4657,7 @@
 	border: 6px solid #d71826
 }
 
-.event-list-area .event-list ul li:first-child {
+.event-list-area .event-list ul li:nth-child(4n+1) {
 	margin-left: 0
 }
 

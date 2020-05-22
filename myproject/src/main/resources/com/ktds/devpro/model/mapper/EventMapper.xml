@@ -19,8 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
 	
 	<sql id="selectEventCur">
-		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
-		 from EVT_EVT where EVT_ST = 1
+		 select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from evt_evt 
+		 join evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 where EVT_ST = 1
 	</sql>
 	
 	<select id="findEventByIdx" 
@@ -44,10 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT * FROM EVT_EVT WHERE EVT_CTG_ID =#{ctgId};
  	</select>
  	
+ 	<select id="findEventIdxByEvtnm" parameterType="String" resultType="int">
+       SELECT EVT_IDX FROM EVT_EVT WHERE EVT_NM=#{evt_nm};
+    </select>
+ 	
  	<delete id="deleteEvent" 
- 	 parameterType="String">
- 		DELETE FROM EVT_EVT WHERE EVT_NM=#{evt_nm};
- 	</delete>
+     parameterType="int">
+       DELETE FROM EVT_EVT WHERE EVT_Idx=#{evt_idx};
+    </delete>
+
  	
  	<update id="updateEvent" parameterType="EventVO">
  		UPDATE EVT_EVT SET EVT_ST =#{EvtSt} WHERE EVT_IDX = #{EvtIdx} 
@@ -57,6 +63,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 parameterType="int" resultType="EventDtVO">
  		SELECT * FROM EVT_DT WHERE EVT_IDX = #{EvtIdx};
  	</select>
+ 	
+ 	<select id="searchEventListPage"
+ 	 parameterType="int" resultType="EventVO">
+ 	 	SELECT * FROM EVT_EVT LIMIT 10 offset #{pageIdx};
+ 	 	<!-- select * from foodlistinfo order by code limit #{pagecnt} offset #{page} -->
+ 	 </select>
  	
 </mapper>
  
