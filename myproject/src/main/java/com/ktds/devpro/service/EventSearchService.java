@@ -19,5 +19,5 @@ public interface EventSearchService {
 	public void 			updateEventStateOne(int EvtIdx, int EvtSt);
 	public List<EventDtVO> 	searchEventDtList(int EvtIdx);
 	public int 				findEventIdxByNm(String EVtNm);
-	
+	public List<EventVO>	searchEventListPage(int PageIdx);
 }

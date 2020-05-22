@@ -27,5 +27,6 @@ public interface EventMapper {
 	
 	public List<EventDtVO> searchEventDtList(int EvtIdx);
 	
+	public List<EventVO>  searchEventListPage(int PageIdx);
 	
 }

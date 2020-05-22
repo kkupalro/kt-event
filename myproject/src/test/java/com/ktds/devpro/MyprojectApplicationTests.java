@@ -23,5 +23,6 @@ class MyprojectApplicationTests {
 		//System.out.println(eventMapper.searchEventDtList(2).toString());
 		//eventService.deleteEventOne("웹툰, 웹소설 5개월 무료! 우리카드 자동이체 이벤트");
 		//System.out.println(mvo);
+		System.out.println(eventService.searchEventListPage(0).toString());
 	}
 }

@@ -60,5 +60,11 @@ public class EventSearchServiceImpl implements EventSearchService{
 	public int findEventIdxByNm(String EvtNm) {
 		return eventMapper.findEventIdxByEvtnm(EvtNm);
 	}
+
+	@Override
+	public List<EventVO> searchEventListPage(int PageIdx) {
+		List<EventVO> EventListPage = eventMapper.searchEventListPage((PageIdx + 1) * 10);
+		return EventListPage;
+	}
 	
 }
