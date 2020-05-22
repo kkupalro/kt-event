@@ -4678,6 +4678,7 @@
 }
 
 .event-list-area .event-list ul li .thumb img {
+	padding: 10px;
 	width: 100%;
 	height: 100%
 }

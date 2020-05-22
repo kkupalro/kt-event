@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -16,34 +16,36 @@
 <body>
 
 	<%@ include file="./main_header.jsp"%>
-
+	
 	<div class="event-list-area">
 		<div class="column">
 			<div class="inner">
-				<div class="search-option clearfix">
+				<div class="search-option clearfix" style="padding-top: 20px;">
 					<div class="flow select-search-result">
 						전체 <span> ${fn:length(evt)}</span>건
 					</div>
 					<div class="search-area options reverse">
+					
+						
 						<div class="view-type flow">
 							<a href="javascript:;" class="active"><span>최신순</span></a><a
 								href="javascript:;" class=""><span>마감일순</span></a>
 						</div>
-						<select id="search-select" class="flow search-select"
-							title="진행중인 이벤트 분류 선택"><option value="ALL"
-								selected="selected">전체</option>
-							<option value="01">상품/서비스</option>
-							<option value="02">멤버십</option>
-							<option value="03">올레TV</option>
-							<option value="04">기업</option>
-							<option value="05">기타</option></select>
-						<button type="button" class="flow btn-search">
-							<span>검색</span>
-						</button>
+							<select id="search-select" class="flow search-select"
+								title="진행중인 이벤트 분류 선택">
+								<option value="ALL" selected="selected">전체</option>
+								<option value="1">상품/서비스</option>
+								<option value="2">멤버십</option>
+								<option value="3">올레TV</option>
+								<option value="4">기업</option>
+								<option value="0">기타</option></select>
+							<button id="btnSearch" type="button" class="flow btn-search">
+								<span>검색</span>
+							</button>
 					</div>
+					
 				</div>
 				<div class="event-list">
-
 					<ul>
 						<c:forEach var="evt" items="${evt}">
 							<li><a href="event_detail?id=<c:out value="${evt.evtIdx}"/>">
@@ -71,8 +73,7 @@
 											<c:out value="${evt.endDate}" />
 										</div>
 										<div class="type">
-											<span class="product">
-											<c:out value="${evt.evtCtgNm}" />
+											<span class="product"> <c:out value="${evt.evtCtgNm}" />
 											</span>
 										</div>
 									</div>
@@ -96,6 +97,5 @@
 		</div>
 	</div>
 	<%@ include file="./event_footer.jsp"%>
-
 </body>
 </html>
