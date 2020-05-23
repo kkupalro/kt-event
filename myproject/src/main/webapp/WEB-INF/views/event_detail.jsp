@@ -106,7 +106,10 @@
 								<!-- video -->
 								<c:out value="${evt_dt.resData}" escapeXml="false" />
 							</c:when>
-
+							<c:when test="${type eq 'BTN'}">
+								<!-- button -->
+								<button type="button"><img src="<c:out value="${evt_dt.resData}"/>" alt="버튼 이미지"></button>
+							</c:when>
 							<c:when test="${type eq 'TXT'}">
 								<!-- 종료이벤트 = txt -->
 								<c:out value="${evt_dt.resData}" />

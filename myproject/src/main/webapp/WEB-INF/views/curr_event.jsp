@@ -27,8 +27,6 @@
 						전체 <span> ${fn:length(evt)}</span>건
 					</div>
 					<div class="search-area options reverse">
-					
-						
 						<div class="view-type flow">
 							<a href="javascript:;" class="active"><span>최신순</span></a><a
 								href="javascript:;" class=""><span>마감일순</span></a>
@@ -44,16 +42,6 @@
 							<button id="btnSearch" type="button" class="flow btn-search">
 								<span>검색</span>
 							</button>
-						<select id="search-select" class="flow search-select" title="진행중인 이벤트 분류 선택">
-							<option value="ALL" selected="selected">전체</option>
-							<option value="01">상품/서비스</option>
-							<option value="02">멤버십</option>
-							<option value="03">올레TV</option>
-							<option value="04">기업</option>
-							<option value="05">기타</option></select>
-						<button type="button" class="flow btn-search">
-							<span>검색</span>
-						</button>
 					</div>
 					
 				</div>
