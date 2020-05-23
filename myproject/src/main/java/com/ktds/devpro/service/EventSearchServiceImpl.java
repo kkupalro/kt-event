@@ -63,7 +63,7 @@ public class EventSearchServiceImpl implements EventSearchService{
 
 	@Override
 	public List<EventVO> searchEventListPage(int PageIdx) {
-		List<EventVO> EventListPage = eventMapper.searchEventListPage((PageIdx + 1) * 10);
+		List<EventVO> EventListPage = eventMapper.searchEventListPage(PageIdx * 8);
 		return EventListPage;
 	}
 	

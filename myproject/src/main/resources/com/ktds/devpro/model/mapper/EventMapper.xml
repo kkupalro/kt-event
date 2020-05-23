@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	<select id="searchEventListPage"
  	 parameterType="int" resultType="EventVO">
- 	 	SELECT * FROM EVT_EVT LIMIT 10 offset #{pageIdx};
+ 	 	SELECT * FROM EVT_EVT LIMIT 8 offset #{pageIdx};
  	 	<!-- select * from foodlistinfo order by code limit #{pagecnt} offset #{page} -->
  	 </select>
  	
