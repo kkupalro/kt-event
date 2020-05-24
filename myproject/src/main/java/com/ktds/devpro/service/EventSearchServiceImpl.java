@@ -1,6 +1,8 @@
 package com.ktds.devpro.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -18,10 +20,23 @@ public class EventSearchServiceImpl implements EventSearchService{
 	@Resource
 	private EventMapper eventMapper;
 	
+	@Resource
+	private EventDao eventDao;
+	
 	@Override
 	public void deleteEventOne(String EvtNm) {
 		int idx = this.findEventIdxByNm(EvtNm);
 		eventMapper.deleteEvent(idx);
+	}
+	
+	@Override
+	public List<EventVO> findEventSt(String searchOption) {
+		return eventDao.findEventSt(searchOption);
+	}
+	
+	@Override
+	public List<EventVO> findEventEnd(String searchOption) {
+		return eventDao.findEventEnd(searchOption);
 	}
 
 	@Override

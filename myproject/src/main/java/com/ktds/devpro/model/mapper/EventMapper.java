@@ -15,6 +15,10 @@ public interface EventMapper {
 	
 	public List<EventVO> findEventCur();
 	
+	public List<EventVO> findEventSt(String searchOption);
+	
+	public List<EventVO> findEventEnd(String searchOption);
+	
 	public List<EventVO> findEventByIdx(int evtIdx);
 	
 	public List<EventCtgVO> findEventCtgAll();
