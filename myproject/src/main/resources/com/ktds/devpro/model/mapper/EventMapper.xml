@@ -22,18 +22,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from evt_evt 
 		 join evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
 		 where EVT_ST = 1
+		 LIMIT 8 offset #{pageIdx}
 	</sql>
 	
 	<select id="findEventSt" resultType="EventVO">
  		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from evt_evt 
 		 join evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
 		 where evt_evt.EVT_ST = 1 and evt_evt.EVT_CTG_ID LIKE  concat('%',#{searchOption},'%') order by evt_evt.ST_DATE DESC
+		 LIMIT 8 offset #{pageIdx}
  	</select>
  	
  	<select id="findEventEnd" resultType="EventVO">
  		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from evt_evt 
 		 join evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
 		 where evt_evt.EVT_ST = 1 and evt_evt.EVT_CTG_ID LIKE  concat('%',#{searchOption},'%') order by evt_evt.END_DATE ASC
+		 LIMIT 8 offset #{pageIdx}
  	</select>
 	
 	<select id="findEventByIdx" 

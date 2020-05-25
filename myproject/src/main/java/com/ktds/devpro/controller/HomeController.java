@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,14 +31,16 @@ public class HomeController {
 	@Resource
 	private EventMapper eventMapper;
 
-	// 메인 이벤트 및 자동 최신순 정렬
+	// 메인 이벤트
 	@RequestMapping("/")
-	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption) throws Exception {
+	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption,
+			@RequestParam(defaultValue = "0") int pageIdx) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		List<EventVO> list = eventMapper.findEventSt(searchOption);
+		List<EventVO> list = eventMapper.findEventSt(searchOption, pageIdx);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("searchOption", searchOption);
+		map.put("pageIdx", pageIdx);
 		map.put("searchType", "");
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
@@ -44,11 +48,11 @@ public class HomeController {
 	}
 
 	// 최신일순
-	@RequestMapping("/Newest")
+	@RequestMapping(path = "/Newest", method = { RequestMethod.GET })
 	public ModelAndView new_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
-		List<EventVO> list = eventMapper.findEventSt(searchOption);
+		List<EventVO> list = eventMapper.findEventSt(searchOption, 0);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("searchOption", searchOption);
@@ -63,11 +67,39 @@ public class HomeController {
 	public ModelAndView deadline_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
-		List<EventVO> list = eventMapper.findEventEnd(searchOption);
+		List<EventVO> list = eventMapper.findEventEnd(searchOption, 0);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("searchOption", searchOption);
 		map.put("searchType", "Deadline");
+		map.put("pageIdx", 0);
+		mav.addObject("map", map);
+		mav.setViewName("curr_event");
+		return mav;
+	}
+
+	// 페이지 이동
+	@RequestMapping("/page")
+	public ModelAndView page(@RequestParam(defaultValue = "") String searchOption, HttpServletRequest request) throws Exception {
+		List<EventVO> list = null;
+		int pageIdx = Integer.parseInt(request.getParameter("pageIdx"));
+		String searchType = request.getParameter("searchType");
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(searchType.equals("")) {
+			list = eventMapper.findEventSt(searchOption, pageIdx);
+		}
+		else if(searchType.equals("Deadline")) {
+			list = eventMapper.findEventEnd(searchOption, pageIdx);
+			map.put("searchOption", searchOption);
+		}
+		else if(searchType.equals("Newest")) {
+			list = eventMapper.findEventSt(searchOption, pageIdx);
+			map.put("searchOption", searchOption);
+		}
+		map.put("list", list);
+		map.put("searchOption", searchOption);
+		map.put("pageIdx", pageIdx);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
@@ -112,5 +144,4 @@ public class HomeController {
 	public String register(Model model) {
 		return "event_register";
 	}
-
 }

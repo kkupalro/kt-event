@@ -32,19 +32,21 @@ public class EventDao {
 		return sqlSession.selectList(null);
 	}
 	
-	public List<EventVO> selectEventListCur() {
+	public List<EventVO> selectEventListCur(int pageIdx) {
 		return sqlSession.selectList(eventVO.getEvtSt(), "1");
 	}
 	
-	public List<EventVO> findEventSt(String searchOption){
+	public List<EventVO> findEventSt(String searchOption, int pageIdx){
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchOption", searchOption);
+		map.put("pageIdx", String.valueOf(pageIdx));
 		return sqlSession.selectList("EventDao.findEventSt", map);
 	}
 	
-	public List<EventVO> findEventEnd(String searchOption){
+	public List<EventVO> findEventEnd(String searchOption, int pageIdx){
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchOption", searchOption);
+		map.put("pageIdx", String.valueOf(pageIdx));
 		return sqlSession.selectList("EventDao.findEventEnd", map);
 	}
 }

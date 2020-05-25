@@ -30,8 +30,9 @@
 								<div class="search-area options reverse">
 									<div class="view-type flow">
 										<a
-											href="javascript:kt_common.ktMenuLinkStat('Newest?searchOption=${map.searchOption}','^최신순','_self','1234');"
-											class="<c:out value="${map.searchType == 'Newest'?'active':''}"/>"><span>최신순</span></a> <a
+											href="javascript:kt_common.ktMenuLinkStat('Newest?searchOption=${map.searchOption}','^최신순','_self','');"
+											class="<c:out value="${map.searchType == 'Newest'?'active':''}"/>"><span>최신순</span></a>
+										<a
 											href="javascript:kt_common.ktMenuLinkStat('Deadline?searchOption=${map.searchOption}','^마감일순','_self','');"
 											class="<c:out value="${map.searchType == 'Deadline'?'active':''}"/>"><span>마감일순</span></a>
 									</div>
@@ -56,7 +57,7 @@
 								</div>
 							</form>
 						</div>
-						
+
 						<div class="event-list" id="table">
 							<ul>
 								<c:forEach var="row" items="${map.list}">
@@ -97,19 +98,24 @@
 						</div>
 						<div class="pagination">
 							<div class="scope">
-								<a href="javascript:;" class="dir first disabled">첫 페이지로 이동</a><a
-									href="javascript:;" class="dir prev disabled">이전 페이지로 이동</a><span
-									title="현재위치">1</span><a href="javascript:;" data-page="2">2</a><a
-									href="javascript:;" data-page="3">3</a><a href="javascript:;"
-									data-page="4">4</a><a href="javascript:;" data-page="5">5</a><a
-									href="javascript:;" class="dir next ">다음 페이지로 이동</a><a
-									href="javascript:;" class="dir last ">마지막 페이지로 이동</a>
+								<a href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=0&searchOption=${map.searchOption}&searchType=${map.searchType}','^첫 페이지','_self','');" class="dir first">첫 페이지로 이동</a>
+								<a href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx==0?0:map.pageIdx-1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^이전 페이지','_self','');" class="dir prev">이전 페이지로 이동</a>
+								<a id="0" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=0&searchOption=${map.searchOption}&searchType=${map.searchType}','^1페이지','_self','');">1</a>
+								<a id="1" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=1&searchOption=${map.searchOption}&searchType=${map.searchType}','^2페이지','_self','');">2</a>
+								<a id="2" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=2&searchOption=${map.searchOption}&searchType=${map.searchType}','^3페이지','_self','');">3</a>
+								<a href="javascript:;" class="dir next >">다음 페이지로 이동</a>
+								<a href="javascript:;" class="dir last ">마지막 페이지로 이동</a>
 							</div>
 						</div>
 						<div class="btn-list"></div>
 					</div>
 				</div>
 			</div>
-			<%@ include file="./event_footer.jsp"%>
+		</div>
+	</div>
+	<%@ include file="./event_footer.jsp"%>
+	<script>
+	document.getElementById(${map.pageIdx}).innerHTML="<span>${map.pageIdx+1}</span>"
+	</script>
 </body>
 </html>

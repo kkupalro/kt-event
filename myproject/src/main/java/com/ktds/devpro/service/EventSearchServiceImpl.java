@@ -30,13 +30,13 @@ public class EventSearchServiceImpl implements EventSearchService{
 	}
 	
 	@Override
-	public List<EventVO> findEventSt(String searchOption) {
-		return eventDao.findEventSt(searchOption);
+	public List<EventVO> findEventSt(String searchOption, int PageIdx) {
+		return eventDao.findEventSt(searchOption, PageIdx);
 	}
 	
 	@Override
-	public List<EventVO> findEventEnd(String searchOption) {
-		return eventDao.findEventEnd(searchOption);
+	public List<EventVO> findEventEnd(String searchOption, int PageIdx) {
+		return eventDao.findEventEnd(searchOption, PageIdx * 8);
 	}
 
 	@Override
