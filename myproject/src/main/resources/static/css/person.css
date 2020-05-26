@@ -216,7 +216,7 @@
 
 .view-type a {
 	color: #000;
-	background: url(../images/customer/bg-line-01.jpg) left 4px no-repeat
+	background: url(https://event.kt.com/images/customer/bg-line-01.jpg) left 4px no-repeat
 }
 
 .view-type a:first-child {
@@ -4737,24 +4737,24 @@
 	background-repeat: no-repeat
 }
 
-.event-list-area .event-list ul li .summary .type span.membership {
-	background-image: url(../images/event/icon-event-type-01.png)
+.event-list-area .event-list ul li .summary .type span.type1 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-02.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.product {
-	background-image: url(../images/event/icon-event-type-02.png)
+.event-list-area .event-list ul li .summary .type span.type2 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-01.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.tv {
-	background-image: url(../images/event/icon-event-type-03.png)
+.event-list-area .event-list ul li .summary .type span.type3 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-03.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.corp {
-	background-image: url(../images/event/icon-event-type-04.png)
+.event-list-area .event-list ul li .summary .type span.type4 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-04.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.etc {
-	background-image: url(../images/event/icon-event-type-05.png)
+.event-list-area .event-list ul li .summary .type span.type0 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-05.png)
 }
 
 .winning-check-area+.event-list-area {
