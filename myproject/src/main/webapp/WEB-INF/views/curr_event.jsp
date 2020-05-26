@@ -125,10 +125,32 @@
 									class="dir first">첫 페이지로 이동</a> <a
 									href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx==0?0:map.pageIdx-1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^이전 페이지','_self','');"
 									class="dir prev">이전 페이지로 이동</a>
+								<c:choose>
+								<c:when test="${map.endPage < 5}">
 								<c:forEach begin="0" end="${map.endPage}" var="idx">
 									<a id="${idx}"
 										href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${idx}&searchOption=${map.searchOption}&searchType=${map.searchType}','^${idx}페이지','_self','');">${idx+1}</a>
 								</c:forEach>
+								</c:when>
+								<c:when test="${map.endPage >= 5}">
+									<c:choose>
+									
+									<c:when test="${map.pageIdx < 5}">
+									<c:forEach begin="0" end="4" var="idx">
+										<a id="${idx}" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${idx}&searchOption=${map.searchOption}&searchType=${map.searchType}','^${idx}페이지','_self','');">${idx+1}</a>
+									</c:forEach>
+									</c:when>
+									
+									<c:when test="${map.pageIdx >= 5}">
+									<fmt:parseNumber var="pages" integerOnly="true" value="${map.pageIdx / 5}"/>
+									<fmt:parseNumber var="val" integerOnly="true" value="${pages*5 + 4<map.endPage?4:map.endPage - pages*5}"/>
+									<c:forEach begin="${pages*5}" end="${pages*5 + val}" var="idx">
+										<a id="${idx}" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${idx}&searchOption=${map.searchOption}&searchType=${map.searchType}','^${idx}페이지','_self','');">${idx+1}</a>
+									</c:forEach>
+									</c:when>
+									</c:choose>
+								</c:when>
+								</c:choose>
 								<a
 									href="javascript:javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^다음 페이지','_self','');;"
 									class="dir next >">다음 페이지로 이동</a> <a
