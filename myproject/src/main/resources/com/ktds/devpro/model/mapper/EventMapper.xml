@@ -17,6 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findEventCur" resultType="EventVO">
  		<include refid="selectEventCur"/>
  	</select>
+ 	
+ 	<select id="getEventCurCnt" resultType="int">
+		select count(*) from evt_evt 
+		 join evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 where EVT_ST = 1
+	</select>
 	
 	<sql id="selectEventCur">
 		 select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from evt_evt 
@@ -38,6 +44,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where evt_evt.EVT_ST = 1 and evt_evt.EVT_CTG_ID LIKE  concat('%',#{searchOption},'%') order by evt_evt.END_DATE ASC
 		 LIMIT 8 offset #{pageIdx}
  	</select>
+ 	
+ 	<select id="getEventSearchCnt" resultType="int">
+		select count(*) from evt_evt 
+		 join evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 where evt_evt.EVT_ST = 1 and evt_evt.EVT_CTG_ID LIKE  concat('%',#{searchOption},'%')
+	</select>
 	
 	<select id="findEventByIdx" 
  	 parameterType="int" resultType="EventVO">

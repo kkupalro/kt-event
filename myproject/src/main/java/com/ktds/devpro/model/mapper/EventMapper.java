@@ -34,5 +34,9 @@ public interface EventMapper {
 	public List<EventDtVO> searchEventDtList(int EvtIdx);
 	
 	public List<EventVO>  searchEventListPage(int PageIdx);
+
+	public int getEventCurCnt();
+
+	public int getEventSearchCnt(String searchOption);
 	
 }

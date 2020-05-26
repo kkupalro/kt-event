@@ -24,7 +24,7 @@
 						<br>
 						<div class="search-option clearfix">
 							<div class="flow select-search-result">
-								전체 <span> ${fn:length(map.list)}</span>건
+								전체 <span>${map.cnt}</span>건
 							</div>
 							<form name="form1" method="post" action="/">
 								<div class="search-area options reverse">
@@ -100,11 +100,11 @@
 							<div class="scope">
 								<a href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=0&searchOption=${map.searchOption}&searchType=${map.searchType}','^첫 페이지','_self','');" class="dir first">첫 페이지로 이동</a>
 								<a href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx==0?0:map.pageIdx-1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^이전 페이지','_self','');" class="dir prev">이전 페이지로 이동</a>
-								<a id="0" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=0&searchOption=${map.searchOption}&searchType=${map.searchType}','^1페이지','_self','');">1</a>
-								<a id="1" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=1&searchOption=${map.searchOption}&searchType=${map.searchType}','^2페이지','_self','');">2</a>
-								<a id="2" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=2&searchOption=${map.searchOption}&searchType=${map.searchType}','^3페이지','_self','');">3</a>
-								<a href="javascript:;" class="dir next >">다음 페이지로 이동</a>
-								<a href="javascript:;" class="dir last ">마지막 페이지로 이동</a>
+								<c:forEach begin="0" end="${map.endPage}" var="idx">
+								<a id="${idx}" href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${idx}&searchOption=${map.searchOption}&searchType=${map.searchType}','^${idx}페이지','_self','');">${idx+1}</a>
+								</c:forEach>
+								<a href="javascript:javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^다음 페이지','_self','');;" class="dir next >">다음 페이지로 이동</a>
+								<a href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.endPage}&searchOption=${map.searchOption}&searchType=${map.searchType}','^마지막 페이지','_self','');" class="dir last ">마지막 페이지로 이동</a>
 							</div>
 						</div>
 						<div class="btn-list"></div>
@@ -114,6 +114,7 @@
 		</div>
 	</div>
 	<%@ include file="./event_footer.jsp"%>
+	
 	<script>
 	document.getElementById(${map.pageIdx}).innerHTML="<span>${map.pageIdx+1}</span>"
 	</script>

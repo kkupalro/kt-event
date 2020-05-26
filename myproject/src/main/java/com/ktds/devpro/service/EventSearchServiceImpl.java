@@ -36,7 +36,7 @@ public class EventSearchServiceImpl implements EventSearchService{
 	
 	@Override
 	public List<EventVO> findEventEnd(String searchOption, int PageIdx) {
-		return eventDao.findEventEnd(searchOption, PageIdx * 8);
+		return eventDao.findEventEnd(searchOption, PageIdx);
 	}
 
 	@Override
@@ -82,4 +82,13 @@ public class EventSearchServiceImpl implements EventSearchService{
 		return EventListPage;
 	}
 	
+	@Override
+	public int getEventCurCnt() {
+		return eventMapper.getEventCurCnt();
+	}
+	
+	@Override
+	public int getEventSearchCnt(String searchOption) {
+		return eventMapper.getEventSearchCnt(searchOption);
+	}
 }
