@@ -33,10 +33,10 @@ public class HomeController {
 
 	// 메인 이벤트
 	@RequestMapping("/")
-	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption,
-			@RequestParam(defaultValue = "0") int pageIdx) throws Exception {
+	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption) 
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
-		List<EventVO> list = eventMapper.findEventSt(searchOption, pageIdx * 8);
+		List<EventVO> list = eventMapper.findEventSt(searchOption, 0);
 		int cnt = 0;
 		if(searchOption.equals("")) {
 			cnt = eventMapper.getEventCurCnt();
@@ -47,7 +47,7 @@ public class HomeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("searchOption", searchOption);
-		map.put("pageIdx", pageIdx);
+		map.put("pageIdx", 0);
 		map.put("searchType", "");
 		map.put("cnt", cnt);
 		map.put("endPage", (int) Math.ceil(cnt/8));
@@ -57,7 +57,7 @@ public class HomeController {
 	}
 
 	// 최신일순
-	@RequestMapping(path = "/Newest", method = { RequestMethod.GET })
+	@RequestMapping(path = "/Newest", method = {RequestMethod.GET})
 	public ModelAndView new_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
@@ -76,7 +76,7 @@ public class HomeController {
 	}
 
 	// 마감일순
-	@RequestMapping(path = "/Deadline", method = { RequestMethod.GET})
+	@RequestMapping(path = "/Deadline", method = {RequestMethod.GET})
 	public ModelAndView deadline_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
@@ -97,25 +97,22 @@ public class HomeController {
 	// 페이지 이동
 	@RequestMapping("/page")
 	public ModelAndView page(@RequestParam(defaultValue = "") String searchOption, HttpServletRequest request) throws Exception {
-		List<EventVO> list = null;		
+		List<EventVO> list = null;
+		ModelAndView mav = new ModelAndView();
 		int pageIdx = Integer.parseInt(request.getParameter("pageIdx"));
 		String searchType = request.getParameter("searchType");
-		ModelAndView mav = new ModelAndView();
+		searchOption = request.getParameter("searchOption");
 		Map<String, Object> map = new HashMap<String, Object>();
-		if(searchType.equals("")) {
-			list = eventMapper.findEventSt(searchOption, pageIdx * 8);
-		}
-		else if(searchType.equals("Deadline")) {
+		if(searchType.equals("Deadline")) {
 			list = eventMapper.findEventEnd(searchOption, pageIdx * 8);
-			map.put("searchOption", searchOption);
 		}
-		else if(searchType.equals("Newest")) {
+		else {
 			list = eventMapper.findEventSt(searchOption, pageIdx * 8);
-			map.put("searchOption", searchOption);
 		}
 		int cnt = eventMapper.getEventSearchCnt(searchOption);
 		map.put("list", list);
 		map.put("searchOption", searchOption);
+		map.put("searchType", searchType);
 		map.put("pageIdx", pageIdx);
 		map.put("cnt", cnt);
 		map.put("endPage", (int) Math.ceil(cnt/8));
