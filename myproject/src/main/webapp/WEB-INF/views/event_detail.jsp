@@ -9,7 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <%@ include file="./html_head.html"%>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap')
+	;
 </style>
 <title>이벤트 디테일 | KT</title>
 </head>
@@ -22,7 +24,8 @@
 			<div id="contents-title" class="contents-title">
 				<div style="text-align: center;">
 					<c:forEach var="evt" items="${evt}">
-						<div style ="font-family: 'Gothic A1', sans-serif; background: linear-gradient(to right, rgb(127, 127, 213), rgb(134, 168, 231), rgb(145, 234, 228));">
+						<div
+							style="font-family: 'Gothic A1', sans-serif; background: linear-gradient(to right, rgb(127, 127, 213), rgb(134, 168, 231), rgb(145, 234, 228));">
 							<br>
 							<h1>
 								<strong><c:out value="${evt.evtNm}" /></strong><br>
@@ -31,22 +34,24 @@
 						</div>
 						<br>
 						<br>
-						<div id="eventInfo" class="info"  style ="width :700px; margin-left : 22%;">
-							<table align = "middle" style ="background-color : #ffffff;">
-								<th align = left><strong>   응모기간</strong> : <c:out value="${evt.stDate}" />
-									~ <c:out value="${evt.endDate}" /></th>
-								<th align = left><strong>   응모대상</strong> : <c:out value="${evt.evtTrg}" /></th>
+						<div id="eventInfo" class="info"
+							style="width: 700px; margin-left: 22%;">
+							<table align="middle" style="background-color: #ffffff;">
+								<th align=left><strong> 응모기간</strong> : <c:out
+										value="${evt.stDate}" /> ~ <c:out value="${evt.endDate}" /></th>
+								<th align=left><strong> 응모대상</strong> : <c:out
+										value="${evt.evtTrg}" /></th>
 								<tr>
 									<!-- 첫번째 줄 시작 -->
-									<td align = left><strong>당첨자발표</strong> : <c:out
+									<td align=left><strong>당첨자발표</strong> : <c:out
 											value="${evt.evtTrgDate}" /></td>
-									<td align = left><strong>이벤트문의</strong> : <c:out
+									<td align=left><strong>이벤트문의</strong> : <c:out
 											value="${evt.evtPhone}" /></td>
 								</tr>
 								<!-- 첫번째 줄 끝 -->
-								<tr align = left>
+								<tr align=left>
 									<!-- 두번째 줄 시작 -->
-									<td align = left>
+									<td align=left>
 										<p class="d-day">
 											<fmt:parseDate var="endDate" value="${evt.endDate}"
 												pattern="yyyy-MM-dd" />
@@ -62,8 +67,7 @@
 								</tr>
 								<!-- 두번째 줄 끝 -->
 							</table>
-							<br>
-							<br>
+							<br> <br>
 							<%-- <div>
 								<strong>응모기간</strong> :
 								<c:out value="${evt.stDate}" />
@@ -108,12 +112,14 @@
 							</c:when>
 							<c:when test="${type eq 'BTN'}">
 								<!-- button -->
-								<button type="button"><img src="<c:out value="${evt_dt.resData}"/>" alt="버튼 이미지"></button>
+								<button type="button">
+									<img src="<c:out value="${evt_dt.resData}"/>" alt="버튼 이미지">
+								</button>
 							</c:when>
 							<c:when test="${type eq 'TXT'}">
 								<!-- 종료이벤트 = txt -->
 								<div class="box-close">
-								<c:out value="${evt_dt.resData}" />
+									<c:out value="${evt_dt.resData}" />
 								</div>
 							</c:when>
 						</c:choose>
@@ -125,7 +131,11 @@
 
 		<div style="text-align: center;">
 			<div class="btn-list">
-				<a href="javascript:history.back()" class="btn large is-navygray">목록</a>
+				<c:forEach var="evt" items="${evt}">
+					<a
+						href="javascript:kt_common.ktMenuLinkStat('${evt.evtSt==2?'/past_event':'/'}','^마지막 페이지','_self','');"
+						class="btn large is-navygray">목록</a>
+				</c:forEach>
 			</div>
 		</div>
 

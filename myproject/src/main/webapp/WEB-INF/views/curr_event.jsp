@@ -151,7 +151,7 @@
 								</c:when>
 								</c:choose>
 								<a
-									href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^다음 페이지','_self','');;"
+									href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^다음 페이지','_self','');"
 									class="dir next >">다음 페이지로 이동</a> <a
 									href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.endPage}&searchOption=${map.searchOption}&searchType=${map.searchType}','^마지막 페이지','_self','');"
 									class="dir last ">마지막 페이지로 이동</a>
