@@ -112,7 +112,9 @@
 							</c:when>
 							<c:when test="${type eq 'TXT'}">
 								<!-- 종료이벤트 = txt -->
+								<div class="box-close">
 								<c:out value="${evt_dt.resData}" />
+								</div>
 							</c:when>
 						</c:choose>
 					</c:forEach>
@@ -123,7 +125,7 @@
 
 		<div style="text-align: center;">
 			<div class="btn-list">
-				<a href="/" class="btn large is-navygray">목록</a>
+				<a href="javascript:history.back()" class="btn large is-navygray">목록</a>
 			</div>
 		</div>
 

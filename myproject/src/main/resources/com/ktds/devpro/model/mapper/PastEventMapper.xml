@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ktds.devpro.model.mapper.PastEventMapper">
+	
+	<select id="findEventPast" resultType="EventVO">
+ 		<include refid="selectEventPast"/>
+ 	</select>
+ 	
+ 	<select id="getEventPastCnt" resultType="int">
+		SELECT COUNT(*) FROM evt_evt 
+		 LEFT JOIN evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 WHERE EVT_ST = 2
+	</select>
+	
+	<sql id="selectEventPast">
+		 SELECT EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM FROM evt_evt 
+		 LEFT JOIN evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 WHERE EVT_ST = 2
+		 LIMIT 10 offset #{pageIdx}
+	</sql>
+	
+	<select id="findEventSearch" resultType="EventVO">
+ 		SELECT EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM FROM evt_evt 
+		 LEFT JOIN evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 WHERE evt_evt.EVT_ST = 2 AND evt_evt.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(evt_evt.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
+		 LIMIT 10 offset #{pageIdx}
+ 	</select>
+ 	
+ 	<select id="getEventSearchCnt" resultType="int">
+		SELECT COUNT(*) FROM evt_evt 
+		 LEFT JOIN evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
+		 WHERE evt_evt.EVT_ST = 2 AND evt_evt.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(evt_evt.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
+	</select>
+ 	
+ 	<select id="searchEventDtList"
+ 	 parameterType="int" resultType="EventDtVO">
+ 		SELECT * FROM EVT_DT WHERE EVT_IDX = #{EvtIdx};
+ 	</select>
+ 	
+</mapper>
+ 
+ 

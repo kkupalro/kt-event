@@ -5,14 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,7 +54,7 @@ public class HomeController {
 	}
 
 	// 최신일순
-	@RequestMapping(path = "/Newest", method = {RequestMethod.GET})
+	@RequestMapping(path = "/newest", method = {RequestMethod.GET})
 	public ModelAndView new_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
@@ -66,17 +63,25 @@ public class HomeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("searchOption", searchOption);
-		map.put("searchType", "Newest");
+		map.put("searchType", "newest");
 		map.put("pageIdx", 0);
 		map.put("cnt", cnt);
-		map.put("endPage", (int) Math.ceil(cnt/8));
+		
+		if(cnt > 0 && cnt % 8 == 0) {
+			cnt = (int)Math.ceil(cnt/8) -1;
+		}
+		else {
+			cnt = (int)Math.ceil(cnt/8);
+		}
+		
+		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
 	}
 
 	// 마감일순
-	@RequestMapping(path = "/Deadline", method = {RequestMethod.GET})
+	@RequestMapping(path = "/deadline", method = {RequestMethod.GET})
 	public ModelAndView deadline_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
@@ -85,10 +90,18 @@ public class HomeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("searchOption", searchOption);
-		map.put("searchType", "Deadline");
+		map.put("searchType", "deadline");
 		map.put("pageIdx", 0);
 		map.put("cnt", cnt);
-		map.put("endPage", (int) Math.ceil(cnt/8));
+		
+		if(cnt > 0 && cnt % 8 == 0) {
+			cnt = (int)Math.ceil(cnt/8) -1;
+		}
+		else {
+			cnt = (int)Math.ceil(cnt/8);
+		}
+		
+		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
@@ -103,7 +116,7 @@ public class HomeController {
 		String searchType = request.getParameter("searchType");
 		searchOption = request.getParameter("searchOption");
 		Map<String, Object> map = new HashMap<String, Object>();
-		if(searchType.equals("Deadline")) {
+		if(searchType.equals("deadline")) {
 			list = eventMapper.findEventEnd(searchOption, pageIdx * 8);
 		}
 		else {
@@ -115,7 +128,15 @@ public class HomeController {
 		map.put("searchType", searchType);
 		map.put("pageIdx", pageIdx);
 		map.put("cnt", cnt);
-		map.put("endPage", (int) Math.ceil(cnt/8));
+		
+		if(cnt > 0 && cnt % 8 == 0) {
+			cnt = (int)Math.ceil(cnt/8) -1;
+		}
+		else {
+			cnt = (int)Math.ceil(cnt/8);
+		}
+		
+		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;

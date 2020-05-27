@@ -32,9 +32,7 @@
 	<div class="event-list-area">
 		<div class="column">
 			<div class="inner">
-				<div class="search-option clearfix" style="padding-top: 20px;">
-					<div class="inner">
-						<br>
+				<div class="search-option clearfix">
 						<div class="search-option clearfix">
 							<div class="flow select-search-result">
 								전체 <span>${map.cnt}</span>건
@@ -43,11 +41,12 @@
 								<div class="search-area options reverse">
 									<div class="view-type flow">
 										<a
-											href="javascript:kt_common.ktMenuLinkStat('Newest?searchOption=${map.searchOption}','^최신순','_self','');"
-											class="<c:out value="${map.searchType == 'Newest'?'active':''}"/>"><span>최신순</span></a>
+											href="javascript:kt_common.ktMenuLinkStat('newest?searchOption=${map.searchOption}','^최신순','_self','');"
+											class="<c:out value="${map.searchType == 'newest'?'active':''}"/>"><span>최신순</span></a>
 										<a
-											href="javascript:kt_common.ktMenuLinkStat('Deadline?searchOption=${map.searchOption}','^마감일순','_self','');"
-											class="<c:out value="${map.searchType == 'Deadline'?'active':''}"/>"><span>마감일순</span></a>
+											
+											href="javascript:kt_common.ktMenuLinkStat('deadline?searchOption=${map.searchOption}','^마감일순','_self','');"
+											class="<c:out value="${map.searchType == 'deadline'?'active':''}"/>"><span>마감일순</span></a>
 									</div>
 									<select id="searchOption" class="flow search-select"
 										name="searchOption" title="진행중인 이벤트 분류 선택">
@@ -152,7 +151,7 @@
 								</c:when>
 								</c:choose>
 								<a
-									href="javascript:javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^다음 페이지','_self','');;"
+									href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchType=${map.searchType}','^다음 페이지','_self','');;"
 									class="dir next >">다음 페이지로 이동</a> <a
 									href="javascript:kt_common.ktMenuLinkStat('page?pageIdx=${map.endPage}&searchOption=${map.searchOption}&searchType=${map.searchType}','^마지막 페이지','_self','');"
 									class="dir last ">마지막 페이지로 이동</a>
@@ -163,7 +162,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	<%@ include file="./event_footer.jsp"%>
 
 	<script>

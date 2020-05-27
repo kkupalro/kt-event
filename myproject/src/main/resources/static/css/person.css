@@ -4452,14 +4452,14 @@
 	margin-top: 40px
 }
 
-.event-list-area .contents .txt .box-close {
+.box-close {
 	display: inline-block;
 	min-width: 450px;
 	font-size: 26px;
 	line-height: 59px;
 	color: #fff;
 	background-color: #333;
-	margin: 40px 0 0
+	margin: 40px 0
 }
 
 .event-list-area .contents .txt .winning-check, .event-list-area .contents .txt .winning-check2
