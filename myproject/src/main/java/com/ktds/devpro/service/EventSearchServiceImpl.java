@@ -91,4 +91,19 @@ public class EventSearchServiceImpl implements EventSearchService{
 	public int getEventSearchCnt(String searchOption) {
 		return eventMapper.getEventSearchCnt(searchOption);
 	}
+
+	/* 
+	 * taejun : 0530 14:40 Paging init 추가
+	 * 전체 건수 20개 일때 20/10 = 2 => 총 페이지는 0, 1, 2 가 되는데 실제 번호 출력값은 1, 2, 3이므로 -1을 빼면 = 실제 페이지 1, 2
+	 */
+	@Override
+	public int setEndPage(int cnt, int pagecnt) {
+		if(cnt > 0 && cnt % pagecnt == 0) {
+			cnt = (int)Math.ceil(cnt/pagecnt) -1;
+		}
+		else {
+			cnt = (int)Math.ceil(cnt/pagecnt);
+		}	
+		return cnt;
+	}
 }

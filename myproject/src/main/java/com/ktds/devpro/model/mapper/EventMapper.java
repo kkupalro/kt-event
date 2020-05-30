@@ -35,8 +35,10 @@ public interface EventMapper {
 	
 	public List<EventVO>  searchEventListPage(int PageIdx);
 
+	//taejun : 0526 11:30  이벤트 건수 가져오는 Mapper 추가
 	public int getEventCurCnt();
 
+	//taejun : 0526 11:30  검색조건에 따른 이벤트 건수 가져오는 Mapper 추가
 	public int getEventSearchCnt(String searchOption);
 	
 }

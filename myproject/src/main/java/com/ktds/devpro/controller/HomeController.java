@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -19,16 +20,20 @@ import com.ktds.devpro.model.mapper.MemberMapper;
 import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
+import com.ktds.devpro.service.EventSearchService;
 
 @Controller
 public class HomeController {
+	@Autowired
+	private EventSearchService eventSrcService;
+	
 	@Resource
 	private MemberMapper memberMapper;
 
 	@Resource
 	private EventMapper eventMapper;
-
-	// 메인 이벤트
+	
+	//taejun : 0525 17:30 메인 이벤트(홈) 추가
 	@RequestMapping("/")
 	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption) 
 			throws Exception {
@@ -53,7 +58,7 @@ public class HomeController {
 		return mav;
 	}
 
-	// 최신일순
+	//taejun : 0525 17:30 진행중인 이벤트 최신일순 검색 추가
 	@RequestMapping(path = "/newest", method = {RequestMethod.GET})
 	public ModelAndView new_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
@@ -66,21 +71,14 @@ public class HomeController {
 		map.put("searchType", "newest");
 		map.put("pageIdx", 0);
 		map.put("cnt", cnt);
-		
-		if(cnt > 0 && cnt % 8 == 0) {
-			cnt = (int)Math.ceil(cnt/8) -1;
-		}
-		else {
-			cnt = (int)Math.ceil(cnt/8);
-		}
-		
+		cnt = eventSrcService.setEndPage(cnt, 8);
 		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
 	}
 
-	// 마감일순
+	//taejun : 0525 17:30 진행중인 이벤트 마감일순 검색 추가
 	@RequestMapping(path = "/deadline", method = {RequestMethod.GET})
 	public ModelAndView deadline_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
@@ -93,21 +91,14 @@ public class HomeController {
 		map.put("searchType", "deadline");
 		map.put("pageIdx", 0);
 		map.put("cnt", cnt);
-		
-		if(cnt > 0 && cnt % 8 == 0) {
-			cnt = (int)Math.ceil(cnt/8) -1;
-		}
-		else {
-			cnt = (int)Math.ceil(cnt/8);
-		}
-		
+		cnt = eventSrcService.setEndPage(cnt, 8);
 		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
 	}
 
-	// 페이지 이동
+	// taejun : 0526 11:30 진행중인 이벤트 페이징 처리 추가
 	@RequestMapping("/page")
 	public ModelAndView page(@RequestParam(defaultValue = "") String searchOption, HttpServletRequest request) throws Exception {
 		List<EventVO> list = null;
@@ -128,20 +119,14 @@ public class HomeController {
 		map.put("searchType", searchType);
 		map.put("pageIdx", pageIdx);
 		map.put("cnt", cnt);
-		
-		if(cnt > 0 && cnt % 8 == 0) {
-			cnt = (int)Math.ceil(cnt/8) -1;
-		}
-		else {
-			cnt = (int)Math.ceil(cnt/8);
-		}
-		
+		cnt = eventSrcService.setEndPage(cnt, 8);
 		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
 	}
 
+	// taejun : 0521 16:20 상세 페이지 이동 추가
 	@RequestMapping("/event_detail")
 	public String detail(HttpServletRequest request, Model model) {
 		int id = Integer.parseInt(request.getParameter("id"));

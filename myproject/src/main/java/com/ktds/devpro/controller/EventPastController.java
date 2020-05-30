@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,13 +16,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.devpro.model.mapper.PastEventMapper;
 import com.ktds.devpro.model.vo.EventVO;
+import com.ktds.devpro.service.EventSearchService;
 
 @Controller
 public class EventPastController {
+	@Autowired
+	private EventSearchService eventSrcService;
+	
 	@Resource
 	private PastEventMapper pasteventMapper;
 
-	// 지난 이벤트
+	//taejun : 0527 16:40 지난 이벤트 페이지 추가
 	@RequestMapping("/past_event")
 	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption, @RequestParam(defaultValue = "") String searchWord) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -33,22 +38,14 @@ public class EventPastController {
 		map.put("pageIdx", 0);
 		map.put("searchWord", searchWord);
 		map.put("cnt", cnt);
-		
-		// 전체 건수 20개 일때 20/10 = 2 => 총 페이지는 0, 1, 2 가 되는데 실제 번호 출력값은 1, 2, 3이므로 -1을 빼면 = 실제 페이지 1, 2
-		if(cnt > 0 && cnt % 10 == 0) {
-			cnt = (int)Math.ceil(cnt/10) -1;
-		}
-		else {
-			cnt = (int)Math.ceil(cnt/10);
-		}
-		
+		cnt = eventSrcService.setEndPage(cnt, 10);
 		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("past_event");
 		return mav;
 	}
 
-	// 이벤트명 검색
+	//taejun : 0527 16:40 이벤트명 검색 추가
 	@RequestMapping(path = "/past_search", method = { RequestMethod.POST })
 	public ModelAndView new_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
@@ -63,21 +60,14 @@ public class EventPastController {
 		map.put("searchWord", searchWord);
 		map.put("pageIdx", pageIdx);
 		map.put("cnt", cnt);
-		
-		if(cnt > 0 && cnt % 10 == 0) {
-			cnt = (int)Math.ceil(cnt/10) -1;
-		}
-		else {
-			cnt = (int)Math.ceil(cnt/10);
-		}
-		
+		cnt = eventSrcService.setEndPage(cnt, 10);
 		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("past_event");
 		return mav;
 	}
 
-	// 페이지 이동
+	//taejun : 0527 16:40 지난 이벤트 페이징 추가
 	@RequestMapping("/past_page")
 	public ModelAndView page(@RequestParam(defaultValue = "") String searchOption,
 			@RequestParam(defaultValue = "") String searchWord, HttpServletRequest request) throws Exception {
@@ -93,14 +83,7 @@ public class EventPastController {
 		map.put("searchWord", searchWord);
 		map.put("pageIdx", pageIdx);
 		map.put("cnt", cnt);
-		
-		if(cnt > 0 && cnt % 10 == 0) {
-			cnt = (int)Math.ceil(cnt/10) -1;
-		}
-		else {
-			cnt = (int)Math.ceil(cnt/10);
-		}
-		
+		cnt = eventSrcService.setEndPage(cnt, 10);
 		map.put("endPage", cnt);
 		mav.addObject("map", map);
 		mav.setViewName("past_event");

@@ -36,6 +36,7 @@ public class EventDao {
 		return sqlSession.selectList(eventVO.getEvtSt(), "1");
 	}
 	
+	//taejun : 0525 17:30 진행중인 이벤트 시작일순 검색 Dao 추가
 	public List<EventVO> findEventSt(String searchOption, int pageIdx){
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchOption", searchOption);
@@ -43,6 +44,7 @@ public class EventDao {
 		return sqlSession.selectList("EventDao.findEventSt", map);
 	}
 	
+	//taejun : 0525 17:30 진행중인 이벤트 마감일순 검색 Dao 추가
 	public List<EventVO> findEventEnd(String searchOption, int pageIdx){
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchOption", searchOption);

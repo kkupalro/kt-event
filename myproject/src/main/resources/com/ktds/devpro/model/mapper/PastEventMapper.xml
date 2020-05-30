@@ -33,12 +33,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 LEFT JOIN evt_ctg ON evt_evt.EVT_CTG_ID = evt_ctg.EVT_CTG_IDX
 		 WHERE evt_evt.EVT_ST = 2 AND evt_evt.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(evt_evt.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
 	</select>
- 	
- 	<select id="searchEventDtList"
- 	 parameterType="int" resultType="EventDtVO">
- 		SELECT * FROM EVT_DT WHERE EVT_IDX = #{EvtIdx};
- 	</select>
- 	
 </mapper>
  
  

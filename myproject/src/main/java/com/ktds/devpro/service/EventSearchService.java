@@ -24,4 +24,5 @@ public interface EventSearchService {
 	public List<EventVO>	findEventEnd(String searchOption, int PageIdx);
 	public int 				getEventSearchCnt(String searchOption);
 	public int				getEventCurCnt();
+	public int				setEndPage(int cnt, int pagecnt);
 }
