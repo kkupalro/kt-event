@@ -4699,7 +4699,6 @@
 
 .event-list-area .event-list ul li .summary {
 	position: relative;
-	display: inline-block;
 	height: 135px;
 	background-color: #f9f9f9;
 	padding: 0 20px

@@ -447,7 +447,13 @@ body #cfmClWrapper #cfmClFooter {font-family:"Noto Sans Light","Malgun Gothic","
 #cfmClGnb.search .navigation>ul>li>a,
 #cfmClGnb.allmenus .navigation>ul>li>a,
 #cfmClGnb.sub .navigation>ul>li>a{padding-top: 14px;color:#222}
+
 #cfmClGnb.active .navigation>ul>li>a.active{color: #05a4bc;border-bottom:none !important;}
+
+/* taejun.yoo : 0531 17:05 네비바 hover 수정중 */
+#cfmClGnb.active .navigation>ul>li>a:hover{color: #05a4bc;border-bottom:none !important;}
+#cfmClGnb.active .navigation>ul>li>a:active{color: #05a4bc !important;border-bottom: 3px solid #05a4bc !important;}
+
 #cfmClGnb.active .utils,
 #cfmClGnb.bg .utils,
 #cfmClGnb.search .utils,

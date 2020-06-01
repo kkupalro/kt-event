@@ -124,6 +124,21 @@
 		</div>
 
 	<%@ include file="./event_footer.jsp"%>
-
+	<script type="text/javascript">
+	var generateRandom = function (min, max) {
+		  var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
+		  return ranNum;
+	}
+	var i = generateRandom(1, 100);
+	if(i % 5 == 0){
+		// 20%
+		// 당첨 처리 CUST_APP_RES.PRIZE = 1
+		alert('난수 = ' + i + ' (당첨)');
+	}
+	else {
+		// 비당첨 처리 CUST_APP_RES.PRIZE = 0
+		alert('난수 = ' + i + ' (비당첨)');
+	}
+	</script>
 </body>
 </html>
