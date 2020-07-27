@@ -1,10 +1,20 @@
 package com.ktds.devpro.model.vo;
 
 public class EventVO {
-
+	private int EvtIdx;
+	private String EvtNm;
+	private String StDate;
+	private String EndDate;
+	private String EvtSt;
+	private String EvtFileUrl;
+	private String EvtCtgId;
+	private String EvtTrg;
+	private String EvtPhone;
+	private String EvtTrgDate;
+	private String EvtCtgNm;
 	
-	public EventVO(int evtIdx, String evtNm, String stDate, String endDate, int evtSt, String evtFileUrl,
-			int evtCtgId, String evtTrg, String evtPhone, String evtTrgDate) {
+	public EventVO(int evtIdx, String evtNm, String stDate, String endDate, String evtSt, String evtFileUrl,
+			String evtCtgId, String evtTrg, String evtPhone, String evtTrgDate, String evtCtgNm) {
 		super();
 		EvtIdx = evtIdx;
 		EvtNm = evtNm;
@@ -16,38 +26,17 @@ public class EventVO {
 		EvtTrg = evtTrg;
 		EvtPhone = evtPhone;
 		EvtTrgDate = evtTrgDate;
+		EvtCtgNm = evtCtgNm;
 	}
 	
 	public EventVO() {
 		
 	}
-	
-	int EvtIdx;
-	String EvtNm;
-	String StDate;
-	String EndDate;
-	int EvtSt;
-	String EvtFileUrl;
-	int EvtCtgId;
-	String EvtTrg;
-	String EvtPhone;
-	String EvtTrgDate;
-	
-//	int EvtId;
-//	String EvtNm;
-//	String StDate;
-//	String EndDate;
-//	String EvtSt;
-//	String EvtFileUrl;
-//	String EvtCtgId;
-//	String EvtTrg;
-//	String EvtPhone;
-//	String EvtTrgDate;
-	
-	
+
 	public int getEvtIdx() {
 		return EvtIdx;
 	}
+
 	public void setEvtIdx(int evtIdx) {
 		EvtIdx = evtIdx;
 	}
@@ -75,11 +64,13 @@ public class EventVO {
 	public void setEndDate(String endDate) {
 		EndDate = endDate;
 	}
-	public int getEvtSt() {
+
+	public String getEvtSt() {
 		return EvtSt;
 	}
-	public void setEvtSt(int EvtSt) {
-		EvtSt = EvtSt;
+
+	public void setEvtSt(String evtSt) {
+		EvtSt = evtSt;
 	}
 
 	public String getEvtFileUrl() {
@@ -89,10 +80,12 @@ public class EventVO {
 	public void setEvtFileUrl(String evtFileUrl) {
 		EvtFileUrl = evtFileUrl;
 	}
-	public int getEvtCtgId() {
+
+	public String getEvtCtgId() {
 		return EvtCtgId;
 	}
-	public void setEvtCtgId(int evtCtgId) {
+
+	public void setEvtCtgId(String evtCtgId) {
 		EvtCtgId = evtCtgId;
 	}
 
@@ -120,11 +113,18 @@ public class EventVO {
 		EvtTrgDate = evtTrgDate;
 	}
 
+	public String getEvtCtgNm() {
+		return EvtCtgNm;
+	}
+
+	public void setEvtCtgNm(String evtCtgNm) {
+		EvtCtgNm = evtCtgNm;
+	}
+
 	@Override
 	public String toString() {
-		return "EventListVo [EvtIdx=" + EvtIdx + ", EvtNm=" + EvtNm + ", StDate=" + StDate + ", EndDate=" + EndDate
+		return "EventVO [EvtIdx=" + EvtIdx + ", EvtNm=" + EvtNm + ", StDate=" + StDate + ", EndDate=" + EndDate
 				+ ", EvtSt=" + EvtSt + ", EvtFileUrl=" + EvtFileUrl + ", EvtCtgId=" + EvtCtgId + ", EvtTrg=" + EvtTrg
-				+ ", EvtPhone=" + EvtPhone + ", EvtTrgDate=" + EvtTrgDate + "]";
+				+ ", EvtPhone=" + EvtPhone + ", EvtTrgDate=" + EvtTrgDate + ", EvtCtgNm=" + EvtCtgNm + "]";
 	}
-	
 }

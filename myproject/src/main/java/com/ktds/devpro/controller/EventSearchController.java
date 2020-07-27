@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,14 +59,20 @@ public class EventSearchController {
 	}
 	
 	
+	
 	@RequestMapping("/evt/searchCtgList/{ctgId}")	//category별 이벤트 조회
 	public List<EventCtgVO> EventSearchByCtg(@PathVariable int ctgId) {
 		List<EventCtgVO> EvtList = eventService.searchEventByCtg(ctgId);
+		
 		return EvtList;
 	}
 
 	@RequestMapping("/evt/updateEvtSt/{EvtIdx}/{EvtSt}")	//Event state 수정
 	public void Update(@PathVariable int EvtIdx,@PathVariable int EvtSt) {
+		EventVO eventvo = new EventVO();
+		eventvo.setEvtIdx(EvtIdx);
+//		eventvo.setEvtSt(EvtSt);
+		eventMapper.updateEvent(eventvo);
 		eventService.updateEventStateOne(EvtIdx, EvtSt);
 	}
 	

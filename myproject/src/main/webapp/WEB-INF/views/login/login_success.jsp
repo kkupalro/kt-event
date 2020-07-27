@@ -9,6 +9,6 @@
 <body>
 <a href="/">Home</a>
 <hr>
-${member}
+${id}
 </body>
 </html>

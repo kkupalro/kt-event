@@ -216,7 +216,7 @@
 
 .view-type a {
 	color: #000;
-	background: url(../images/customer/bg-line-01.jpg) left 4px no-repeat
+	background: url(https://event.kt.com/images/customer/bg-line-01.jpg) left 4px no-repeat
 }
 
 .view-type a:first-child {
@@ -4345,9 +4345,11 @@
 	padding-bottom: 15px
 }
 
+/* taejun | 
 .event-list-area .contents {
 	border-top: 3px solid #555
 }
+*/
 
 .event-list-area .contents .contents-title {
 	position: relative;
@@ -4389,7 +4391,7 @@
 	position: relative;
 	text-align: left;
 	padding: 36px 42px;
-	border-top: 1px solid #c8c8c8
+	/* border-top: 1px solid #c8c8c8 */ 
 }
 
 .event-list-area .contents .info div {
@@ -4452,14 +4454,14 @@
 	margin-top: 40px
 }
 
-.event-list-area .contents .txt .box-close {
+.box-close {
 	display: inline-block;
 	min-width: 450px;
 	font-size: 26px;
 	line-height: 59px;
 	color: #fff;
 	background-color: #333;
-	margin: 40px 0 0
+	margin: 40px 0
 }
 
 .event-list-area .contents .txt .winning-check, .event-list-area .contents .txt .winning-check2
@@ -4657,7 +4659,7 @@
 	border: 6px solid #d71826
 }
 
-.event-list-area .event-list ul li:first-child {
+.event-list-area .event-list ul li:nth-child(4n+1) {
 	margin-left: 0
 }
 
@@ -4678,6 +4680,7 @@
 }
 
 .event-list-area .event-list ul li .thumb img {
+	padding: 10px;
 	width: 100%;
 	height: 100%
 }
@@ -4696,7 +4699,6 @@
 
 .event-list-area .event-list ul li .summary {
 	position: relative;
-	display: inline-block;
 	height: 135px;
 	background-color: #f9f9f9;
 	padding: 0 20px
@@ -4736,24 +4738,24 @@
 	background-repeat: no-repeat
 }
 
-.event-list-area .event-list ul li .summary .type span.membership {
-	background-image: url(../images/event/icon-event-type-01.png)
+.event-list-area .event-list ul li .summary .type span.type1 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-02.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.product {
-	background-image: url(../images/event/icon-event-type-02.png)
+.event-list-area .event-list ul li .summary .type span.type2 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-01.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.tv {
-	background-image: url(../images/event/icon-event-type-03.png)
+.event-list-area .event-list ul li .summary .type span.type3 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-03.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.corp {
-	background-image: url(../images/event/icon-event-type-04.png)
+.event-list-area .event-list ul li .summary .type span.type4 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-04.png)
 }
 
-.event-list-area .event-list ul li .summary .type span.etc {
-	background-image: url(../images/event/icon-event-type-05.png)
+.event-list-area .event-list ul li .summary .type span.type0 {
+	background-image: url(https://event.kt.com/images/event/icon-event-type-05.png)
 }
 
 .winning-check-area+.event-list-area {

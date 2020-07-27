@@ -389,7 +389,7 @@ body #cfmClWrapper #cfmClFooter {font-family:"Noto Sans Light","Malgun Gothic","
 #cfmClGnb:before {position:absolute;z-index: 2;top: 0;width: 100%;min-width:1260px;height:0;border-bottom:1px solid #aaa;content:"";background-color:#fff}
 #cfmClGnb .navigation{position: relative;z-index: 1100;left: 0;transition:left 0.5s ease-in-out;}/* 1126 수정 */
 #cfmClGnb .navigation a{display: block;color: #222;padding: 2px 0}
-#cfmClGnb .navigation>ul>li>a{position: absolute;top: -81px;display:inline-block;min-height:21px;font-size:19px;font-family:"Noto Sans Regular", "Noto Sans Light", sans-serif; color:#222;vertical-align:top;padding-top: 25px;transition:padding-top 0.5s ease-in-out;}
+#cfmClGnb .navigation>ul>li>a{position: absolute;top: -81px;display:inline-block;min-height:21px;font-size:19px;font-family:'Noto Sans KR', sans-serif; color:#222;vertical-align:top;padding-top: 25px;transition:padding-top 0.5s ease-in-out;}
 #cfmClGnb .navigation>ul>li>a.current{color: #05a4bc !important;border-bottom: 3px solid #05a4bc !important}
 /* cfmClGnb > 다이렉트 메뉴 : 2020.05.07 */
 #cfmClGnb .navigation .nav0>a.cfmClGnb_new span {background-position:100% 1px;}
@@ -447,7 +447,13 @@ body #cfmClWrapper #cfmClFooter {font-family:"Noto Sans Light","Malgun Gothic","
 #cfmClGnb.search .navigation>ul>li>a,
 #cfmClGnb.allmenus .navigation>ul>li>a,
 #cfmClGnb.sub .navigation>ul>li>a{padding-top: 14px;color:#222}
+
 #cfmClGnb.active .navigation>ul>li>a.active{color: #05a4bc;border-bottom:none !important;}
+
+/* taejun.yoo : 0531 17:05 네비바 hover 수정중 */
+#cfmClGnb.active .navigation>ul>li>a:hover{color: #05a4bc;border-bottom:none !important;}
+#cfmClGnb.active .navigation>ul>li>a:active{color: #05a4bc !important;border-bottom: 3px solid #05a4bc !important;}
+
 #cfmClGnb.active .utils,
 #cfmClGnb.bg .utils,
 #cfmClGnb.search .utils,
@@ -682,11 +688,11 @@ body #cfmClWrapper #cfmClFooter {font-family:"Noto Sans Light","Malgun Gothic","
 
 /* location */
 .location {padding-top:18px;text-align:right;}
-.location > span {display:inline-block;margin-left:8px;padding-left:20px;font-size:16px;color:#000;background-image:url(../images/cl/ico-location-arrow.png);background-repeat:no-repeat;background-position:0 7px;}
+.location > span {display:inline-block;margin-left:8px;padding-left:20px;font-size:16px;color:#000;background-image:url(https://cfm.kt.com/images/cl/ico-location-arrow.png);background-repeat:no-repeat;background-position:0 7px;}
 .location > span:first-child {margin:0;padding:0;background:none;}
 .location a {color:#666;}
 .location a:hover {text-decoration:underline;}
-.location .home {display:inline-block;position:relative;top:4px;width:19px;height:16px;margin:0;text-align:left;text-indent:-9999px;background-image:url(../images/cl/ico-location-home.png);background-repeat:no-repeat;background-position:0 0;}
+.location .home {display:inline-block;position:relative;top:4px;width:19px;height:16px;margin:0;text-align:left;text-indent:-9999px;background-image:url(https://cfm.kt.com/images/cl/ico-location-home.png);background-repeat:no-repeat;background-position:0 0;}
 .location.is-white a,
 .location.is-white span {color:#fff;}
 .location.is-white > span {background-position:0 -15px;}

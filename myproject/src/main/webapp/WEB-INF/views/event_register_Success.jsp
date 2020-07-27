@@ -10,15 +10,10 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/material-dashboard.css?v=1.3.0" rel="stylesheet">
 <link href="css/demo.css" rel="stylesheet">
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 <%@ include file="./html_head.html"%>
 
 <title>로그인 | KT</title>
@@ -29,59 +24,13 @@
 
 	<div class="row">
 		<div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-			<form method="post" action="login">
-				<div class="card card-login card-hidden">
-					<div class="card-header text-center"
-						data-background-color="ktcolor">
-						<h2 class="card-title">로그인</h2>
-						<div class="social-line">
-							<a href="#btn" class="btn btn-just-icon btn-simple"> <i
-								class="fa fa-facebook-square"></i>
-							</a> <a href="#pablo" class="btn btn-just-icon btn-simple"> <i
-								class="fa fa-twitter"></i>
-							</a> <a href="#eugen" class="btn btn-just-icon btn-simple"> <i
-								class="fa fa-google-plus"></i>
-							</a>
-						</div>
-					</div>
-					<br>
-					<div style="font-size: 15px; text-align: center;">
-						<c:if test="${not empty ERROR}">${ERROR }</c:if>
-					</div>
-					<br>
-					<div class="card-content">
-						<div class="input-group">
-							<span class="input-group-addon"> <i class="material-icons">email</i>
-							</span>
-							<!-- BE|YE 여기 글자 크기 좀 키워주세요!!! -->
-
-							<div class="form-group is-empty">
-								<input type="text" class="form-control" placeholder="아이디 입력" req
-									name="id"> <span class="material-input"></span>
-							</div>
-						</div>
-
-						<div class="input-group">
-							<span class="input-group-addon"> <i class="material-icons">lock_outline</i>
-							</span>
-							<div class="form-group is-empty">
-								<input type="password" class="form-control" name="pwd"
-									placeholder="비밀번호 입력"> <span class="material-input"></span>
-							</div>
-						</div>
-					</div>
-					<div class="footer text-center">
-						<button type="submit" class="btn btn-primary btn-round">로그인</button>
-					</div>
-				</div>
-			</form>
+			<h1>${custName }님 환영합니다!</h1>
+			
 		</div>
 	</div>
-
-	<script type="text/javascript" charset="UTF-8"
-		src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/common.js"></script>
-	<script type="text/javascript" charset="UTF-8"
-		src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/util.js"></script>
+	
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/40/12/util.js"></script>
 	<script src="js/templ/jquery.min.js" type="text/javascript"></script>
 	<script src="js/templ/bootstrap.min.js" type="text/javascript"></script>
 	<script src="js/templ/material.min.js" type="text/javascript"></script>
@@ -98,8 +47,7 @@
 	<script src="js/templ/bootstrap-datetimepicker.js"></script>
 	<script src="js/templ/jquery-jvectormap.js"></script>
 	<script src="js/templ/nouislider.min.js"></script>
-	<script type="text/javascript"
-		src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 	<script src="js/templ/jquery.select-bootstrap.js"></script>
 	<script src="js/templ/jquery.datatables.js"></script>
 	<script src="js/templ/sweetalert2.js"></script>
@@ -119,7 +67,7 @@
 			}, 700)
 		});
 	</script>
-
+	
 	<%@ include file="./event_footer.jsp"%>
 
 </body>
