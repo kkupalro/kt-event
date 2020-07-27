@@ -20,4 +20,9 @@ public interface EventSearchService {
 	public List<EventDtVO> 	searchEventDtList(int EvtIdx);
 	public int 				findEventIdxByNm(String EVtNm);
 	public List<EventVO>	searchEventListPage(int PageIdx);
+	public List<EventVO>	findEventSt(String searchOption, int PageIdx);
+	public List<EventVO>	findEventEnd(String searchOption, int PageIdx);
+	public int 				getEventSearchCnt(String searchOption);
+	public int				getEventCurCnt();
+	public int				setEndPage(int cnt, int pagecnt);
 }

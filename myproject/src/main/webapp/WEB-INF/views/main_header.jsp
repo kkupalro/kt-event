@@ -8,67 +8,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
+	;
 </style>
 </head>
 <div id="cfmClWrapper">
-	<!-- crmClSkip -->
-	<div id="cfmClSkip">
-		<a href="#cfmClGnb">주메뉴 바로 가기</a> <a href="#cfmClContainer">본문
-			바로가기</a>
-	</div>
-	<!-- /crmClSkip -->
-	<!-- cfmIRHeader -->
 	<div id="cfmClHeader" style="left: 0px;">
 		<div class="floating-menu">
 			<script type="text/javascript">
-					kt.floating();
-				</script>
-			<div class="floating-menu"></div>
+				kt.floating();
+			</script>
 		</div>
-		<div id="cfmClGnb" tabindex="0" class="sub bg">
+		<div id="cfmClGnb" tabindex="0" class="active">
 			<script type="text/javascript">
-					kt.gnb();
-				</script>
-			<div class="navigation" >
+				kt.gnb();
+			</script>
+			<div class="navigation">
 				<ul class="inner">
-					
 					<li class="nav0"><a data-menucd="AA0000"
 						href="javascript:kt_common.ktMenuLinkStat('/','^KT-진행중인^이벤트','_self','AA0000');"
-						class=""> <span style="font-family: 'Noto Sans KR', sans-serif;">진행중인 이벤트</span>
-					</a>
-						<div class="sub-navigation" style="display: none;"></div></li>
-
+						class=""><span>진행중인 이벤트</span> </a></li>
 
 					<li class="nav2"><a data-menucd="B00000"
 						href="javascript:kt_common.ktMenuLinkStat('lte','^KT-LTE^데이터^룰렛','_self','B00000');"
-						class=""> <span>LTE 데이터 룰렛</span>
-					</a>
-						<div class="sub-navigation" style="display: none;">
-							<ul class="depth2">
-							</ul>
-							<ul class="depth2">
-							</ul>
-						</div></li>
+						class=""><span>LTE 데이터 룰렛</span> </a></li>
 
 					<li class="nav4 membership"><a data-menucd="C00000"
 						href="javascript:kt_common.ktMenuLinkStat('check','^KT-당첨자^확인','_self','C00000');"
 						class=""> <span>당첨자 확인</span>
-					</a>
-						<div class="sub-navigation" style="display: none;">
-							<div class="cate">
-								<h3></h3>
-							</div>
-						</div></li>
+					</a></li>
 
 					<li class="nav6"><a data-menucd="D00000"
-						href="javascript:kt_common.ktMenuLinkStat('last','^KT-지난^이벤트','_self','D00000');"
+						href="javascript:kt_common.ktMenuLinkStat('/past_event','^KT-지난^이벤트','_self','D00000');"
 						class=""> <span>지난 이벤트</span>
-					</a>
-						<div class="sub-navigation" style="display: none;"></div></li>
+					</a></li>
 				</ul>
 			</div>
-
 			<div class="utils bg-none">
 				<div id="total-search" class="total-search">
 					<div class="inner">
@@ -155,10 +131,9 @@
 						<c:if test="${!empty custId }">
 						<li>
 							<a href="javascript:kt_common.ktMenuLinkStat('logout','^KT-로그아웃','_self','');">로그아웃</a>
+
 						</li>
-					</c:if>
-
-
+						</c:if>
 					<c:if test="${empty custId }">
 						<li><a
 							href="javascript:kt_common.ktMenuLinkStat('login','^KT-로그인','_self','');">로그인</a>

@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,9 +59,11 @@ public class EventSearchController {
 	}
 	
 	
+	
 	@RequestMapping("/evt/searchCtgList/{ctgId}")	//category별 이벤트 조회
 	public List<EventCtgVO> EventSearchByCtg(@PathVariable int ctgId) {
 		List<EventCtgVO> EvtList = eventService.searchEventByCtg(ctgId);
+		
 		return EvtList;
 	}
 
@@ -80,7 +83,7 @@ public class EventSearchController {
 		return EventDtList;
 	}
 	
-	@RequestMapping("/evt/searchEventListPage/{PageIdx}")	// Event Paging 처리, ex, 첫번쨰 페이지 -> /1로 주면 됨
+	@RequestMapping("/evt/searchEventListPage/{PageIdx}")	// Event Paging 처리, ex, 첫번쨰 페이지 -> /0로 주면 됨
 	public List<EventVO> EventListPage(@PathVariable int PageIdx)
 	{
 		List<EventVO> EvtList = eventService.searchEventListPage(PageIdx);
