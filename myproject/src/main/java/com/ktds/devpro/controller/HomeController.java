@@ -1,11 +1,14 @@
 package com.ktds.devpro.controller;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -135,6 +138,26 @@ public class HomeController {
 		model.addAttribute("evt_dt", dt_vo);
 		model.addAttribute("evt", vo);
 		return "event_detail";
+	}
+	
+	
+	// 0703 : 이벤트 신청하기 추가
+	@RequestMapping("/event_enrollment")
+	public String enrollment(HttpSession session,HttpServletRequest request, Model model) {
+		if(session.getAttribute("custId") != null) {
+			int evtIdx = Integer.parseInt(request.getParameter("evt_idx"));
+			String custId = session.getAttribute("custId").toString();
+			String custIdx = memberMapper.selectMemberid(custId); 
+			String prize = "";
+			System.out.println(evtIdx + " : " + custIdx);
+			Random random = new Random();
+			prize = random.nextInt(100) % 5 == 0?"2":"1";
+			
+			// insert into cust_app_res(evt_idx, cust_idx, prize) values(evtIdx,custIdx,0);
+			
+			return "redirect:/";
+		}
+		return "/login";
 	}
 	
 

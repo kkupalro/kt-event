@@ -22,4 +22,5 @@ public interface MemberMapper {
 	public int userIdCheck(String user_id);
 	
 	public Member securityLoginTEST(String id);
+	public String selectMemberid(String custId);
 }

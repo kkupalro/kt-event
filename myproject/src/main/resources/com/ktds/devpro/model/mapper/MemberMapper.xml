@@ -75,6 +75,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where t101.cust_id = #{id}
 		]]>
 	</select>
+	
+	
+	<select id="selectMemberid"  resultType="String">
+ 		select cust_idx from cust_bas where cust_id = #{custId}
+ 	</select>
+ 	
+ 	
+ 	<insert id="InsertMemberPrize"  parameterType="String">
+ 		insert into cust_app_res(evt_idx, cust_idx, prize) values(#{evt_idx},#{cust_idx},#{prize});
+ 	</insert>
+ 	
+	
 </mapper>
  
  
