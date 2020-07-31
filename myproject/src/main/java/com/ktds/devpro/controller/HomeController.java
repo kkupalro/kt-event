@@ -142,7 +142,7 @@ public class HomeController {
 
 	// 0731 14:26 이벤트 신청하기 추가
 	@RequestMapping("/event_enrollment")
-	public String enrollment(HttpSession session, HttpServletResponse response,HttpServletRequest request, Model model) throws Exception{
+	public void enrollment(HttpSession session, HttpServletResponse response,HttpServletRequest request, Model model) throws Exception{
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();		 
 
@@ -173,9 +173,12 @@ public class HomeController {
 					out.println("<script>alert('이벤트 중복 신청');location.href='/';</script>");
 				}
 			}
-			out.flush();
+			
 		}
-		return "event_login";
+		else {
+			out.println("<script>alert('로그인 후 이용해 주세요.');location.href='/login';</script>");
+		}
+		out.flush();
 	}
 
 	@RequestMapping("/login")

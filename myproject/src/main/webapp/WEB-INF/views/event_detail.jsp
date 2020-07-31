@@ -131,6 +131,7 @@
 		</div>
 
 	<%@ include file="./event_footer.jsp"%>
+	<!-- 
 	<script type="text/javascript">
 	var generateRandom = function (min, max) {
 		  var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
@@ -147,5 +148,6 @@
 		alert('난수 = ' + i + ' (비당첨)');
 	}
 	</script>
+	 -->
 </body>
 </html>
