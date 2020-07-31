@@ -1,6 +1,7 @@
 package com.ktds.devpro.controller;
 
 import java.io.Console;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,24 +31,22 @@ import com.ktds.devpro.service.EventSearchService;
 public class HomeController {
 	@Autowired
 	private EventSearchService eventSrcService;
-	
+
 	@Resource
 	private MemberMapper memberMapper;
 
 	@Resource
 	private EventMapper eventMapper;
-	
-	//taejun : 0525 17:30 메인 이벤트(홈) 추가
+
+	// taejun : 0525 17:30 메인 이벤트(홈) 추가
 	@RequestMapping("/")
-	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption) 
-			throws Exception {
+	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<EventVO> list = eventMapper.findEventSt(searchOption, 0);
 		int cnt = 0;
-		if(searchOption.equals("")) {
+		if (searchOption.equals("")) {
 			cnt = eventMapper.getEventCurCnt();
-		}
-		else {
+		} else {
 			cnt = eventMapper.getEventSearchCnt(searchOption);
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -55,14 +55,14 @@ public class HomeController {
 		map.put("pageIdx", 0);
 		map.put("searchType", "");
 		map.put("cnt", cnt);
-		map.put("endPage", (int) Math.ceil(cnt/8));
+		map.put("endPage", (int) Math.ceil(cnt / 8));
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
 	}
 
-	//taejun : 0525 17:30 진행중인 이벤트 최신일순 검색 추가
-	@RequestMapping(path = "/newest", method = {RequestMethod.GET})
+	// taejun : 0525 17:30 진행중인 이벤트 최신일순 검색 추가
+	@RequestMapping(path = "/newest", method = { RequestMethod.GET })
 	public ModelAndView new_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
@@ -81,8 +81,8 @@ public class HomeController {
 		return mav;
 	}
 
-	//taejun : 0525 17:30 진행중인 이벤트 마감일순 검색 추가
-	@RequestMapping(path = "/deadline", method = {RequestMethod.GET})
+	// taejun : 0525 17:30 진행중인 이벤트 마감일순 검색 추가
+	@RequestMapping(path = "/deadline", method = { RequestMethod.GET })
 	public ModelAndView deadline_list(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		ModelAndView mav = new ModelAndView();
@@ -103,17 +103,17 @@ public class HomeController {
 
 	// taejun : 0526 11:30 진행중인 이벤트 페이징 처리 추가
 	@RequestMapping("/page")
-	public ModelAndView page(@RequestParam(defaultValue = "") String searchOption, HttpServletRequest request) throws Exception {
+	public ModelAndView page(@RequestParam(defaultValue = "") String searchOption, HttpServletRequest request)
+			throws Exception {
 		List<EventVO> list = null;
 		ModelAndView mav = new ModelAndView();
 		int pageIdx = Integer.parseInt(request.getParameter("pageIdx"));
 		String searchType = request.getParameter("searchType");
 		searchOption = request.getParameter("searchOption");
 		Map<String, Object> map = new HashMap<String, Object>();
-		if(searchType.equals("deadline")) {
+		if (searchType.equals("deadline")) {
 			list = eventMapper.findEventEnd(searchOption, pageIdx * 8);
-		}
-		else {
+		} else {
 			list = eventMapper.findEventSt(searchOption, pageIdx * 8);
 		}
 		int cnt = eventMapper.getEventSearchCnt(searchOption);
@@ -139,27 +139,44 @@ public class HomeController {
 		model.addAttribute("evt", vo);
 		return "event_detail";
 	}
-	
-	
-	// 0703 : 이벤트 신청하기 추가
+
+	// 0731 14:26 이벤트 신청하기 추가
 	@RequestMapping("/event_enrollment")
-	public String enrollment(HttpSession session,HttpServletRequest request, Model model) {
-		if(session.getAttribute("custId") != null) {
-			int evtIdx = Integer.parseInt(request.getParameter("evt_idx"));
+	public String enrollment(HttpSession session, HttpServletResponse response,HttpServletRequest request, Model model) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();		 
+
+		if (session.getAttribute("custId") != null) {
+			String evtIdx = request.getParameter("evt_idx");
 			String custId = session.getAttribute("custId").toString();
-			String custIdx = memberMapper.selectMemberid(custId); 
-			String prize = "";
-			System.out.println(evtIdx + " : " + custIdx);
+			String custIdx = memberMapper.selectMemberid(custId);
 			Random random = new Random();
-			prize = random.nextInt(100) % 5 == 0?"2":"1";
+			String prize = random.nextInt(100) % 5 == 0 ? "2" : "1";
+			// 2 : 당첨, 1 : 비당첨
 			
-			// insert into cust_app_res(evt_idx, cust_idx, prize) values(evtIdx,custIdx,0);
-			
-			return "redirect:/";
+			int cnt = memberMapper.countEventenrollment(custIdx);
+			if(cnt > 5) {
+				// 진행중인 이벤트 건수 5개 넘으면 신청 불가능
+				out.println("<script>alert('진행중인 이벤트 신청 건수가 5개 넘으면 신청 불가능');location.href='/';</script>");
+				
+			}
+			else {
+				int dup_cnt = memberMapper.checkEventenrollment(custIdx, evtIdx);
+				// 이벤트 신청
+				if(dup_cnt == 0) {
+					// 신청 완료
+					out.println("<script>alert('이벤트 신청 완료');location.href='/';</script>");
+					memberMapper.InsertMemberPrize(evtIdx, custIdx, prize);
+				}
+				else {
+					// 이벤트 중복 신청
+					out.println("<script>alert('이벤트 중복 신청');location.href='/';</script>");
+				}
+			}
+			out.flush();
 		}
-		return "/login";
+		return "event_login";
 	}
-	
 
 	@RequestMapping("/login")
 	public String login(Model model) {

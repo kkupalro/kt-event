@@ -23,4 +23,10 @@ public interface MemberMapper {
 	
 	public Member securityLoginTEST(String id);
 	public String selectMemberid(String custId);
+	
+	// 0731 
+	public int InsertMemberPrize(String evt_idx, String cust_idx, String prize);
+	public int countEventenrollment(String cust_idx);
+	public int checkEventenrollment(String cust_idx, String evt_idx);
+	
 }

@@ -83,10 +83,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	
  	<insert id="InsertMemberPrize"  parameterType="String">
- 		insert into cust_app_res(evt_idx, cust_idx, prize) values(#{evt_idx},#{cust_idx},#{prize});
+ 		insert into cust_app_res (evt_idx, cust_idx, prize)values(#{evt_idx},#{cust_idx},#{prize});
  	</insert>
  	
-	
+ 	<select id="countEventenrollment" resultType="int">
+ 	 	select count(*) from cust_app_res
+		where cust_idx = #{cust_idx} and evt_idx in (select evt_idx from evt_evt 
+		where evt_st = 1);
+ 	 </select>
+ 	 
+ 	 <select id="checkEventenrollment" resultType="int">
+		select count(*) from cust_app_res where cust_idx = #{cust_idx} and evt_idx = #{evt_idx};
+ 	 </select>
+ 	 
 </mapper>
  
  
