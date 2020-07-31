@@ -117,13 +117,21 @@
 					<c:forEach var="evt" items="${evt}">
 						<a
 							href="javascript:kt_common.ktMenuLinkStat('${evt.evtSt==2?'/past_event':'/'}','^마지막 페이지','_self','');"
-							class="btn large is-navygray">목록</a>
+							class="btn large is-navygray">목록</a>												
+							
+						<c:if test="${evt.evtSt==1}">
+						<a
+							href="javascript:kt_common.ktMenuLinkStat('/event_enrollment?evt_idx=${evt.evtIdx}','^신청 페이지','_self','');"
+							class="btn large is-blue">신청하기</a>
+						</c:if>
+						
 					</c:forEach>
 				</div>
 			</div>
 		</div>
 
 	<%@ include file="./event_footer.jsp"%>
+	<!-- 
 	<script type="text/javascript">
 	var generateRandom = function (min, max) {
 		  var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
@@ -140,5 +148,6 @@
 		alert('난수 = ' + i + ' (비당첨)');
 	}
 	</script>
+	 -->
 </body>
 </html>
