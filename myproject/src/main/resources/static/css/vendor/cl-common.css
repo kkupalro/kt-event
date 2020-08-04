@@ -393,7 +393,7 @@ body #cfmClWrapper #cfmClFooter {font-family:"Noto Sans Light","Malgun Gothic","
 #cfmClGnb .navigation>ul>li>a.current{color: #05a4bc !important;border-bottom: 3px solid #05a4bc !important}
 /* cfmClGnb > 다이렉트 메뉴 : 2020.05.07 */
 #cfmClGnb .navigation .nav0>a.cfmClGnb_new span {background-position:100% 1px;}
-#cfmClGnb .navigation .nav1>a{left: 108px;}
+#cfmClGnb .navigation .nav1>a{left: 1px;}
 #cfmClGnb .navigation .nav2>a{left: 233px}
 #cfmClGnb .navigation .nav3>a{left: 358px;}
 #cfmClGnb .navigation .nav4>a{left: 490px;}
