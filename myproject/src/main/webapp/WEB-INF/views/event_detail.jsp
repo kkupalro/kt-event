@@ -13,7 +13,7 @@
 	url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap')
 	;
 </style>
-<title>이벤트 디테일 | KT</title>
+<title>이벤트 상세 | KT</title>
 </head>
 <body>
 
