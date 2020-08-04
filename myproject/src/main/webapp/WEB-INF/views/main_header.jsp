@@ -26,10 +26,6 @@
 			</script>
 			<div class="navigation">
 				<ul class="inner">
-					<li class="nav0"><a data-menucd="B00000"
-						href="javascript:kt_common.ktMenuLinkStat('lte','^KT-LTE^데이터^룰렛','_self','B00000');"
-						class=""><span> </span> </a></li>
-
 
 					<li class="nav1"><a data-menucd="AA0000"
 						href="javascript:kt_common.ktMenuLinkStat('/','^KT-진행중인^이벤트','_self','AA0000');"
