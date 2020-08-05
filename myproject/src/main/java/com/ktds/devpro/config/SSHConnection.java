@@ -7,7 +7,6 @@ import java.util.Properties;
 
 public class SSHConnection {
 
-   private final static String S_PASS_PHRASE = "mypassphrase";
    private final static int LOCAl_PORT = 3306;	//임의의 값
    private final static int REMOTE_PORT = 3306;
    private final static int SSH_REMOTE_PORT = 22;
@@ -24,7 +23,7 @@ public class SSHConnection {
 
    public SSHConnection () throws Throwable
    {
-
+	  System.out.println("SSH Connection class start");
       JSch jsch = null;
 
       jsch = new JSch();
@@ -35,8 +34,9 @@ public class SSHConnection {
       sesion.setPassword("test8080!");
       sesion.setConfig(config);
       sesion.connect(); //ssh connection established!
-
+      System.out.println("세션 Connect 시도");
       //by security policy, you must connect through a fowarded port
-     sesion.setPortForwardingL(LOCAl_PORT, MYSQL_REMOTE_SERVER, REMOTE_PORT);
+     sesion.setPortForwardingL(3306, "127.0.0.1", 3306);
+     System.out.println("setPortForwardingL 끝");
    }
 }
