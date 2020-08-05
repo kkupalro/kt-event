@@ -20,7 +20,7 @@ public class SSHConnection {
    {
       sesion.disconnect();
    }
-
+   
    public SSHConnection () throws Throwable
    {
 	  System.out.println("SSH Connection class start");
