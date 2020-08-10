@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebListener;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 @WebListener
 public class MyContextListener implements ServletContextListener {
 
