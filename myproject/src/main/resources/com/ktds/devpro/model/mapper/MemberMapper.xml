@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ktds.devpro.model.mapper.MemberMapper">
 	<sql id="selectMember">
-		select id,password,name,address from member
+		SELECT ID,PASSWORD,NAME,ADDRESS FROM MEMBER
 	</sql>
  	<select id="findMemberById" 
  	parameterType="string" resultType="memberVO">
@@ -14,86 +14,86 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	
  	<select id="selectMemberTest"  resultType="member">
- 		select t101.cust_nm as name, t101.cust_id as id, t101.cust_pwd as password, t101.cust_phone as phone, t101.cust_email as email,
- 		t102.cust_prod as product, t102.cust_mbs as membership, t102.CUST_POINT , t102.cust_data_size as dataSize
-		from CUST_BAS t101
-		left join CUST_DT t102
-		on t101.cust_idx = t102.cust_idx
+ 		SELECT T101.CUST_NM AS NAME, T101.CUST_ID AS ID, T101.CUST_PWD AS PASSWORD, T101.CUST_PHONE AS PHONE, T101.CUST_EMAIL AS EMAIL, 
+T102.CUST_PROD AS PRODUCT, T102.CUST_MBS AS MEMBERSHIP, T102.CUST_POINT , T102.CUST_DATA_SIZE AS DATASIZE 
+FROM CUST_BAS T101 
+LEFT JOIN CUST_DT T102 
+ON T101.CUST_IDX = T102.CUST_IDX
  	</select>
  	
  	<!-- 200519 결과값이 반환되지 않는 이슈 수정해야 됨. -->
  	<select id="findMemberByCustId" parameterType="string" resultType="member">
- 		select cust_nm, cust_id, cust_pwd, cust_phone, cust_email from CUST_BAS where cust_id=#{value}
+ 		SELECT CUST_NM, CUST_ID, CUST_PWD, CUST_PHONE, CUST_EMAIL FROM CUST_BAS WHERE CUST_ID=#{value}
  	</select>
  	
  	<!-- 200520 11:37 security login -->
  	<select id="securityLogin" resultType="member">
 		<![CDATA[
-			select t101.cust_nm as name, t101.cust_id as id, t101.cust_pwd as password, t101.cust_phone as phone, t101.cust_email as email,
- 		t102.cust_prod as product, t102.cust_mbs as membership, t102.CUST_POINT , t102.cust_data_size as dataSize
-		from CUST_BAS t101
-		left join CUST_DT t102
-		on t101.cust_idx = t102.cust_idx
-		where t101.cust_id = #{id}
+			SELECT T101.CUST_NM AS NAME, T101.CUST_ID AS ID, T101.CUST_PWD AS PASSWORD, T101.CUST_PHONE AS PHONE, T101.CUST_EMAIL AS EMAIL, 
+T102.CUST_PROD AS PRODUCT, T102.CUST_MBS AS MEMBERSHIP, T102.CUST_POINT , T102.CUST_DATA_SIZE AS DATASIZE 
+FROM CUST_BAS T101 
+LEFT JOIN CUST_DT T102 
+ON T101.CUST_IDX = T102.CUST_IDX 
+WHERE T101.CUST_ID = #{id}
 		]]>
 	</select>
  	<select id="securityLoginByEmail" resultType="member">
 		<![CDATA[
-			select t101.cust_nm as name, t101.cust_id as id, t101.cust_pwd as password, t101.cust_phone as phone, t101.cust_email as email,
- 		t102.cust_prod as product, t102.cust_mbs as membership, t102.CUST_POINT , t102.cust_data_size as dataSize
-		from CUST_BAS t101
-		left join CUST_DT t102
-		on t101.cust_idx = t102.cust_idx
-		where t101.cust_email = #{email}
+		SELECT T101.CUST_NM AS NAME, T101.CUST_ID AS ID, T101.CUST_PWD AS PASSWORD, T101.CUST_PHONE AS PHONE, T101.CUST_EMAIL AS EMAIL, 
+T102.CUST_PROD AS PRODUCT, T102.CUST_MBS AS MEMBERSHIP, T102.CUST_POINT , T102.CUST_DATA_SIZE AS DATASIZE 
+FROM CUST_BAS T101 
+LEFT JOIN CUST_DT T102 
+ON T101.CUST_IDX = T102.CUST_IDX 
+WHERE T101.CUST_EMAIL = #{email}
 		]]>
 	</select>
  	
  	<insert id="registerBasic" parameterType="member">
- 		insert into CUST_BAS  (cust_nm, cust_id, cust_pwd, cust_phone, cust_email)values(#{name}, #{id}, #{password}, #{phone}, #{email})
+ 		INSERT INTO CUST_BAS (CUST_NM, CUST_ID, CUST_PWD, CUST_PHONE, CUST_EMAIL)VALUES(#{name}, #{id}, #{password}, #{phone}, #{email})
  		<selectKey keyProperty="custIdx" resultType="int" order="AFTER">
- 			select max(cust_idx) from CUST_BAS 
+ 			SELECT MAX(CUST_IDX) FROM CUST_BAS
  		</selectKey>
  	</insert>
  	<insert id="registerDetail" parameterType="member">
- 		insert into CUST_DT  (cust_idx, cust_prod)values (#{custIdx}, "데이터ON 톡")
+ 		INSERT INTO CUST_DT (CUST_IDX, CUST_PROD)VALUES (#{custidx}, "데이터ON 톡")
  	</insert>
  	<delete id= "deleteUserBasic" parameterType="member">
- 		delete from CUST_BAS  where cust_idx = #{custIdx}
+ 		DELETE FROM CUST_BAS WHERE CUST_IDX = #{custidx}
  	</delete>
  	
  	<select id ="userIdCheck" parameterType="java.lang.String" resultType="int">
- 		select count(cust_id) from CUST_BAS where cust_id = #{user_id}
+ 		SELECT COUNT(CUST_ID) FROM CUST_BAS WHERE CUST_ID = #{user_id}
  	</select>
  	
  	<select id="securityLoginTEST" resultType="member">
 		<![CDATA[
-			select t101.cust_nm as name, t101.cust_id as id, t101.cust_pwd as password, t101.cust_phone as phone, t101.cust_email as email,
- 		t102.cust_prod as product, t102.cust_mbs as membership, t102.CUST_POINT , t102.cust_data_size as dataSize
-		from CUST_BAS  t101
-		left join CUST_DT  t102
-		on t101.cust_idx = t102.cust_idx
-		where t101.cust_id = #{id}
+		SELECT T101.CUST_NM AS NAME, T101.CUST_ID AS ID, T101.CUST_PWD AS PASSWORD, T101.CUST_PHONE AS PHONE, T101.CUST_EMAIL AS EMAIL, 
+T102.CUST_PROD AS PRODUCT, T102.CUST_MBS AS MEMBERSHIP, T102.CUST_POINT , T102.CUST_DATA_SIZE AS DATASIZE 
+FROM CUST_BAS T101 
+LEFT JOIN CUST_DT T102 
+ON T101.CUST_IDX = T102.CUST_IDX 
+WHERE T101.CUST_ID = #{id}
 		]]>
 	</select>
 	
 	
 	<select id="selectMemberid"  resultType="String">
- 		select cust_idx from CUST_BAS where cust_id = #{custId}
+ 		SELECT CUST_IDX FROM CUST_BAS WHERE CUST_ID = #{custid}
  	</select>
  	
  	
  	<insert id="InsertMemberPrize"  parameterType="String">
- 		insert into cust_app_res (evt_idx, cust_idx, prize)values(#{evt_idx},#{cust_idx},#{prize});
+ 		INSERT INTO CUST_APP_RES (EVT_IDX, CUST_IDX, PRIZE)VALUES(#{evt_idx},#{cust_idx},#{prize});
  	</insert>
  	
  	<select id="countEventenrollment" resultType="int">
- 	 	select count(*) from cust_app_res
-		where cust_idx = #{cust_idx} and evt_idx in (select evt_idx from evt_evt 
-		where evt_st = 1);
+ 	 	SELECT COUNT(*) FROM CUST_APP_RES 
+WHERE CUST_IDX = #{cust_idx} AND EVT_IDX IN (SELECT EVT_IDX FROM EVT_EVT 
+WHERE EVT_ST = 1);
  	 </select>
  	 
  	 <select id="checkEventenrollment" resultType="int">
-		select count(*) from cust_app_res where cust_idx = #{cust_idx} and evt_idx = #{evt_idx};
+		SELECT COUNT(*) FROM CUST_APP_RES WHERE CUST_IDX = #{cust_idx} AND EVT_IDX = #{evt_idx};
  	 </select>
  	 
 </mapper>
