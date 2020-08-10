@@ -44,6 +44,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 		List<EventVO> list = eventMapper.findEventSt(searchOption, 0);
 		int cnt = 0;
+		int endPage = 0;
 		if (searchOption.equals("")) {
 			cnt = eventMapper.getEventCurCnt();
 		} else {
@@ -55,7 +56,11 @@ public class HomeController {
 		map.put("pageIdx", 0);
 		map.put("searchType", "");
 		map.put("cnt", cnt);
-		map.put("endPage", (int) Math.ceil(cnt / 8));
+		endPage = (int) Math.ceil(cnt / 8);
+		if(cnt % 8 == 0) {
+			endPage -= 1;
+		}
+		map.put("endPage", endPage);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
