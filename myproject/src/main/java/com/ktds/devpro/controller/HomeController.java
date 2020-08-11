@@ -1,6 +1,5 @@
 package com.ktds.devpro.controller;
 
-import java.io.Console;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -38,12 +37,13 @@ public class HomeController {
 	@Resource
 	private EventMapper eventMapper;
 
-	// taejun : 0525 17:30 메인 이벤트(홈) 추가
+	// 0811 11:01 메인 이벤트 마지막페이지 로직오류 수정
 	@RequestMapping("/")
 	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<EventVO> list = eventMapper.findEventSt(searchOption, 0);
 		int cnt = 0;
+		int endPage = 0;
 		if (searchOption.equals("")) {
 			cnt = eventMapper.getEventCurCnt();
 		} else {
@@ -55,7 +55,11 @@ public class HomeController {
 		map.put("pageIdx", 0);
 		map.put("searchType", "");
 		map.put("cnt", cnt);
-		map.put("endPage", (int) Math.ceil(cnt / 8));
+		endPage = (int) Math.ceil(cnt / 8);
+		if(cnt % 8 == 0) {
+			endPage -= 1;
+		}
+		map.put("endPage", endPage);
 		mav.addObject("map", map);
 		mav.setViewName("curr_event");
 		return mav;
