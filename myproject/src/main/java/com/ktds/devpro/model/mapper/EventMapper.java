@@ -27,11 +27,11 @@ public interface EventMapper {
 	
 	public int findEventIdxByEvtnm(String evt_nm);
 	
-	public void deleteEvent(int evt_idx);
+	public void deleteEvent(int evtIdx);
 	
 	public void updateEvent(EventVO eventvo);
 	
-	public List<EventDtVO> searchEventDtList(int EvtIdx);
+	public List<EventDtVO> searchEventDtList(int evtIdx);
 	
 	public List<EventVO>  searchEventListPage(int PageIdx);
 

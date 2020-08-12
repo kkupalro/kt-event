@@ -151,7 +151,7 @@ public class HomeController {
 		PrintWriter out = response.getWriter();		 
 
 		if (session.getAttribute("custId") != null) {
-			String evtIdx = request.getParameter("evt_idx");
+			String evtIdx = request.getParameter("evtIdx");
 			String custId = session.getAttribute("custId").toString();
 			String custIdx = memberMapper.selectMemberid(custId);
 			Random random = new Random();
