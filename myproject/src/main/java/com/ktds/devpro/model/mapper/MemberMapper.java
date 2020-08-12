@@ -25,8 +25,8 @@ public interface MemberMapper {
 	public String selectMemberid(String custId);
 	
 	// 0731 
-	public int InsertMemberPrize(String evt_idx, String cust_idx, String prize);
-	public int countEventenrollment(String cust_idx);
-	public int checkEventenrollment(String cust_idx, String evt_idx);
+	public int InsertMemberPrize(String evtIdx, String custIdx, String prize);
+	public int countEventenrollment(String custIdx);
+	public int checkEventenrollment(String custIdx, String evtIdx);
 	
 }

@@ -55,10 +55,10 @@ WHERE T101.CUST_EMAIL = #{email}
  		</selectKey>
  	</insert>
  	<insert id="registerDetail" parameterType="member">
- 		INSERT INTO CUST_DT (CUST_IDX, CUST_PROD)VALUES (#{custidx}, "데이터ON 톡")
+ 		INSERT INTO CUST_DT (CUST_IDX, CUST_PROD)VALUES (#{custIdx}, "데이터ON 톡")
  	</insert>
  	<delete id= "deleteUserBasic" parameterType="member">
- 		DELETE FROM CUST_BAS WHERE CUST_IDX = #{custidx}
+ 		DELETE FROM CUST_BAS WHERE CUST_IDX = #{custIdx}
  	</delete>
  	
  	<select id ="userIdCheck" parameterType="java.lang.String" resultType="int">
@@ -83,17 +83,17 @@ WHERE T101.CUST_ID = #{id}
  	
  	
  	<insert id="InsertMemberPrize"  parameterType="String">
- 		INSERT INTO CUST_APP_RES (EVT_IDX, CUST_IDX, PRIZE)VALUES(#{evt_idx},#{cust_idx},#{prize});
+ 		INSERT INTO CUST_APP_RES (EVT_IDX, CUST_IDX, PRIZE)VALUES(#{evtIdx},#{custIdx},#{prize});
  	</insert>
  	
  	<select id="countEventenrollment" resultType="int">
  	 	SELECT COUNT(*) FROM CUST_APP_RES 
-WHERE CUST_IDX = #{cust_idx} AND EVT_IDX IN (SELECT EVT_IDX FROM EVT_EVT 
+WHERE CUST_IDX = #{custIdx} AND EVT_IDX IN (SELECT EVT_IDX FROM EVT_EVT 
 WHERE EVT_ST = 1);
  	 </select>
  	 
  	 <select id="checkEventenrollment" resultType="int">
-		SELECT COUNT(*) FROM CUST_APP_RES WHERE CUST_IDX = #{cust_idx} AND EVT_IDX = #{evt_idx};
+		SELECT COUNT(*) FROM CUST_APP_RES WHERE CUST_IDX = #{custIdx} AND EVT_IDX = #{evtIdx};
  	 </select>
  	 
 </mapper>
