@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<sql id="selectEventAll">
 		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID
-		 from EVT_EVT
+		from EVT_EVT
 	</sql>
 	
 	<select id="findEventAll" 
@@ -20,16 +20,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	<!-- 진행중인 이벤트 갯수 카운트 SQL -->
  	<select id="getEventCurCnt" resultType="int">
-		select count(*) from EVT_EVT 
-		 join EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 where EVT_ST = 1
+		select count(*) 
+		from EVT_EVT
+		where ST_DATE <![CDATA[ <=]]> DATE(NOW())
+		AND END_DATE <![CDATA[>=]]> DATE(NOW())
 	</select>
 	
 	<!-- 진행중인 이벤트 리스트 가져오는 SQL -->
 	<sql id="selectEventCur">
 		 select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from EVT_EVT 
 		 join EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 where EVT_ST = 1
+		 where ST_DATE <![CDATA[ <=]]> DATE(NOW())
+		 AND END_DATE <![CDATA[>=]]> DATE(NOW())
 		 LIMIT 8 offset #{pageIdx}
 	</sql>
 	
@@ -37,7 +39,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findEventSt" resultType="EventVO">
  		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from EVT_EVT 
 		 left join EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 where EVT_EVT.EVT_ST = 1 and EVT_EVT.EVT_CTG_ID LIKE  concat('%',#{searchOption},'%') order by EVT_EVT.ST_DATE DESC
+		 where ST_DATE <![CDATA[ <=]]> DATE(NOW())
+		 AND END_DATE <![CDATA[>=]]> DATE(NOW())
+		 and EVT_EVT.EVT_CTG_ID LIKE concat('%',#{searchOption},'%')
+		 order by EVT_EVT.ST_DATE DESC
 		 LIMIT 8 offset #{pageIdx}
  	</select>
  	
@@ -45,15 +50,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="findEventEnd" resultType="EventVO">
  		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from EVT_EVT 
 		 left join EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 where EVT_EVT.EVT_ST = 1 and EVT_EVT.EVT_CTG_ID LIKE  concat('%',#{searchOption},'%') order by EVT_EVT.END_DATE ASC
+		 where ST_DATE <![CDATA[ <=]]> DATE(NOW())
+		 AND END_DATE <![CDATA[>=]]> DATE(NOW())
+		 and EVT_EVT.EVT_CTG_ID LIKE concat('%',#{searchOption},'%')
+		 order by EVT_EVT.END_DATE ASC
 		 LIMIT 8 offset #{pageIdx}
  	</select>
  	
  	<!-- 진행중인 이벤트 상품유형에 따른 검색 갯수 카운트 SQL -->
  	<select id="getEventSearchCnt" resultType="int">
 		select count(*) from EVT_EVT 
-		 join EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 where EVT_EVT.EVT_ST = 1 and EVT_EVT.EVT_CTG_ID LIKE  concat('%',#{searchOption},'%')
+		join EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
+		where ST_DATE <![CDATA[ <=]]> DATE(NOW())
+		AND END_DATE <![CDATA[>=]]> DATE(NOW())
+		and EVT_EVT.EVT_CTG_ID LIKE concat('%',#{searchOption},'%')
 	</select>
 	
 	<select id="findEventByIdx" 
@@ -85,7 +95,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      parameterType="int">
        DELETE FROM EVT_EVT WHERE EVT_Idx=#{evt_idx};
     </delete>
-
  	
  	<update id="updateEvent" parameterType="EventVO">
  		UPDATE EVT_EVT SET EVT_ST =#{EvtSt} WHERE EVT_IDX = #{EvtIdx} 
