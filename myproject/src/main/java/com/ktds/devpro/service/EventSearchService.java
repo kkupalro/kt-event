@@ -10,7 +10,7 @@ import com.ktds.devpro.model.vo.EventCtgVO;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 
-@Service
+//@Service
 public interface EventSearchService {
 	public void 			deleteEventOne(String evt_nm);
 	public List<EventVO> 	searchEventAll();
