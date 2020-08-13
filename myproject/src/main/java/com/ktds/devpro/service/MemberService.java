@@ -29,7 +29,7 @@ public interface MemberService {
 	
 	
 	//login -> 0522
-		public Member loginById(String custId) ;
-		public Member loginByEmail(String custId) ;
-		public boolean loginMatchPwd(String inputPwd, String getPwd);
+	public Member loginById(String custId) ;
+	public Member loginByEmail(String custId) ;
+	public boolean loginMatchPwd(String inputPwd, String getPwd);
 }

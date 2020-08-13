@@ -121,7 +121,7 @@
 							
 						<c:if test="${evt.evtSt==1}">
 						<a
-							href="javascript:kt_common.ktMenuLinkStat('/event_enrollment?evt_idx=${evt.evtIdx}','^신청 페이지','_self','');"
+							href="javascript:kt_common.ktMenuLinkStat('/event_enrollment?evtIdx=${evt.evtIdx}','^신청 페이지','_self','');"
 							class="btn large is-blue">신청하기</a>
 						</c:if>
 						

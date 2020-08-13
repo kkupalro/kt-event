@@ -50,7 +50,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		insertBasic = memberMapper.registerBasic(member);
-		System.out.println(member.getCustIdx());
 		insertDetail = memberMapper.registerDetail(member);
 		if(insertBasic == 1 && insertBasic==insertDetail){
 			return 1;
