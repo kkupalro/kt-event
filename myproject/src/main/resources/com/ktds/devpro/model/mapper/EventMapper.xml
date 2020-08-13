@@ -36,11 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 	
 	<!-- 진행중인 이벤트 최신일순 및 상품유형값에 따른 검색 SQL -->
+	<!-- 에러 또 발생 -->
 	<select id="findEventSt" resultType="EventVO">
  		select EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM from EVT_EVT 
 		 left join EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
 		 where ST_DATE <![CDATA[ <=]]> DATE(NOW())
-		 AND END_DATE <![CDATA[>=]]> DATE(NOW())
+		 and END_DATE <![CDATA[>=]]> DATE(NOW())
 		 and EVT_EVT.EVT_CTG_ID LIKE concat('%',#{searchOption},'%')
 		 order by EVT_EVT.ST_DATE DESC
 		 LIMIT 8 offset #{pageIdx}
