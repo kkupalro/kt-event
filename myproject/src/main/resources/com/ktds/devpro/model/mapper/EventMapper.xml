@@ -111,5 +111,3 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 	<!-- select * from foodlistinfo order by code limit #{pagecnt} offset #{page} -->
  	 </select>
 </mapper>
- 
- 
