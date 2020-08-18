@@ -149,7 +149,7 @@ public class HomeController {
 
 	@RequestMapping("/check")
 	public String thrd(Model model) {
-		return "thrd_event";
+		return "event_check";
 	}
 
 	@RequestMapping("/last")
