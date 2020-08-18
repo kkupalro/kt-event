@@ -35,8 +35,9 @@
 						href="javascript:kt_common.ktMenuLinkStat('lte','^KT-LTE^데이터^룰렛','_self','B00000');"
 						class=""><span>LTE 데이터 룰렛</span> </a></li>
 					 -->
+					 
 					<li class="nav3 membership"><a data-menucd="C00000"
-						href="javascript:kt_common.ktMenuLinkStat('check','^KT-당첨자^확인','_self','C00000');"
+						href="javascript:kt_common.ktMenuLinkStat('/check','^KT-당첨자^확인','_self','C00000');"
 						class=""> <span>당첨자 확인</span>
 					</a></li>
 
@@ -126,7 +127,7 @@
 				<div id="chnlink" class="chnlink">
 					<ul>
 						<li>
-							<a href="javascript:kt_common.ktMenuLinkStat('/event','^KT-메인페이지','_self','');">메인</a>
+							<a href="javascript:kt_common.ktMenuLinkStat('/','^KT-메인페이지','_self','');">메인</a>
 						</li>
 						
 						<c:if test="${!empty custId }">
