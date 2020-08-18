@@ -29,10 +29,11 @@
 
 					<li class="nav1"><a data-menucd="AA0000"
 						href="javascript:kt_common.ktMenuLinkStat('/','^KT-진행중인^이벤트','_self','AA0000');"
-						class=""><span>진행중인 이벤트</span> </a></li>
+						class=""><span>진행중인 이벤트</span>
+					</a></li>
 
 
-					<li class="nav3 membership"><a data-menucd="C00000"
+					<li class="nav3"><a data-menucd="C00000"
 						href="javascript:kt_common.ktMenuLinkStat('check','^KT-당첨자^확인','_self','C00000');"
 						class=""> <span>당첨자 확인</span>
 					</a></li>
