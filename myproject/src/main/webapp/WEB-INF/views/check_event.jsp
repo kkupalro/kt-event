@@ -19,8 +19,10 @@
 		<div class="column">
 			<div class="inner">
 				<div class="location">
-					<span><a href="/past_event" class="home">HOME</a></span> <span
-						title="현재위치">당첨자 확인</span>
+					<span>
+						<a href="/check_event" class="home">HOME</a>
+					</span>
+					<span title="현재위치">당첨자 확인</span>
 				</div>
 				<div class="hgroup is-black">
 					<h3>당첨자 확인</h3>
@@ -35,7 +37,7 @@
 				<div class="flow select-search-result">
 					전체 <span>${map.cnt}</span>건
 				</div>
-				<form name="form1" method="post" action="/past_search">
+				<form name="form1" method="post" action="/check_search">
 					<div class="search-area options reverse">
 						<select id="searchOption" class="flow search-select"
 							name="searchOption" title="서비스별 검색 선택">
@@ -78,6 +80,7 @@
 							<tr>
 								<th scope="col">이벤트명</th>
 								<th scope="col">응모기간</th>
+								<th style="width: 150px" scope="col">당첨자 발표</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -88,6 +91,7 @@
 												value="${row.evtNm}" /></a></td>
 									<td><c:out value="${row.stDate}" /> ~ <c:out
 											value="${row.endDate}" /></td>
+									<td style="width: 150px"><c:out value="${row.endDate }"/></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -105,10 +109,10 @@
 						</c:if>
 						<c:if test="${map.pageIdx ne 0}">
 							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=0&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^첫 페이지','_self','');"
+								href="javascript:kt_common.ktMenuLinkStat('check_page?pageIdx=0&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^첫 페이지','_self','');"
 								class="dir first">첫 페이지로 이동</a>
 							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.pageIdx==0?0:map.pageIdx-1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^이전 페이지','_self','');"
+								href="javascript:kt_common.ktMenuLinkStat('check_page?pageIdx=${map.pageIdx==0?0:map.pageIdx-1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^이전 페이지','_self','');"
 								class="dir prev">이전 페이지로 이동</a>
 						</c:if>
 						<c:choose>
@@ -116,7 +120,7 @@
 							<c:when test="${map.endPage < 10}">
 								<c:forEach begin="0" end="${map.endPage}" var="idx">
 									<a id="${idx}"
-										href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
+										href="javascript:kt_common.ktMenuLinkStat('check_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
 								</c:forEach>
 							</c:when>
 							<c:when test="${map.endPage >= 10}">
@@ -124,7 +128,7 @@
 									<c:when test="${map.pageIdx < 10}">
 										<c:forEach begin="0" end="9" var="idx">
 											<a id="${idx}"
-												href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
+												href="javascript:kt_common.ktMenuLinkStat('check_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
 										</c:forEach>
 									</c:when>
 
@@ -137,7 +141,7 @@
 										<c:forEach begin="${pages*10}" end="${pages*10 + val}"
 											var="idx">
 											<a id="${idx}"
-												href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
+												href="javascript:kt_common.ktMenuLinkStat('check_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
 										</c:forEach>
 									</c:when>
 								</c:choose>
@@ -149,10 +153,10 @@
 						</c:if>
 						<c:if test="${map.pageIdx ne map.endPage}">
 							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^다음 페이지','_self','');;"
+								href="javascript:kt_common.ktMenuLinkStat('check_page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^다음 페이지','_self','');;"
 								class="dir next >">다음 페이지로 이동</a>
 							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.endPage}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^마지막 페이지','_self','');"
+								href="javascript:kt_common.ktMenuLinkStat('check_page?pageIdx=${map.endPage}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^마지막 페이지','_self','');"
 								class="dir last ">마지막 페이지로 이동</a>
 						</c:if>
 					</div>
@@ -162,7 +166,7 @@
 				<div class="btn-list">
 					<c:if test="${map.searchOption ne '' or map.searchWord ne ''}">
 						<a
-							href="javascript:kt_common.ktMenuLinkStat('/past_event','^KT-지난^이벤트','_self','D00000');"
+							href="javascript:kt_common.ktMenuLinkStat('/check_event','^KT-당첨자^확인','_self','C00000');"
 							class="btn large is-navygray">목록</a>
 					</c:if>
 				</div>
