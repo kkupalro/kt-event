@@ -7,12 +7,10 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.7.RELEASE</version>
-		<relativePath />
 	</parent>
 	<groupId>com.ktds.devpro</groupId>
 	<artifactId>myproject</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>myproject</name>
+	<name>test</name>
 	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 
@@ -34,13 +32,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -57,7 +53,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-		<!-- taglibs 추가 2020.05.20. 16:45-->
+		<!-- taglibs 추가 2020.05.20. 16:45 -->
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
@@ -66,7 +62,6 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- MyBatis 환경 설정 관련 추가 dependency_2020.05.19. 14:39 추가 -->
@@ -90,31 +85,101 @@
 			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 			<version>1.16</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
-		<!-- Spring  Security mvn dependency -->
-	    <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-	<!-- 20.08.03: ssh server connection -->
-	<dependency>
-		<groupId>com.jcraft</groupId>
-		<artifactId>jsch</artifactId>
-		<version>0.1.55</version>
-	</dependency>
+		<!-- Spring Security mvn dependency -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- 20.08.03: ssh server connection -->
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.55</version>
+		</dependency>
 	</dependencies>
+
 	<build>
+		<finalName>test</finalName>
+
 		<plugins>
+			<plugin>
+
+				<groupId>com.googlecode.addjars-maven-plugin</groupId>
+
+				<artifactId>addjars-maven-plugin</artifactId>
+
+				<version>1.0.4</version>
+
+				<executions>
+
+					<execution>
+
+						<phase>package</phase>
+
+						<goals>
+
+							<goal>add-jars</goal>
+
+						</goals>
+
+						<configuration>
+
+							<resources>
+
+								<resource>
+
+									<directory>${basedir}/libs</directory>
+
+								</resource>
+
+							</resources>
+
+						</configuration>
+
+					</execution>
+
+				</executions>
+
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>
+						1.8
+					</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>libs/</classpathPrefix>
+							<mainClass>
+								com.ktds.devpro.MyprojectApplication
+							</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
-
-	
 </project>
