@@ -114,7 +114,7 @@
 			<div class="btn-list">
 				<c:forEach var="evt" items="${evt}">
 					<a
-						href="javascript:kt_common.ktMenuLinkStat('${evt.evtSt==2?'/check':'/'}','^마지막 페이지','_self','');"
+						href="javascript:kt_common.ktMenuLinkStat('${evt.evtSt==2?'/check_event':'/'}','^마지막 페이지','_self','');"
 						class="btn large is-navygray">목록</a>
 				</c:forEach>
 			</div>

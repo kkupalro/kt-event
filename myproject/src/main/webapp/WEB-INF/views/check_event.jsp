@@ -19,7 +19,7 @@
 		<div class="column">
 			<div class="inner">
 				<div class="location">
-					<span><a href="/check" class="home">HOME</a></span> <span
+					<span><a href="/check_event" class="home">HOME</a></span> <span
 						title="현재위치">당첨자 발표</span>
 				</div>
 				<div class="hgroup is-black">
