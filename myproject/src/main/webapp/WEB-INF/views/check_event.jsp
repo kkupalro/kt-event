@@ -10,7 +10,7 @@
 <script src="js/curr_event.js"></script>
 <%@ include file="./html_head.html"%>
 
-<title>당첨자 발표 | KT</title>
+<title>당첨자 확인 | KT</title>
 </head>
 <body>
 	<%@ include file="./main_header.jsp"%>
@@ -67,7 +67,7 @@
 				<div class="flow select-search-result">
 					전체 <span>${map.cnt}</span>건
 				</div>
-				<form name="form1" method="post" action="/past_search">
+				<form name="form1" method="post" action="/check_search">
 					<div class="search-area options reverse">
 						<select id="searchOption" class="flow search-select"
 							name="searchOption" title="서비스별 검색 선택">
@@ -83,7 +83,9 @@
 								<c:out value="${map.searchOption == '4'?'selected':''}"/>>기업</option>
 							<option value="0"
 								<c:out value="${map.searchOption == '0'?'selected':''}"/>>기타</option>
-						</select>
+						</select> <input type="text" id="search-text" maxlength="32"
+							class="flow search-text" placeholder="이벤트명을 입력해주세요."
+							name="searchWord" title="이벤트명을 입력해주세요." value="">
 						<button id="btnSearch" type="submit" class="flow btn-search">
 							<span>검색</span>
 						</button>
@@ -192,7 +194,7 @@
 				<div class="btn-list">
 					<c:if test="${map.searchOption ne '' or map.searchWord ne ''}">
 						<a
-							href="javascript:kt_common.ktMenuLinkStat('/past_event','^KT-지난^이벤트','_self','D00000');"
+							href="javascript:kt_common.ktMenuLinkStat('/check_event','^KT-당첨자^확인','_self','C00000');"
 							class="btn large is-navygray">목록</a>
 					</c:if>
 				</div>
