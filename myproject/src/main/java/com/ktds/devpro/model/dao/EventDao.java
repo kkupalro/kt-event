@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestAttribute;
 
+import com.ktds.devpro.model.vo.CustResVO;
 import com.ktds.devpro.model.vo.EventVO;
 
 @Repository
@@ -51,5 +52,6 @@ public class EventDao {
 		map.put("pageIdx", String.valueOf(pageIdx));
 		return sqlSession.selectList("EventDao.findEventEnd", map);
 	}
+
 }
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ktds.devpro.model.mapper.ChkEventMapper">
+	
+	<select id="findEventChk" resultType="EventVO">
+ 		<include refid="selectEventChk"/>
+ 	</select>
+ 	
+ 	<select id="getEventChkCnt" resultType="int">
+		SELECT COUNT(*) FROM EVT_EVT 
+		 LEFT JOIN EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
+		 where END_DATE <![CDATA[<]]> DATE(NOW()) AND EVT_TRG_DATE != '9999-12-31'
+	</select>
+	
+	<sql id="selectEventChk">
+		 SELECT EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM FROM EVT_EVT 
+		 LEFT JOIN EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
+		 where END_DATE <![CDATA[<]]> DATE(NOW()) AND EVT_TRG_DATE != '9999-12-31'
+		 ORDER BY EVT_TRG_DATE DESC
+		 LIMIT 10 offset #{pageIdx}
+	</sql>
+	
+	 	 
+ 	 <select id="checkCustID" resultType="string">
+		select t102.CUST_NM as CUST_NM
+		from CUST_APP_RES t101
+		left join CUST_BAS t102
+		on t101.CUST_IDX = t102.CUST_IDX
+		where t101.EVT_IDX = #{evtIdx}
+		and t102.CUST_ID = #{custId};
+	</select>
+
+</mapper>
+ 
+ 

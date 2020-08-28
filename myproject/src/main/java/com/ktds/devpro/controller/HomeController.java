@@ -14,14 +14,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ktds.devpro.model.mapper.MemberMapper;
+import com.ktds.devpro.model.mapper.ChkEventMapper;
 import com.ktds.devpro.model.mapper.EventMapper;
+import com.ktds.devpro.model.mapper.MemberMapper;
+import com.ktds.devpro.model.vo.CustResVO;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 import com.ktds.devpro.service.EventSearchService;
@@ -36,6 +37,7 @@ public class HomeController {
 
 	@Resource
 	private EventMapper eventMapper;
+
 
 	// 0811 11:01 메인 이벤트 마지막페이지 로직오류 수정
 	@RequestMapping("/")
@@ -143,6 +145,8 @@ public class HomeController {
 		model.addAttribute("evt", vo);
 		return "event_detail";
 	}
+	
+
 
 	// 0731 14:26 이벤트 신청하기 추가
 	@RequestMapping("/event_enrollment")
@@ -194,4 +198,8 @@ public class HomeController {
 	public String register(Model model) {
 		return "event_register";
 	}
+	
+	
+	
+	
 }

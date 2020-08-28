@@ -106,4 +106,5 @@ public class EventSearchServiceImpl implements EventSearchService{
 		}	
 		return cnt;
 	}
+
 }

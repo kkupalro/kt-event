@@ -11,27 +11,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="getEventPastCnt" resultType="int">
 		SELECT COUNT(*) FROM EVT_EVT 
 		 LEFT JOIN EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 WHERE EVT_ST = 2
+		 where END_DATE <![CDATA[<]]> DATE(NOW())
 	</select>
 	
 	<sql id="selectEventPast">
 		 SELECT EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM FROM EVT_EVT 
 		 LEFT JOIN EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 WHERE EVT_ST = 2
+		 where END_DATE <![CDATA[<]]> DATE(NOW())
 		 LIMIT 10 offset #{pageIdx}
 	</sql>
 	
 	<select id="findEventSearch" resultType="EventVO">
  		SELECT EVT_IDX, EVT_NM,ST_DATE,END_DATE,EVT_ST,EVT_FILE_URL,EVT_TRG,EVT_PHONE,EVT_TRG_DATE, EVT_CTG_ID, EVT_CTG_NM FROM EVT_EVT 
 		 LEFT JOIN EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 WHERE EVT_EVT.EVT_ST = 2 AND EVT_EVT.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(EVT_EVT.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
+		 where END_DATE <![CDATA[<]]> DATE(NOW()) AND EVT_EVT.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(EVT_EVT.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
 		 LIMIT 10 offset #{pageIdx}
  	</select>
  	
  	<select id="getEventSearchCnt" resultType="int">
 		SELECT COUNT(*) FROM EVT_EVT 
 		 LEFT JOIN EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
-		 WHERE EVT_EVT.EVT_ST = 2 AND EVT_EVT.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(EVT_EVT.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
+		 where END_DATE <![CDATA[<]]> DATE(NOW()) AND EVT_EVT.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(EVT_EVT.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
 	</select>
 </mapper>
  
