@@ -52,7 +52,7 @@
 							maxlength="11" class="flow search-text tell"
 							placeholder="'-' 없이 번호만 입력" title="휴대폰 번호 입력" value=""> </span>
 						<button id="win_btn" type="button" class="flow btn-search">
-							<span class="invisible"> <!-- 1113 수정 -->검색하기<!-- //1113 수정 -->
+							<span class="invisible">검색하기
 							</span>
 						</button>
 					</div>
