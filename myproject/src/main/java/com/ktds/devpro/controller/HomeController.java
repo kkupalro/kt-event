@@ -143,6 +143,17 @@ public class HomeController {
 		model.addAttribute("evt", vo);
 		return "event_detail";
 	}
+	
+	// YE : 0828  이벤트당첨 상세 페이지 이동 추가
+	@RequestMapping("/check_detail")
+	public String Chkdetail(HttpServletRequest request, Model model) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		List<EventVO> vo = eventMapper.findEventByIdx(id);
+		List<EventDtVO> dt_vo = eventMapper.searchEventDtList(id);
+		model.addAttribute("evt_dt", dt_vo);
+		model.addAttribute("evt", vo);
+		return "check_detail";
+	}
 
 	// 0731 14:26 이벤트 신청하기 추가
 	@RequestMapping("/event_enrollment")

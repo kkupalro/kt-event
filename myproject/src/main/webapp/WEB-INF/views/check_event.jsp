@@ -115,7 +115,7 @@
 							<c:forEach var="row" items="${map.list}">
 								<tr>
 									<td><a
-										href="event_detail?id=<c:out value="${row.evtIdx}"/>"><c:out
+										href="check_detail?id=<c:out value="${row.evtIdx}"/>"><c:out
 												value="${row.evtNm}" /></a></td>
 									<td><c:out value="${row.evtTrgDate}" /> </td>
 								</tr>
