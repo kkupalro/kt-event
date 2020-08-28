@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.devpro.model.mapper.ChkEventMapper;
@@ -46,41 +48,11 @@ public class EventChkController {
 		return mav;
 	}
 	
-
-
-//	/*
-//	 * //taejun : 0527 16:40 이벤트명 검색 추가
-//	 * 
-//	 * @RequestMapping(path = "/past_search", method = { RequestMethod.POST })
-//	 * public ModelAndView new_list(HttpServletRequest request) throws Exception {
-//	 * String searchOption = request.getParameter("searchOption"); String searchWord
-//	 * = request.getParameter("searchWord"); int pageIdx = 0; ModelAndView mav = new
-//	 * ModelAndView(); List<EventVO> list =
-//	 * pasteventMapper.findEventSearch(searchOption, searchWord, pageIdx * 10); int
-//	 * cnt = pasteventMapper.getEventSearchCnt(searchOption, searchWord);
-//	 * Map<String, Object> map = new HashMap<String, Object>(); map.put("list",
-//	 * list); map.put("searchOption", searchOption); map.put("searchWord",
-//	 * searchWord); map.put("pageIdx", pageIdx); map.put("cnt", cnt); cnt =
-//	 * eventSrcService.setEndPage(cnt, 10); map.put("endPage", cnt);
-//	 * mav.addObject("map", map); mav.setViewName("past_event"); return mav; }
-//	 * 
-//	 * //taejun : 0527 16:40 지난 이벤트 페이징 추가
-//	 * 
-//	 * @RequestMapping("/past_page") public ModelAndView
-//	 * page(@RequestParam(defaultValue = "") String searchOption,
-//	 * 
-//	 * @RequestParam(defaultValue = "") String searchWord, HttpServletRequest
-//	 * request) throws Exception { ModelAndView mav = new ModelAndView(); int
-//	 * pageIdx = Integer.parseInt(request.getParameter("pageIdx")); searchWord =
-//	 * request.getParameter("searchWord"); searchOption =
-//	 * request.getParameter("searchOption"); Map<String, Object> map = new
-//	 * HashMap<String, Object>(); int cnt =
-//	 * pasteventMapper.getEventSearchCnt(searchOption, searchWord); List<EventVO>
-//	 * list = pasteventMapper.findEventSearch(searchOption, searchWord, pageIdx *
-//	 * 10); map.put("list", list); map.put("searchOption", searchOption);
-//	 * map.put("searchWord", searchWord); map.put("pageIdx", pageIdx);
-//	 * map.put("cnt", cnt); cnt = eventSrcService.setEndPage(cnt, 10);
-//	 * map.put("endPage", cnt); mav.addObject("map", map);
-//	 * mav.setViewName("past_event"); return mav; }
-//	 */
+	
+	@RequestMapping(value = "/user/custidCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String idCheck(@RequestParam("userId") String id_text, @RequestParam("evtIdx") String evtidx) {
+		System.out.println(ChkEventMapper.getEventChkCust(evtidx, id_text));
+		return ChkEventMapper.getEventChkCust(evtidx, id_text);
+	}
 }

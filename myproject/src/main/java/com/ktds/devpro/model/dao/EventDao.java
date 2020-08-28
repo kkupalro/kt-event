@@ -51,5 +51,7 @@ public class EventDao {
 		map.put("pageIdx", String.valueOf(pageIdx));
 		return sqlSession.selectList("EventDao.findEventEnd", map);
 	}
+	
+
 }
 

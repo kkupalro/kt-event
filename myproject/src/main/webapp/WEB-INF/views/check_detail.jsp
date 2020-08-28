@@ -105,7 +105,7 @@
 								title="아이디 또는 휴대폰으로 검색합니다.">
 								<option value="strId" selected="selected">아이디</option>
 								<option value="phone">휴대폰</option>
-							</select> <span class="id-select active"> <input id="id_text"
+							</select> <span class="id-select active"> <input id="id_text" name = "id_text"
 								type="text" maxlength="32" class="flow search-text"
 								placeholder="아이디" title="아이디 입력" value=""> <input
 								id="name_text" type="text" maxlength="16"
@@ -114,7 +114,7 @@
 								type="text" maxlength="11" class="flow search-text tell"
 								placeholder="'-' 없이 번호만 입력" title="휴대폰 번호 입력" value="">
 							</span>
-							<button id="win_btn" type="button" class="flow btn-search">
+							<button id="win_btn" type="button" class="flow btn-search" onclick="button_click();">
 								<span class="invisible"> <!-- 1113 수정 -->검색하기<!-- //1113 수정 -->
 								</span>
 							</button>
@@ -138,13 +138,6 @@
 					<a
 						href="javascript:kt_common.ktMenuLinkStat('${evt.evtSt==2?'/check':'/'}','^마지막 페이지','_self','');"
 						class="btn large is-navygray">목록</a>
-
-					<c:if test="${evt.evtSt==1}">
-						<a
-							href="javascript:kt_common.ktMenuLinkStat('/event_enrollment?evtIdx=${evt.evtIdx}','^신청 페이지','_self','');"
-							class="btn large is-blue">신청하기</a>
-					</c:if>
-
 				</c:forEach>
 			</div>
 		</div>
@@ -153,20 +146,30 @@
 	<%@ include file="./event_footer.jsp"%>
 	 
 	<script type="text/javascript">
-	var generateRandom = function (min, max) {
-		  var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
-		  return ranNum;
-	}
-	var i = 1;
-	if(i == 1){
-		// 20%
-		// 당첨 처리 CUST_APP_RES.PRIZE = 1
-		alert('당첨되었습니다.');
-	}
-	else {
-		// 비당첨 처리 CUST_APP_RES.PRIZE = 0
-		alert('당첨자 정보가 없습니다.');
-	}
+	$("#id_text")
+	.blur(
+			function() {
+				// id = "id_reg" / name = "userId"
+				var user_id = $('#id_text').val();
+				var evt_idx = ${evtIdx}
+				$
+						.ajax({
+							url : '${pageContext.request.contextPath}/user/custidCheck?userId='
+									+ user_id +'evtIdx'+evt_idx,
+							type : 'get',
+							success : function(data) {
+								if (data == 0) {
+									alert("사용해도 되는 아이디");
+
+								} else {
+									alert("아이디 바꿔주세요~")
+								}
+							},
+							error : function() {
+								console.log("실패");
+							}
+						});
+			});
 	</script>
 	 
 </body>

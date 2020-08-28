@@ -34,6 +34,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 LEFT JOIN EVT_CTG ON EVT_EVT.EVT_CTG_ID = EVT_CTG.EVT_CTG_IDX
 		 where END_DATE <![CDATA[<]]> DATE(NOW()) AND EVT_EVT.EVT_CTG_ID LIKE  CONCAT('%',#{searchOption},'%') AND UPPER(EVT_EVT.EVT_NM) LIKE UPPER(CONCAT('%',#{searchWord},'%'))
 	</select>
+	
+	<select id = "getEventChkCust" resultType = "String">
+		select t102.CUST_NM
+		from CUST_APP_RES t101
+		left join CUST_BAS t102
+		on t101.CUST_IDX = t102.CUST_IDX
+		where t101.EVT_IDX = #{evtidx}
+		and t102.CUST_ID = #{custid}
+	</select>
 </mapper>
  
  

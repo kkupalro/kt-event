@@ -21,4 +21,5 @@ public interface ChkEventMapper {
 	//taejun : 0527 16:40  검색조건에 따른 지난 이벤트 건수 가져오는 Mapper 추가
 	public int getEventSearchCnt(String searchOption, String searchWord);
 	
+	public String getEventChkCust(String evtIdx, String custId);
 }
