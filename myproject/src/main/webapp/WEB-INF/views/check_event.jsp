@@ -38,7 +38,7 @@
 					</div>
 					<div class="search-area hybrid">
 						<select id="selectForm" class="flow search-select"
-							title="아이디 또는 휴대폰으로 검색합니다.">
+							title="아이디 또는 휴대폰으로 검색합니다." onchange="changeSearchBox()">
 							<option value="strId" selected="selected">아이디</option>
 							<option value="phone">휴대폰</option>
 						</select> <span class="id-select active"> <input id="id_text"
@@ -51,8 +51,7 @@
 							placeholder="'-' 없이 번호만 입력" title="휴대폰 번호 입력" value="">
 						</span>
 						<button id="win_btn" type="button" class="flow btn-search">
-							<span class="invisible">
-								<!-- 1113 수정 -->검색하기<!-- //1113 수정 -->
+							<span class="invisible"> <!-- 1113 수정 -->검색하기<!-- //1113 수정 -->
 							</span>
 						</button>
 					</div>
@@ -117,7 +116,7 @@
 									<td><a
 										href="check_detail?id=<c:out value="${row.evtIdx}"/>"><c:out
 												value="${row.evtNm}" /></a></td>
-									<td><c:out value="${row.evtTrgDate}" /> </td>
+									<td><c:out value="${row.evtTrgDate}" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -125,68 +124,69 @@
 				</table>
 
 				<div class="pagination">
-				<c:choose>
-				<c:when test="${map.cnt eq 0}"/>
-				<c:otherwise>
-					<div class="scope">
-						<c:if test="${map.pageIdx eq 0}">
-							<a href="javascript:;" class="dir first disabled">첫 페이지로 이동</a>
-							<a href="javascript:;" class="dir prev disabled">이전 페이지로 이동</a>
-						</c:if>
-						<c:if test="${map.pageIdx ne 0}">
-							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=0&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^첫 페이지','_self','');"
-								class="dir first">첫 페이지로 이동</a>
-							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.pageIdx==0?0:map.pageIdx-1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^이전 페이지','_self','');"
-								class="dir prev">이전 페이지로 이동</a>
-						</c:if>
-						<c:choose>
-							<c:when test="${map.cnt eq 0}" />
-							<c:when test="${map.endPage < 10}">
-								<c:forEach begin="0" end="${map.endPage}" var="idx">
-									<a id="${idx}"
-										href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
-								</c:forEach>
-							</c:when>
-							<c:when test="${map.endPage >= 10}">
+					<c:choose>
+						<c:when test="${map.cnt eq 0}" />
+						<c:otherwise>
+							<div class="scope">
+								<c:if test="${map.pageIdx eq 0}">
+									<a href="javascript:;" class="dir first disabled">첫 페이지로 이동</a>
+									<a href="javascript:;" class="dir prev disabled">이전 페이지로 이동</a>
+								</c:if>
+								<c:if test="${map.pageIdx ne 0}">
+									<a
+										href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=0&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^첫 페이지','_self','');"
+										class="dir first">첫 페이지로 이동</a>
+									<a
+										href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.pageIdx==0?0:map.pageIdx-1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^이전 페이지','_self','');"
+										class="dir prev">이전 페이지로 이동</a>
+								</c:if>
 								<c:choose>
-									<c:when test="${map.pageIdx < 10}">
-										<c:forEach begin="0" end="9" var="idx">
+									<c:when test="${map.cnt eq 0}" />
+									<c:when test="${map.endPage < 10}">
+										<c:forEach begin="0" end="${map.endPage}" var="idx">
 											<a id="${idx}"
 												href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
 										</c:forEach>
 									</c:when>
+									<c:when test="${map.endPage >= 10}">
+										<c:choose>
+											<c:when test="${map.pageIdx < 10}">
+												<c:forEach begin="0" end="9" var="idx">
+													<a id="${idx}"
+														href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
+												</c:forEach>
+											</c:when>
 
-									<c:when test="${map.pageIdx >= 10}">
-										<fmt:parseNumber var="pages" integerOnly="true"
-											value="${map.pageIdx / 10}" />
+											<c:when test="${map.pageIdx >= 10}">
+												<fmt:parseNumber var="pages" integerOnly="true"
+													value="${map.pageIdx / 10}" />
 
-										<fmt:parseNumber var="val" integerOnly="true"
-											value="${pages*10 + 9 < map.endPage?9:map.endPage - pages*10}" />
-										<c:forEach begin="${pages*10}" end="${pages*10 + val}"
-											var="idx">
-											<a id="${idx}"
-												href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
-										</c:forEach>
+												<fmt:parseNumber var="val" integerOnly="true"
+													value="${pages*10 + 9 < map.endPage?9:map.endPage - pages*10}" />
+												<c:forEach begin="${pages*10}" end="${pages*10 + val}"
+													var="idx">
+													<a id="${idx}"
+														href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${idx}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^${idx}페이지','_self','');">${idx+1}</a>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 									</c:when>
 								</c:choose>
-							</c:when>
-						</c:choose>
-						<c:if test="${map.pageIdx eq map.endPage}">
-							<a href="javascript:;" class="dir next disabled">다음 페이지로 이동</a>
-							<a href="javascript:;" class="dir last disabled">마지막 페이지로 이동</a>
-						</c:if>
-						<c:if test="${map.pageIdx ne map.endPage}">
-							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^다음 페이지','_self','');;"
-								class="dir next >">다음 페이지로 이동</a>
-							<a
-								href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.endPage}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^마지막 페이지','_self','');"
-								class="dir last ">마지막 페이지로 이동</a>
-						</c:if>
-					</div>
-					</c:otherwise>
+								<c:if test="${map.pageIdx eq map.endPage}">
+									<a href="javascript:;" class="dir next disabled">다음 페이지로 이동</a>
+									<a href="javascript:;" class="dir last disabled">마지막 페이지로
+										이동</a>
+								</c:if>
+								<c:if test="${map.pageIdx ne map.endPage}">
+									<a
+										href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.pageIdx>=map.endPage?map.endPage:map.pageIdx+1}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^다음 페이지','_self','');;"
+										class="dir next >">다음 페이지로 이동</a>
+									<a
+										href="javascript:kt_common.ktMenuLinkStat('past_page?pageIdx=${map.endPage}&searchOption=${map.searchOption}&searchWord=${map.searchWord}','^마지막 페이지','_self','');"
+										class="dir last ">마지막 페이지로 이동</a>
+								</c:if>
+							</div>
+						</c:otherwise>
 					</c:choose>
 				</div>
 				<div class="btn-list">
@@ -200,6 +200,28 @@
 		</div>
 	</div>
 	<%@ include file="./event_footer.jsp"%>
+
+	<script type="text/javascript">
+				var params = {}; // 파라미터	
+				var strId = '';
+				var strName = '';
+				var strTel = '';
+				function changeSearchBox() {
+					$j('#id_text').val('');
+					$j('#name_text').val('');
+					$j('#tel_text').val('');
+					if ($j('#selectForm').val() === 'strId') {
+						$j('.phone-select ').removeClass('active');
+						$j('.id-select').addClass('active').focus();
+						params.searchType = 'strId';
+
+					} else {
+						$j('.id-select').removeClass('active');
+						$j('.phone-select ').addClass('active').focus();
+						params.searchType = 'phone';
+					}
+				}
+	</script>
 
 	<script>
 	document.getElementById(${map.pageIdx}).innerHTML="<span>${map.pageIdx+1}</span>"
