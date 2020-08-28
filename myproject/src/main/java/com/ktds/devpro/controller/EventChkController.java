@@ -34,7 +34,7 @@ public class EventChkController {
 	
 	
 	//YE : 0828 이벤트 당첨 페이지 추가
-	@RequestMapping("/check")
+	@RequestMapping("/check_event")
 	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption, @RequestParam(defaultValue = "") String searchWord) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<EventVO> list = ChkEventMapper.findEventChk(0);

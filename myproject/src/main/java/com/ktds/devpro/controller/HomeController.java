@@ -19,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ktds.devpro.model.mapper.ChkEventMapper;
 import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.mapper.MemberMapper;
-import com.ktds.devpro.model.vo.CustResVO;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 import com.ktds.devpro.service.EventSearchService;

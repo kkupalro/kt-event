@@ -26,23 +26,19 @@ public class EventCheckController {
 	@Resource
 	private PastEventMapper pasteventMapper;
 
-	@RequestMapping("/check_event")
-	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption, @RequestParam(defaultValue = "") String searchWord) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		List<EventVO> list = pasteventMapper.findEventPast(0);
-		int cnt = pasteventMapper.getEventPastCnt();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list);
-		map.put("searchOption", searchOption);
-		map.put("pageIdx", 0);
-		map.put("searchWord", searchWord);
-		map.put("cnt", cnt);
-		cnt = eventSrcService.setEndPage(cnt, 10);
-		map.put("endPage", cnt);
-		mav.addObject("map", map);
-		mav.setViewName("check_event");
-		return mav;
-	}
+	/*
+	 * @RequestMapping("/check_event") public ModelAndView
+	 * list(@RequestParam(defaultValue = "") String
+	 * searchOption, @RequestParam(defaultValue = "") String searchWord) throws
+	 * Exception { ModelAndView mav = new ModelAndView(); List<EventVO> list =
+	 * pasteventMapper.findEventPast(0); int cnt =
+	 * pasteventMapper.getEventPastCnt(); Map<String, Object> map = new
+	 * HashMap<String, Object>(); map.put("list", list); map.put("searchOption",
+	 * searchOption); map.put("pageIdx", 0); map.put("searchWord", searchWord);
+	 * map.put("cnt", cnt); cnt = eventSrcService.setEndPage(cnt, 10);
+	 * map.put("endPage", cnt); mav.addObject("map", map);
+	 * mav.setViewName("check_event"); return mav; }
+	 */
 
 	@RequestMapping(path = "/check_search", method = { RequestMethod.POST })
 	public ModelAndView new_list(HttpServletRequest request) throws Exception {

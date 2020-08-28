@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ktds.devpro.model.vo.CustResVO;
+
 import com.ktds.devpro.model.vo.EventCtgVO;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
