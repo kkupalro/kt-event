@@ -6,17 +6,17 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.devpro.model.mapper.ChkEventMapper;
+import com.ktds.devpro.model.mapper.EventMapper;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
 import com.ktds.devpro.service.EventSearchService;
@@ -29,6 +29,10 @@ public class EventChkController {
 	@Resource
 	private ChkEventMapper ChkEventMapper;
 
+	@Resource
+	private EventMapper eventMapper;
+	
+	
 	//YE : 0828 이벤트 당첨 페이지 추가
 	@RequestMapping("/check")
 	public ModelAndView list(@RequestParam(defaultValue = "") String searchOption, @RequestParam(defaultValue = "") String searchWord) throws Exception {
@@ -48,11 +52,22 @@ public class EventChkController {
 		return mav;
 	}
 	
-	
-	@RequestMapping(value = "/user/custidCheck", method = RequestMethod.GET)
-	@ResponseBody
-	public String idCheck(@RequestParam("userId") String id_text, @RequestParam("evtIdx") String evtidx) {
-		System.out.println(ChkEventMapper.getEventChkCust(evtidx, id_text));
-		return ChkEventMapper.getEventChkCust(evtidx, id_text);
+	//YE : 0828 당첨자확인 페이지 추가
+	@RequestMapping("/check_detail")
+	public String Chkdetail(HttpServletRequest request,HttpSession session, Model model) {
+		int evtIdx = Integer.parseInt(request.getParameter("id"));
+		String custId = String.valueOf(session.getAttribute("custId"));
+		List<EventVO> vo = eventMapper.findEventByIdx(evtIdx);
+		List<EventDtVO> dt_vo = eventMapper.searchEventDtList(evtIdx);
+		
+		String checkID = ChkEventMapper.checkCustID(custId, evtIdx);
+		
+		//String checkID = eventSrcService.checkCustID(custId, evtIdx);
+		System.out.println(checkID);
+		model.addAttribute("evt_dt", dt_vo);
+		model.addAttribute("evt", vo);
+		model.addAttribute("checkID", checkID);
+		return "check_detail";
 	}
+
 }

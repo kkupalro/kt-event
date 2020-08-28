@@ -1,10 +1,11 @@
 package com.ktds.devpro.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import com.ktds.devpro.model.vo.CustResVO;
 import com.ktds.devpro.model.vo.EventCtgVO;
 import com.ktds.devpro.model.vo.EventDtVO;
 import com.ktds.devpro.model.vo.EventVO;
@@ -40,5 +41,7 @@ public interface EventMapper {
 
 	//taejun : 0526 11:30  검색조건에 따른 이벤트 건수 가져오는 Mapper 추가
 	public int getEventSearchCnt(String searchOption);
+	
+
 	
 }

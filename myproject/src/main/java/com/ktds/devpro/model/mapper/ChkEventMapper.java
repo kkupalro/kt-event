@@ -15,11 +15,6 @@ public interface ChkEventMapper {
 	//YE : 0828 이벤트 당첨리스트 건수 가져오는 Mapper 추가
 	public int getEventChkCnt();
 	
-	//taejun : 0527 16:40  이벤트 건수 가져오는 Mapper 추가
-	public List<EventVO> findEventSearch(String searchOption, String searchWord, int pageIdx);
-
-	//taejun : 0527 16:40  검색조건에 따른 지난 이벤트 건수 가져오는 Mapper 추가
-	public int getEventSearchCnt(String searchOption, String searchWord);
-	
-	public String getEventChkCust(String evtIdx, String custId);
+	//YE : 0828 이벤트 당첨 추가
+	public String checkCustID(String custId, int evtIdx);
 }

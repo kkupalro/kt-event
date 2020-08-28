@@ -75,7 +75,6 @@ public class MemberTestController {
 		} else {
 			member = memberService.loginById(id);
 		}
-
 		
 		if(member == null){
 			System.out.println("ID IS NOT FOUND");
@@ -91,6 +90,7 @@ public class MemberTestController {
 			}
 		}
 
+		session.setAttribute("custNm", member.getName());
 
 		return "redirect:/";
 	}

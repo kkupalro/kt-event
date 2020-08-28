@@ -96,35 +96,13 @@
 		<div class="winning-check-area">
 			<div class="column">
 				<div class="inner">
-					<div class="winning-check">
-						<div class="winning-title">
-							고객님께서 응모하신 <strong>이벤트의 당첨여부</strong>를 확인해보세요.
-						</div>
-						<div class="search-area hybrid">
-							<select id="selectForm" class="flow search-select"
-								title="아이디 또는 휴대폰으로 검색합니다.">
-								<option value="strId" selected="selected">아이디</option>
-								<option value="phone">휴대폰</option>
-							</select> <span class="id-select active"> <input id="id_text" name = "id_text"
-								type="text" maxlength="32" class="flow search-text"
-								placeholder="아이디" title="아이디 입력" value=""> <input
-								id="name_text" type="text" maxlength="16"
-								class="flow search-text" placeholder="이름" title="이름 입력" value="">
-							</span> <span class="phone-select"> <input id="tel_text"
-								type="text" maxlength="11" class="flow search-text tell"
-								placeholder="'-' 없이 번호만 입력" title="휴대폰 번호 입력" value="">
-							</span>
-							<button id="win_btn" type="button" class="flow btn-search" onclick="button_click();">
-								<span class="invisible"> <!-- 1113 수정 -->검색하기<!-- //1113 수정 -->
-								</span>
-							</button>
-						</div>
-					</div>
+
 					<div>
-						<br> <br>
-						<p>안녕하세요 고객님.</p>
-						<p>당첨 확인을 위하여 고객 정보 조회 부탁 드립니다.</p>
-						<p>당첨 고객님께는 안내 문자메시지를 보내드릴 예정입니다.</p>
+						<c:choose>
+						<c:when test="${empty custNm}"> 로그인 후 확인해주세요.</c:when>
+						<c:when test="${empty checkID}"> ${custNm} 님께서는 해당 이벤트에 당첨되지 못하셨습니다.<br>다음 기회에 다시 도전해주세요.  </c:when>
+						<c:otherwise> ${custNm}님! 당첨을 축하드립니다!! <br> 당첨되신 분께는 따로 문자로 연락을 드릴 예정입니다. <br> 감사합니다. </c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -144,33 +122,6 @@
 	</div>
 
 	<%@ include file="./event_footer.jsp"%>
-	 
-	<script type="text/javascript">
-	$("#id_text")
-	.blur(
-			function() {
-				// id = "id_reg" / name = "userId"
-				var user_id = $('#id_text').val();
-				var evt_idx = ${evtIdx}
-				$
-						.ajax({
-							url : '${pageContext.request.contextPath}/user/custidCheck?userId='
-									+ user_id +'evtIdx'+evt_idx,
-							type : 'get',
-							success : function(data) {
-								if (data == 0) {
-									alert("사용해도 되는 아이디");
-
-								} else {
-									alert("아이디 바꿔주세요~")
-								}
-							},
-							error : function() {
-								console.log("실패");
-							}
-						});
-			});
-	</script>
 	 
 </body>
 </html>
