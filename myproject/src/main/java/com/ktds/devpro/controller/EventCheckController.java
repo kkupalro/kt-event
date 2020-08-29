@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ktds.devpro.model.mapper.ChkEventMapper;
 import com.ktds.devpro.model.mapper.PastEventMapper;
 import com.ktds.devpro.model.vo.EventVO;
 import com.ktds.devpro.service.EventSearchService;
@@ -22,26 +23,51 @@ import com.ktds.devpro.service.EventSearchService;
 public class EventCheckController {
 	@Autowired
 	private EventSearchService eventSrcService;
-	
+
 	@Resource
 	private PastEventMapper pasteventMapper;
+	
+	@Resource
+	private ChkEventMapper ChkEventMapper;
 
-	/*
-	 * @RequestMapping("/check_event") public ModelAndView
-	 * list(@RequestParam(defaultValue = "") String
-	 * searchOption, @RequestParam(defaultValue = "") String searchWord) throws
-	 * Exception { ModelAndView mav = new ModelAndView(); List<EventVO> list =
-	 * pasteventMapper.findEventPast(0); int cnt =
-	 * pasteventMapper.getEventPastCnt(); Map<String, Object> map = new
-	 * HashMap<String, Object>(); map.put("list", list); map.put("searchOption",
-	 * searchOption); map.put("pageIdx", 0); map.put("searchWord", searchWord);
-	 * map.put("cnt", cnt); cnt = eventSrcService.setEndPage(cnt, 10);
-	 * map.put("endPage", cnt); mav.addObject("map", map);
-	 * mav.setViewName("check_event"); return mav; }
-	 */
+	@RequestMapping(path = "/check_option", method = { RequestMethod.POST })
+	public ModelAndView option(HttpServletRequest request) throws Exception {
+		String searchOption = request.getParameter("searchOption");
+		String searchWord = request.getParameter("searchWord");
+		
+		String name = request.getParameter("name");
+		String id= request.getParameter("id");
+		String phone = request.getParameter("phone");
+		
+		int pageIdx = 0;
+		ModelAndView mav = new ModelAndView();
+		List<EventVO> list = null; 
+		int cnt = 0; 
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(phone.equals("")) {
+			list = ChkEventMapper.findEventChkId(name, id, pageIdx * 10);
+			cnt = ChkEventMapper.getEventChkIdCnt(name, id);
+		}
+		else {
+			list = ChkEventMapper.findEventChkPhone(phone, pageIdx * 10);
+			cnt = ChkEventMapper.getEventChkPhoneCnt(phone);
+		}
+		
+		map.put("list", list);
+		map.put("searchOption", searchOption);
+		map.put("pageIdx", 0);
+		map.put("searchWord", searchWord);
+		map.put("cnt", cnt);
+		cnt = eventSrcService.setEndPage(cnt, 10);
+		map.put("endPage", cnt);
+		mav.addObject("map", map);
+		mav.setViewName("check_event");
+		return mav;
+	}
 
 	@RequestMapping(path = "/check_search", method = { RequestMethod.POST })
-	public ModelAndView new_list(HttpServletRequest request) throws Exception {
+	public ModelAndView search(HttpServletRequest request) throws Exception {
 		String searchOption = request.getParameter("searchOption");
 		String searchWord = request.getParameter("searchWord");
 		int pageIdx = 0;

@@ -36,25 +36,25 @@
 					<div class="winning-title">
 						고객님께서 응모하신 <strong>이벤트의 당첨여부</strong>를 확인해보세요.
 					</div>
+					<form name="form" method="post" action="/check_option">
 					<div class="search-area hybrid">
 						<select id="selectForm" class="flow search-select"
 							title="아이디 또는 휴대폰으로 검색합니다." onchange="changeSearchBox()">
 							<option value="strId" selected="selected">아이디</option>
 							<option value="phone">휴대폰</option>
 						</select> <span class="id-select active"> <input id="id_text"
-							type="text" maxlength="32" class="flow search-text"
+							type="text" maxlength="32" class="flow search-text" name="id"
 							placeholder="아이디" title="아이디 입력" value=""> <input
 							id="name_text" type="text" maxlength="16"
-							class="flow search-text" placeholder="이름" title="이름 입력" value="">
+							class="flow search-text" name="name" placeholder="이름" title="이름 입력" value="">
 						</span> <span class="phone-select"> <input id="tel_text"
-							type="text" maxlength="11" class="flow search-text tell"
+							type="text" maxlength="11" class="flow search-text tell" name="phone"
 							placeholder="'-' 없이 번호만 입력" title="휴대폰 번호 입력" value="">
 						</span>
-						<button id="win_btn" type="button" class="flow btn-search">
-							<span class="invisible"> <!-- 1113 수정 -->검색하기<!-- //1113 수정 -->
-							</span>
+						<button id="win_btn" type="submit" class="flow btn-search">
 						</button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -96,7 +96,7 @@
 					<c:if test="${map.cnt eq '0'}">
 						<tbody>
 							<tr>
-								<td class='empty'>'${map.searchWord}'에 대한 검색결과가 없습니다.</td>
+								<td class="empty"><strong>등록된 당첨자 발표가 없습니다.</strong>일부 이벤트의 경우 당첨조회가 되지 않을 수 있으니,<br>해당 이벤트 발표 페이지를 확인하세요.</td>
 							</tr>
 						</tbody>
 					</c:if>
