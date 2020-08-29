@@ -22,26 +22,14 @@
 		<div class="column">
 			<div class="inner">
 				<c:forEach var="evt" items="${evt}">
-					<c:if test="${evt.evtSt ne 2}">
-						<div class="location">
-							<span><a href="/" class="home">HOME</a></span> <span title="현재위치">당첨자
-								발표</span>
-						</div>
-						<div class="hgroup is-black">
-							<h3>당첨자 발표</h3>
-							<p>고객님께서 응모하신 이벤트의 당첨여부를 확인해보세요.</p>
-						</div>
-					</c:if>
-					<c:if test="${evt.evtSt eq 2}">
-						<div class="location">
-							<span><a href="/" class="home">HOME</a></span> <span title="현재위치">당첨자
-								발표</span>
-						</div>
-						<div class="hgroup is-black">
-							<h3>당첨자 발표</h3>
-							<p>고객님께서 응모하신 이벤트의 당첨여부를 확인해보세요.</p>
-						</div>
-					</c:if>
+					<div class="location">
+						<span><a href="/" class="home">HOME</a></span> <span title="현재위치">당첨자
+							발표</span>
+					</div>
+					<div class="hgroup is-black">
+						<h3>당첨자 발표</h3>
+						<p>고객님께서 응모하신 이벤트의 당첨여부를 확인해보세요.</p>
+					</div>
 				</c:forEach>
 			</div>
 		</div>
@@ -96,32 +84,34 @@
 		<div class="winning-check-area">
 			<div class="column">
 				<div class="inner">
-
 					<div>
 						<c:choose>
-						<c:when test="${empty custNm}"> 로그인 후 확인해주세요.</c:when>
-						<c:when test="${empty checkID}"> ${custNm} 님께서는 해당 이벤트에 당첨되지 못하셨습니다.<br>다음 기회에 다시 도전해주세요.  </c:when>
-						<c:otherwise> ${custNm}님! 당첨을 축하드립니다!! <br> 당첨되신 분께는 따로 문자로 연락을 드릴 예정입니다. <br> 감사합니다. </c:otherwise>
+							<c:when test="${empty checkID}">
+								<script>alert("'${custNm}'고객님께서는 해당 이벤트에 당첨되지 않으셨습니다.\n다음 기회에 다시 한번 응모 해주시기 바랍니다.")</script>
+								<!-- 여기에 비당첨 페이지 꾸밀꺼 구현하면 됨. -->
+								${custNm} 님께서는 해당 이벤트에 당첨되지 못하셨습니다.<br>다음 기회에 다시 도전해주세요.  
+							</c:when>
+							<c:otherwise>
+								<script>alert("'${custNm}'고객님께서는 해당 이벤트에 당첨되셨습니다.\n당첨을 축하드립니다.")</script>
+								<!-- 여기에 당첨 페이지 꾸밀꺼 구현하면 됨. -->
+								${custNm}님! 당첨을 축하드립니다!! <br> 당첨되신 분께는 따로 문자로 연락을 드릴 예정입니다. <br> 감사합니다. 
+							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
 			</div>
 		</div>
 
-
-
 		<div style="text-align: center;">
 			<div class="btn-list">
-				<c:forEach var="evt" items="${evt}">
-					<a
-						href="javascript:kt_common.ktMenuLinkStat('${evt.evtSt==2?'/check_event':'/'}','^마지막 페이지','_self','');"
+				<a
+						href="javascript:kt_common.ktMenuLinkStat('/check_event','^마지막 페이지','_self','');"
 						class="btn large is-navygray">목록</a>
-				</c:forEach>
 			</div>
 		</div>
 	</div>
 
 	<%@ include file="./event_footer.jsp"%>
-	 
+
 </body>
 </html>

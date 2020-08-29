@@ -36,24 +36,26 @@
 					<div class="winning-title">
 						고객님께서 응모하신 <strong>이벤트의 당첨여부</strong>를 확인해보세요.
 					</div>
-					<form name="form" method="post" action="/check_option">
-					<div class="search-area hybrid">
-						<select id="selectForm" class="flow search-select"
-							title="아이디 또는 휴대폰으로 검색합니다." onchange="changeSearchBox()">
-							<option value="strId" selected="selected">아이디</option>
-							<option value="phone">휴대폰</option>
-						</select> <span class="id-select active"> <input id="id_text"
-							type="text" maxlength="32" class="flow search-text" name="id"
-							placeholder="아이디" title="아이디 입력" value=""> <input
-							id="name_text" type="text" maxlength="16"
-							class="flow search-text" name="name" placeholder="이름" title="이름 입력" value="">
-						</span> <span class="phone-select"> <input id="tel_text"
-							type="text" maxlength="11" class="flow search-text tell" name="phone"
-							placeholder="'-' 없이 번호만 입력" title="휴대폰 번호 입력" value="">
-						</span>
-						<button id="win_btn" type="submit" class="flow btn-search">
-						</button>
-					</div>
+					<form name="form" method="post" action="/check_option" onsubmit="checkOpt();return false">
+						<div class="search-area hybrid">
+							<select id="selectForm" class="flow search-select"
+								title="아이디 또는 휴대폰으로 검색합니다." onchange="changeSearchBox()">
+								<option value="strId" selected="selected">아이디</option>
+								<option value="phone">휴대폰</option>
+							</select> <span class="id-select active"> <input id="id_text"
+								type="text" maxlength="32" class="flow search-text" name="id"
+								placeholder="아이디" title="아이디 입력" value=""> <input
+								id="name_text" type="text" maxlength="16"
+								class="flow search-text" name="name" placeholder="이름"
+								title="이름 입력" value="">
+							</span> <span class="phone-select"> <input id="tel_text"
+								type="text" maxlength="11" class="flow search-text tell"
+								name="phone" placeholder="'-' 없이 번호만 입력" title="휴대폰 번호 입력"
+								value="">
+							</span>
+							<button id="win_btn" type="submit" class="flow btn-search">
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -96,7 +98,8 @@
 					<c:if test="${map.cnt eq '0'}">
 						<tbody>
 							<tr>
-								<td class="empty"><strong>등록된 당첨자 발표가 없습니다.</strong>일부 이벤트의 경우 당첨조회가 되지 않을 수 있으니,<br>해당 이벤트 발표 페이지를 확인하세요.</td>
+								<td class="empty"><strong>등록된 당첨자 발표가 없습니다.</strong>일부 이벤트의
+									경우 당첨조회가 되지 않을 수 있으니,<br>해당 이벤트 발표 페이지를 확인하세요.</td>
 							</tr>
 						</tbody>
 					</c:if>
@@ -204,27 +207,66 @@
 	<%@ include file="./event_footer.jsp"%>
 
 	<script type="text/javascript">
-				var params = {}; // 파라미터	
-				var strId = '';
-				var strName = '';
-				var strTel = '';
-				function changeSearchBox() {
-					$j('#id_text').val('');
-					$j('#name_text').val('');
-					$j('#tel_text').val('');
-					if ($j('#selectForm').val() === 'strId') {
-						$j('.phone-select ').removeClass('active');
-						$j('.id-select').addClass('active').focus();
-						params.searchType = 'strId';
+	var params = {}; // 파라미터	
+	var strId = '';
+	var strName = '';
+	var strTel = '';
+	function checkOpt(){
+		if($j('#selectForm').val() === 'strId'){ //아이디 일 경우, 이름 아이디 필수
+			var idTxt = $j('#id_text').val();
+			var nmTxt = $j('#name_text').val();
 
-					} else {
-						$j('.id-select').removeClass('active');
-						$j('.phone-select ').addClass('active').focus();
-						params.searchType = 'phone';
-					}
-				}
+			if(kt_common.isNull(idTxt).trim() === ''){
+				alert('아이디를 입력해 주세요.');
+				$j('#id_text').focus();
+				return false;
+			}
+			if(kt_common.isNull(nmTxt).trim() === ''){
+				alert('이름을 입력해 주세요.');
+				$j('#name_text').focus();
+				return false;
+			}
+			if( isSpecialCharId(idTxt) === false ) {
+				alert("아이디에 특수문자를 입력할 수 없습니다.\n영문/숫자 외 일부 특수문자 마침표(.), 빼기표(-), 밑줄(_),@만\n 입력가능합니다.");
+				$j('#id_text').focus();
+				return false;
+			}
+
+			if( isSpecialCharNm(nmTxt) === false ) {
+				alert("이름에 특수문자를 입력할 수 없습니다");
+				$j('#name_text').focus();
+				return false;
+			}
+		}else{
+			var telTxt = $j('#tel_text').val();			
+			if(kt_common.isNull(telTxt).trim() === ''){
+				alert('휴대폰 번호를 입력해주세요.');
+				return false;
+			}
+			if(kt_common.isNumber($j('#tel_text').val()) === false){
+				alert('숫자만 입력 가능합니다.');
+				return false;
+			}	
+		}
+		form.submit();
+	}
+	
+	function changeSearchBox() {
+		$j('#id_text').val('');
+		$j('#name_text').val('');
+		$j('#tel_text').val('');
+		if ($j('#selectForm').val() === 'strId') {
+			$j('.phone-select ').removeClass('active');
+			$j('.id-select').addClass('active').focus();
+			params.searchType = 'strId';
+		} else {
+			$j('.id-select').removeClass('active');
+			$j('.phone-select ').addClass('active').focus();
+			params.searchType = 'phone';
+			}
+		}
 	</script>
-
+	
 	<script>
 	document.getElementById(${map.pageIdx}).innerHTML="<span>${map.pageIdx+1}</span>"
 	</script>

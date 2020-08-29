@@ -1,12 +1,15 @@
 package com.ktds.devpro.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.DefaultEditorKit.CutAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,9 +57,16 @@ public class EventChkController {
 	
 	//YE : 0828 당첨자확인 페이지 추가
 	@RequestMapping("/check_detail")
-	public String Chkdetail(HttpServletRequest request,HttpSession session, Model model) {
+	public String Chkdetail(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws Exception {
 		int evtIdx = Integer.parseInt(request.getParameter("id"));
 		String custId = String.valueOf(session.getAttribute("custId"));
+		if(session.getAttribute("custId") == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();		 
+			out.println("<script>alert('로그인 후 이용해 주세요.')</script>");
+			out.flush();
+			return "event_login";
+		}
 		List<EventVO> vo = eventMapper.findEventByIdx(evtIdx);
 		List<EventDtVO> dt_vo = eventMapper.searchEventDtList(evtIdx);
 		

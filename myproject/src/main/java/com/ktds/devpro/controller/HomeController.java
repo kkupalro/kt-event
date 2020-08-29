@@ -148,7 +148,7 @@ public class HomeController {
 
 	// 0731 14:26 이벤트 신청하기 추가
 	@RequestMapping("/event_enrollment")
-	public void enrollment(HttpSession session, HttpServletResponse response,HttpServletRequest request, Model model) throws Exception{
+	public void enrollment(HttpSession session, HttpServletResponse response, HttpServletRequest request, Model model) throws Exception{
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();		 
 
