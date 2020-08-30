@@ -4682,7 +4682,12 @@
 .event-list-area .event-list ul li .thumb img {
 	padding: 10px;
 	width: 100%;
-	height: 100%
+	height: 100%;
+	transition: all ease 1s;
+}
+
+.event-list-area .event-list ul li .thumb img:hover {
+	transform: scale(1.5);
 }
 
 .event-list-area .event-list ul li .thumb .d-day {

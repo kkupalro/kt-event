@@ -81,22 +81,28 @@
 			</div>
 		</div>
 
-		<div class="winning-check-area">
+		<div class="contents">
 			<div class="column">
 				<div class="inner">
 					<div>
-						<c:choose>
+						<div class="txt"><br>
+						<c:choose>						
 							<c:when test="${empty checkID}">
-								<script>alert("'${custNm}'고객님께서는 해당 이벤트에 당첨되지 않으셨습니다.\n다음 기회에 다시 한번 응모 해주시기 바랍니다.")</script>
+								<script>alert("'${custNm}'고객님께서는\n'${evtName}'에 당첨되지 않으셨습니다.\n다음 기회에 다시 한번 응모 해주시기 바랍니다.")</script>
+
 								<!-- 여기에 비당첨 페이지 꾸밀꺼 구현하면 됨. -->
-								${custNm} 님께서는 해당 이벤트에 당첨되지 못하셨습니다.<br>다음 기회에 다시 도전해주세요.  
+								<img alt="비당첨" src="https://stat.ameba.jp/user_images/20190831/16/20200820/37/b0/p/o0482048214563525463.png?caw=800">
+								<br><br>${custNm} 님께서는 해당 이벤트에 당첨되지 못하셨습니다.<br>다음 기회에 다시 도전해주세요.
 							</c:when>
 							<c:otherwise>
-								<script>alert("'${custNm}'고객님께서는 해당 이벤트에 당첨되셨습니다.\n당첨을 축하드립니다.")</script>
+								<script>alert("축하합니다.\n'${custNm}'고객님께서는\n'${evtName}'에 당첨되셨습니다.")</script>
+																
 								<!-- 여기에 당첨 페이지 꾸밀꺼 구현하면 됨. -->
-								${custNm}님! 당첨을 축하드립니다!! <br> 당첨되신 분께는 따로 문자로 연락을 드릴 예정입니다. <br> 감사합니다. 
+								<img alt="당첨" src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/7hEF/image/wJ6TkQha7CkryL-kYrzmDq_Aux4.jpg">
+								<br>${custNm}님! 당첨을 축하드립니다!! <br> 당첨되신 분께는 따로 문자로 연락을 드릴 예정입니다. <br> 감사합니다. 
 							</c:otherwise>
 						</c:choose>
+						</div>  
 					</div>
 				</div>
 			</div>

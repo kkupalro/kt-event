@@ -76,6 +76,7 @@ public class EventChkController {
 		System.out.println(checkID);
 		model.addAttribute("evt_dt", dt_vo);
 		model.addAttribute("evt", vo);
+		model.addAttribute("evtName", vo.get(0).getEvtNm());
 		model.addAttribute("checkID", checkID);
 		return "check_detail";
 	}
