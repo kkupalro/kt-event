@@ -1,8 +1,7 @@
-# 2020 kt ds 신입사원 온라인 프로젝트 -(4조) 사로나
-# 프로젝트주제: kt.com 이벤트 서비스 개발 (SpringBoot 기반)
-
-
+# 2020 kt ds 신입사원 온라인 프로젝트 -(4조) 사로나 <img src="https://user-images.githubusercontent.com/34331235/113510232-d53a5380-9594-11eb-89c7-3c676f2a384f.png" width="80"/>
 <img src="https://user-images.githubusercontent.com/34331235/113500361-46a7e100-9558-11eb-90ca-0440e46d5b3f.PNG"></img>
+# 프로젝트주제: kt.com > 이벤트
+<img src="https://user-images.githubusercontent.com/34331235/113510300-24808400-9595-11eb-9e99-1fa243b3ac2e.png"/>
 
 GitLab URL : https://devpro.ktds.co.kr:9999/giljun.park/kt-event <br>
 Trello URL : https://trello.com/b/jGHriCw0/%EC%82%AC%EB%A1%9C%EB%82%984%EC%A1%B0
