@@ -57,6 +57,7 @@ src : **Project source file directory**
 > > > > > MemberService.java / 
 > > > > > MemberServiceImpl.java ...
 > > > >
+> > 
 > > resources : **resource directory**
 > > > application.properties
 > > > static : **css, image js directory**
@@ -67,8 +68,9 @@ src : **Project source file directory**
 > > > > > person.css ...
 > > > >
 > > > > image : **image directory**
+> > > > 
 > > > > js : **js directory**
-> >
+> > 
 > > webapp/WEB-INF/views : **view directory**
 > > > check_detail.jsp / 
 > > > check_event.jsp / 
