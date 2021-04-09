@@ -15,12 +15,12 @@ Documents : **Deliverables**
 
 src : **Project source file directory**
 > main : **main source file directory**
-> > java/com/ktds/devpro : **java files directory**
+> > java/com : **java files directory**
 > > > config : **Security files directory**
 > > > > MyContextListener.java / 
 > > > > SSHConnection.java / 
-> > > > SecurityConfig.java ...
-> > >
+> > > > SecurityConfig.java
+> > > 
 > > > controller : **Controller directory**
 > > > > CardController.java / 
 > > > > EventCheckController.java / 
@@ -36,7 +36,7 @@ src : **Project source file directory**
 > > > > > EventCtgDao.java / 
 > > > > > EventDao.java / 
 > > > > > MemberDao.java ...
-> > >
+> > > >
 > > > > mapper : **Mapper directory**
 > > > > > ChkEventMapper.java / 
 > > > > > EventMapper.java / 
@@ -49,7 +49,7 @@ src : **Project source file directory**
 > > > > > EventVO.java / 
 > > > > > Member.java / 
 > > > > > MemberVO.java ...
-> > > >
+> > >
 > > > > service : **Service directory**
 > > > > > EventSearchService.java / 
 > > > > > CardServiceImpl.java / 
@@ -59,17 +59,16 @@ src : **Project source file directory**
 > > > >
 > > 
 > > resources : **resource directory**
-> > > application.properties
 > > > static : **css, image js directory**
 > > > > css : **css directory**
-> > > > > bootstrap.min.css / 
-> > > > > demo.css / 
-> > > > > material-dashboard.css / 
-> > > > > person.css ...
 > > > >
 > > > > image : **image directory**
 > > > > 
 > > > > js : **js directory**
+> > > > 
+> > > > application.properties
+> > > > 
+> > >
 > > 
 > > webapp/WEB-INF/views : **view directory**
 > > > check_detail.jsp / 
@@ -85,19 +84,20 @@ src : **Project source file directory**
 > > > main_header.jsp / 
 > > > past_event.jsp / 
 > > > test.jsp
+> > > 
 > > > login : **Login directory**
 > > > > loginPage.jsp / 
 > > > > login_fail.jsp / 
 > > > > login_success.jsp ...
-> > > > 
+> > > 
 > > > member : **Member directory**
 > > > > find_fail.jsp /
-> > > > find_success ...
->
-traget : **maven build result directory**
-
+> > > > find_success
+> >
+> traget : **maven build result directory**
+> 
 > mvn, mvnw.cmd : **maven wrapper**
-
+> 
 > pom.xml : **project pom.xml**
 
 ## **Development Environment**
