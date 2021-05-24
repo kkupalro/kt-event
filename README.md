@@ -193,5 +193,3 @@ src : **Project source file directory**
 - https://www.hanumoka.net/2019/10/23/jenkins-20191023-jenkins-connect-gitlab
 - https://holjjack.tistory.com/39
 
-<img src="https://user-images.githubusercontent.com/34331235/113500608-385ac480-955a-11eb-96e8-6634120b7955.png" width="90%"></img>
-
